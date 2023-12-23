@@ -2,26 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+/* https://www.realtimecolors.com/?colors=090d15-e7ebf3-0051ff-9ba7bf-1950be&fonts=Poppins-Poppins */
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 231 235 243;
+    --foreground: 9 13 21;
+    --primary: 0 81 255;
+    --secondary: 155 167 191;
+    --accent: 25 80 190;
+  }
+
+  .dark {
+    --background: 12, 16, 24;
+    --foreground: 234, 238, 246;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  .mc-root {
+    @apply bg-background text-foreground;
+  }
 }
