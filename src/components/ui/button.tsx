@@ -10,6 +10,7 @@ interface ButtonProps {
   growOnHover?: boolean;
   goUpOnHover?: boolean;
   disabled?: boolean;
+  iconOnly?: boolean;
   onClick?: MouseEventHandler;
 }
 
@@ -20,7 +21,10 @@ export default function Button({
   color = "primary",
   size = "md",
   radius = "md",
-  glowOnHover: glow = false,
+  glowOnHover = false,
+  growOnHover = false,
+  goUpOnHover = false,
+  iconOnly,
   disabled,
 }: ButtonProps) {
   const radiusClasses = {
@@ -60,9 +64,9 @@ export default function Button({
   };
 
   const sizeClasses = {
-    sm: "text-sm gap-1 p-1",
-    md: "gap-2 p-2 text-md",
-    lg: "text-xl gap-4 p-4 font-bold",
+    sm: `text-sm gap-1 p-1 ${iconOnly || "px-1.5"}`,
+    md: `text-md gap-2 p-2 ${iconOnly || "px-3"}`,
+    lg: `text-xl gap-4 p-4 ${iconOnly || "px-6"} font-bold`,
   };
 
   return (

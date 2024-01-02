@@ -13,6 +13,7 @@ export default function ThemeToggle() {
   return (
     <>
       <Button
+        iconOnly
         variant="ghost"
         radius="lg"
         size="md"
