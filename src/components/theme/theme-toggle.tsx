@@ -5,7 +5,7 @@ import useStore from "@/stores/useStore";
 import { MoonIcon } from "@heroicons/react/24/outline";
 import { SunIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import Button from "../ui/button";
+import Button from "@/components/ui/button";
 
 export default function ThemeToggle() {
   const themeStore = useStore(useThemeStore, (state) => state);

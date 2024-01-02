@@ -8,8 +8,6 @@ export async function GET() {
 
   return new Response("Redirecting...", {
     status: 302,
-    headers: {
-      Location: loginUrl.toString(),
-    },
+    headers: { Location: loginUrl.toString() },
   });
 }

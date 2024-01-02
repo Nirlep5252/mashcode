@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import ThemeToggle from "./theme/theme-toggle";
-import Button from "./ui/button";
-import UserMenu from "./user/user-menu";
+import ThemeToggle from "@/components/theme/theme-toggle";
+import Button from "@/components/ui/button";
+import UserMenu from "@/components/user/user-menu";
 
 export default function Navbar() {
   return (
