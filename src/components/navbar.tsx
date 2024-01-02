@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import ThemeToggle from "./theme/theme-toggle";
 import Button from "./ui/button";
+import UserMenu from "./user/user-menu";
 
 export default function Navbar() {
   return (
@@ -18,7 +19,7 @@ export default function Navbar() {
       </div>
       <div className="right flex items-center justify-center gap-4">
         <ThemeToggle />
-        <div>login</div>
+        <UserMenu />
       </div>
     </div>
   );

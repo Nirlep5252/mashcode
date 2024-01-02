@@ -11,21 +11,15 @@ export async function GET(request: Request) {
   url.searchParams.set("redirect_uri", request.url.split("?")[0]);
   const response = await fetch(url, {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-    },
+    headers: { Accept: "application/json" },
   });
   const data = await response.json();
 
   // store the access token in a cookie
   if (data.access_token) {
-    const cookie = `gh-token=${data.access_token}; Path=/; HttpOnly; Secure; SameSite=Strict`;
     return new Response("Redirecting...", {
       status: 302,
-      headers: {
-        Location: "/",
-        "Set-Cookie": cookie,
-      },
+      headers: { Location: "/auth/github/after?token=" + data.access_token },
     });
   } else {
     return new Response("No access token received", { status: 400 });
