@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface ButtonProps {
   goUpOnHover?: boolean;
   disabled?: boolean;
   iconOnly?: boolean;
+  className?: string;
   onClick?: MouseEventHandler;
 }
 
@@ -25,6 +27,7 @@ export default function Button({
   growOnHover = false,
   goUpOnHover = false,
   iconOnly,
+  className,
   disabled,
 }: ButtonProps) {
   const radiusClasses = {
@@ -74,11 +77,14 @@ export default function Button({
       <button
         onClick={onClick}
         disabled={disabled}
-        className={`flex items-center justify-center ${
-          variant === "outline" ? "outline outline-2" : ""
-        } transition-all duration-300 ${variantClasses[variant]} ${
-          radiusClasses[radius]
-        } ${sizeClasses[size]}`}
+        className={twMerge(
+          `flex items-center justify-center ${
+            variant === "outline" ? "outline outline-2" : ""
+          } transition-all duration-300 ${variantClasses[variant]} ${
+            radiusClasses[radius]
+          } ${sizeClasses[size]}`,
+          className,
+        )}
       >
         {children}
       </button>

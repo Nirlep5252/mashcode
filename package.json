@@ -16,6 +16,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-query-kit": "^3.1.0",
+    "tailwind-merge": "^2.2.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {

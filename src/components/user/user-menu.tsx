@@ -6,15 +6,19 @@ import Button from "@/components/ui/button";
 import Dropdown from "@/components/ui/dropdown";
 import { useUser } from "@/queries/auth";
 import Image from "next/image";
+import {
+  ArrowLeftStartOnRectangleIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 
 export default function UserMenu() {
   const { data: user, isLoading, isError } = useUser();
 
   return (
     <>
-      {isLoading || !user ? (
+      {isLoading ? (
         <>Loading...</>
-      ) : isError ? (
+      ) : isError || !user ? (
         <Link href="/login">
           <Button variant="ghost">Login</Button>
         </Link>
@@ -31,8 +35,29 @@ export default function UserMenu() {
               />
             </Button>
           </Dropdown.Trigger>
-          <Dropdown.Content>
-            <Dropdown.Item>test</Dropdown.Item>
+          <Dropdown.Content className="flex w-36 flex-col px-2">
+            <div className="flex flex-col">
+              <Link href="/profile">
+                <Button
+                  size="sm"
+                  className="w-full justify-start px-2"
+                  variant="ghost"
+                >
+                  <UserIcon className="h-5 w-5" />
+                  Profile
+                </Button>
+              </Link>
+              <Link href="/logout">
+                <Button
+                  size="sm"
+                  className="w-full justify-start px-2"
+                  variant="ghost"
+                >
+                  <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
+                  Logout
+                </Button>
+              </Link>
+            </div>
           </Dropdown.Content>
         </Dropdown>
       )}

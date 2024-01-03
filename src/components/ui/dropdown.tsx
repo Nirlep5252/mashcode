@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 
 interface DropdownProps {
   children: React.ReactNode;
+  className?: string;
 }
 
 interface DropdownComponent extends React.FC<DropdownProps> {
   Trigger: React.FC<DropdownProps>;
   Content: React.FC<DropdownProps>;
-  Item: React.FC<DropdownProps>;
 }
 
 const DropdownContext = React.createContext<{
@@ -67,7 +67,7 @@ const DropdownTrigger: React.FC<DropdownProps> = ({ children }) => {
   );
 };
 
-const DropdownContent: React.FC<DropdownProps> = ({ children }) => {
+const DropdownContent: React.FC<DropdownProps> = ({ children, className }) => {
   const { isOpen } = useDropdown();
   return (
     <motion.div
@@ -82,20 +82,14 @@ const DropdownContent: React.FC<DropdownProps> = ({ children }) => {
         animationDuration: "0.05s",
         transitionDuration: "0.05s",
       }}
-      className="absolute -bottom-11 rounded-md border border-foreground/10 p-2"
+      className={`absolute rounded-md border border-foreground/10 p-2 ${className}`}
     >
       {children}
     </motion.div>
   );
 };
 
-const DropdownItem: React.FC<DropdownProps> = ({ children }) => {
-  const { toggle } = useDropdown();
-  return <div onClick={toggle}>{children}</div>;
-};
-
 Dropdown.Trigger = DropdownTrigger;
 Dropdown.Content = DropdownContent;
-Dropdown.Item = DropdownItem;
 
 export default Dropdown;
