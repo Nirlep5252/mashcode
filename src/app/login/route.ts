@@ -3,7 +3,7 @@ export async function GET() {
   loginUrl.searchParams.set("client_id", process.env.GITHUB_CLIENT_ID!);
   loginUrl.searchParams.set(
     "redirect_uri",
-    "http://localhost:3000/auth/github",
+    "http://localhost:3000/auth/callback",
   );
 
   return new Response("Redirecting...", {

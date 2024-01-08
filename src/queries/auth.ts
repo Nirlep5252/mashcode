@@ -50,15 +50,11 @@ type GithubUser = {
 export const useUser = createQuery({
   queryKey: ["githubUser"],
   fetcher: async () => {
-    const githubToken = window.localStorage.getItem("gh-token");
-    if (githubToken) {
-      const response = await fetch("https://api.github.com/user", {
-        headers: { Authorization: `Bearer ${githubToken}` },
-      });
-      const data = await response.json();
-      return data as GithubUser;
-    } else {
-      return null;
+    const response = await fetch("/auth/user");
+    if (!response.ok) {
+      throw new Error(await response.text());
     }
+    return (await response.json()) as GithubUser;
   },
+  retry: false,
 });

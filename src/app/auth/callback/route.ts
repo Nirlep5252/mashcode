@@ -15,11 +15,13 @@ export async function GET(request: Request) {
   });
   const data = await response.json();
 
-  // store the access token in a cookie
   if (data.access_token) {
     return new Response("Redirecting...", {
       status: 302,
-      headers: { Location: "/auth/github/after?token=" + data.access_token },
+      headers: {
+        Location: "/",
+        "Set-Cookie": `gh-token=${data.access_token}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+      },
     });
   } else {
     return new Response("No access token received", { status: 400 });
