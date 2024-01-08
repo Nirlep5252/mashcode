@@ -20,6 +20,6 @@ export const useThemeStore = create<ThemeState & ThemeActions>()(
     {
       name: "theme",
       partialize: (state) => ({ dark: state.dark }),
-    }
-  )
+    },
+  ),
 );

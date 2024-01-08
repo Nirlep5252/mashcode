@@ -6,13 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate:generate": "drizzle-kit generate:pg"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
     "@tanstack/react-query": "^5.17.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "drizzle-orm": "^0.29.3",
+    "eslint-plugin-drizzle": "^0.2.3",
     "framer-motion": "^10.16.16",
     "next": "14.0.4",
+    "postgres": "^3.4.3",
     "react": "^18",
     "react-dom": "^18",
     "react-query-kit": "^3.1.0",
@@ -25,6 +31,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "drizzle-kit": "^0.20.10",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
