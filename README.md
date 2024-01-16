@@ -9,12 +9,10 @@ competitive programming platform, focused on fun 1v1s.
 2. create an `.env` file lookin like this:
 
    ```env
-   HOME_URL="http://localhost:3000"
-
    DB_URL="<POSTGRES DATABASE URL>"
 
-   GITHUB_CLIENT_ID="<GET CLIENT ID FROM NIRLEP>"
-   GITHUB_CLIENT_SECRET="<GET CLIENT ID FROM NIRLEP>"
+   GITHUB_CLIENT_ID="GET CLIENT ID FROM NIRLEP"
+   GITHUB_CLIENT_SECRET="GET CLIENT ID FROM NIRLEP"
    ```
 
 3. install dependencies
