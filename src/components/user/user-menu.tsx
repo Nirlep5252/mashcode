@@ -47,16 +47,19 @@ export default function UserMenu() {
                   Profile
                 </Button>
               </Link>
-              <Link href="/logout">
-                <Button
-                  size="sm"
-                  className="w-full justify-start px-2"
-                  variant="ghost"
-                >
-                  <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
-                  Logout
-                </Button>
-              </Link>
+              <Button
+                size="sm"
+                className="w-full justify-start px-2"
+                variant="ghost"
+                onClick={() => {
+                  fetch("/logout").then(() => {
+                    window.location.reload();
+                  });
+                }}
+              >
+                <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
+                Logout
+              </Button>
             </div>
           </Dropdown.Content>
         </Dropdown>
