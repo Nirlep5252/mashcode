@@ -12,9 +12,12 @@ export default function Navbar() {
           <div className="logo text-xl font-bold text-foreground">mashcode</div>
         </Link>
         <div className="links flex items-center justify-center gap-2 text-sm">
-          <Button variant="ghost">
-            <Link href="/practice">practice</Link>
-          </Button>
+          <Link href="/dashboard">
+            <Button variant="ghost">dashboard</Button>
+          </Link>
+          <Link href="/practice">
+            <Button variant="ghost">practice </Button>
+          </Link>
         </div>
       </div>
       <div className="right flex items-center justify-center gap-4">

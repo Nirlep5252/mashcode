@@ -69,19 +69,25 @@ const DropdownTrigger: React.FC<DropdownProps> = ({ children }) => {
 
 const DropdownContent: React.FC<DropdownProps> = ({ children, className }) => {
   const { isOpen } = useDropdown();
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: -10,
+      scale: 0.95,
+      display: "none",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      display: "block",
+    },
+  };
   return (
     <motion.div
-      animate={{
-        opacity: isOpen ? 1 : 0,
-        y: isOpen ? 0 : -10,
-        scale: isOpen ? 1 : 0.95,
-        display: isOpen ? "block" : undefined,
-        transitionEnd: {
-          display: !isOpen ? "none" : undefined,
-        },
-        animationDuration: "0.05s",
-        transitionDuration: "0.05s",
-      }}
+      variants={variants}
+      initial="hidden"
+      animate={isOpen ? "visible" : "hidden"}
       className={`absolute rounded-md border border-foreground/10 p-2 ${className}`}
     >
       {children}
