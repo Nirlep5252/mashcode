@@ -1,5 +1,5 @@
 import Navbar from "@/components/navbar";
-import ThemeProvider from "@/components/theme/theme-provider";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
@@ -26,7 +26,7 @@ const RootComponent: React.FC = () => {
   }, []);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <QueryClientProvider client={queryClient}>
         <div className="w-[70%] min-h-screen pt-4 mx-auto">
           <Navbar />

@@ -1,0 +1,3 @@
+# MashCode
+
+Compile & Conquer

@@ -1,4 +1,4 @@
-import ThemeToggle from "@/components/theme/theme-toggle";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import UserMenu from "@/components/user/user-menu";

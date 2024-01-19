@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useUser } from "@/queries/auth";
@@ -24,41 +25,40 @@ export default function UserMenu() {
         </a>
       ) : (
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant="ghost">
+          <DropdownMenuTrigger className="flex items-center justify-center">
+            <Button size="icon" variant="ghost">
               <img
                 className="rounded-full"
                 src={user.avatar_url}
                 alt={user?.login}
-                width={36}
-                height={36}
+                width={40}
+                height={40}
               />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="flex w-36 flex-col px-2">
             <div className="flex flex-col">
-              <Link to="/profile">
+              <DropdownMenuItem asChild>
+                <Link to="/profile">
+                  <Button className="w-full justify-start px-2" variant="ghost">
+                    <UserIcon className="h-5 w-5" />
+                    Profile
+                  </Button>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
                 <Button
-                  size="sm"
                   className="w-full justify-start px-2"
                   variant="ghost"
+                  onClick={() => {
+                    window.localStorage.removeItem("ghToken");
+                    window.location.reload();
+                  }}
                 >
-                  <UserIcon className="h-5 w-5" />
-                  Profile
+                  <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
+                  Logout
                 </Button>
-              </Link>
-              <Button
-                size="sm"
-                className="w-full justify-start px-2"
-                variant="ghost"
-                onClick={() => {
-                  window.localStorage.removeItem("ghToken");
-                  window.location.reload();
-                }}
-              >
-                <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
-                Logout
-              </Button>
+              </DropdownMenuItem>
             </div>
           </DropdownMenuContent>
         </DropdownMenu>

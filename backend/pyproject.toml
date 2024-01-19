@@ -10,6 +10,8 @@ python = "^3.11"
 fastapi = "^0.109.0"
 uvicorn = {extras = ["standard"], version = "^0.26.0"}
 aiohttp = "^3.9.1"
+sqlalchemy = "^2.0.25"
+psycopg2 = "^2.9.9"
 
 
 [build-system]
