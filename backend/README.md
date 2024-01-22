@@ -2,7 +2,7 @@
 
 1. Install poetry.
 2. Run `poetry shell` to activate the virtual environment.
-3. Run `poetry install` to install the dependencies.
+3. Run `poetry install --no-root` to install the dependencies.
 4. Create `.env` with the following:
 
    ```
