@@ -36,30 +36,26 @@ export default function UserMenu() {
               />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="flex w-36 flex-col px-2">
-            <div className="flex flex-col">
-              <DropdownMenuItem asChild>
-                <Link to="/profile">
-                  <Button className="w-full justify-start px-2" variant="ghost">
-                    <UserIcon className="h-5 w-5" />
-                    Profile
-                  </Button>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Button
-                  className="w-full justify-start px-2"
-                  variant="ghost"
-                  onClick={() => {
-                    window.localStorage.removeItem("ghToken");
-                    window.location.reload();
-                  }}
-                >
-                  <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
-                  Logout
-                </Button>
-              </DropdownMenuItem>
-            </div>
+          <DropdownMenuContent>
+            <DropdownMenuItem
+              className="w-full justify-start px-2 cursor-pointer"
+              asChild
+            >
+              <Link to="/profile">
+                <UserIcon className="h-5 w-5" />
+                Profile
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="w-full justify-start px-2 cursor-pointer"
+              onClick={() => {
+                window.localStorage.removeItem("ghToken");
+                window.location.reload();
+              }}
+            >
+              <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
+              Logout
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )}
