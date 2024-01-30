@@ -1,9 +1,10 @@
 import enum
 from datetime import datetime
 
-from lib.database import Base
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer
 from sqlalchemy.orm import relationship
+
+from lib.database import Base
 
 
 class MatchWinner(enum.Enum):
@@ -31,8 +32,10 @@ class Match(Base):
         Integer, autoincrement=True, primary_key=True, index=True, nullable=False
     )
     created_at = Column(DateTime, nullable=False)
-    winner = Column(Enum(MatchWinner), nullable=True)
-    status = Column(Enum(MatchStatus), nullable=False, default=MatchStatus.PENDING)
+    winner: Column[MatchWinner] = Column(Enum(MatchWinner), nullable=True)
+    status: Column[MatchStatus] = Column(
+        Enum(MatchStatus), nullable=False, default=MatchStatus.PENDING
+    )
     problem_id = Column(Integer, nullable=False)
 
     player1_id = Column(Integer, ForeignKey("users.id"))

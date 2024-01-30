@@ -17,6 +17,7 @@
 ## Suggestions
 
 - Use `ruff` vscode extension to maintain good code quality.
+- Use `mypy` vscode extension to check for type errors.
 - Recommended settings:
 
   ```json
