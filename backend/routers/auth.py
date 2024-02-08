@@ -1,12 +1,11 @@
-from typing import Annotated
-
 import aiohttp
-from fastapi import APIRouter, Depends, Header
+from fastapi import APIRouter, Request, Depends
 from fastapi.responses import RedirectResponse, Response
-from lib.constants import API_URL, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
-from lib.crud.user import create_user, get_user
-from lib.database import get_db
 from sqlalchemy.orm import Session
+
+from lib.constants import API_URL, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
+from lib.crud.user import get_user, create_user
+from lib.database import get_db
 
 router = APIRouter(prefix="/auth")
 
@@ -34,24 +33,14 @@ async def auth_callback(code: str, state: str):
 
 @router.get("/user")
 async def auth_user(
-    authorization: Annotated[str, Header()], db: Session = Depends(get_db)
+    request: Request,
+    db: Session = Depends(get_db),
 ):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            "https://api.github.com/user",
-            headers={
-                "Authorization": authorization,
-            },
-        ) as resp:
-            data = await resp.json()
+    if not request.state.user:
+        return Response(status_code=401, content="Unauthorized")
 
-            if "message" in data:
-                return Response(status_code=400, content=data["message"])
+    user = get_user(db, request.state.user["id"])
+    if not user:
+        create_user(db, request.state.user["id"])
 
-            user_id = int(data["id"])
-
-            user = get_user(db, user_id)
-            if not user:
-                create_user(db, user_id)
-
-            return data
+    return request.state.user

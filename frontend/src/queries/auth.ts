@@ -1,4 +1,5 @@
 import { createQuery } from "react-query-kit";
+import { getGithubAccessToken } from "@/lib/utils.ts";
 
 type GithubUser = {
   login: string;
@@ -50,7 +51,7 @@ type GithubUser = {
 export const useUser = createQuery({
   queryKey: ["githubUser"],
   fetcher: async () => {
-    const ghToken = localStorage.getItem("ghToken");
+    const ghToken = getGithubAccessToken();
     const response = await fetch("/api/auth/user", {
       headers: {
         Authorization: `Bearer ${ghToken}`,

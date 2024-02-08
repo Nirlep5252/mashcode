@@ -1,25 +1,49 @@
+import logging
+
+import aiohttp
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse, Response
+
 from lib import database
 from lib.constants import API_URL, GITHUB_CLIENT_ID
 from routers.auth import router as auth_router
+from routers.match import router as match_router
 
 database.Base.metadata.create_all(bind=database.engine)
-
+logging.info("Connected to database")
 
 app = FastAPI(docs_url="/docs")
 app.include_router(auth_router)
+app.include_router(match_router)
 
 
 @app.middleware("http")
-async def db_session_middleware(request: Request, call_next):
-    response = Response("Internal Server Error", status_code=500)
-    try:
-        request.state.db = database.SessionLocal()
-        response = await call_next(request)
-    finally:
-        request.state.db.close()
-    return response
+async def auth_middleware(
+    request: Request,
+    call_next,
+):
+    if request.url.path.startswith("/auth"):
+        return await call_next(request)
+
+    if "Authorization" not in request.headers:
+        return Response(status_code=401, content="Unauthorized")
+
+    authorization = request.headers["Authorization"]
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            "https://api.github.com/user",
+            headers={
+                "Authorization": authorization,
+            },
+        ) as resp:
+            user_data = await resp.json()
+
+            if "message" in user_data:
+                return Response(status_code=400, content=user_data["message"])
+
+            request.state.user = user_data
+    return await call_next(request)
 
 
 @app.get("/")

@@ -4,13 +4,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-# Github credentials
+# GitHub credentials
 GITHUB_CLIENT_ID = os.getenv("GITHUB_CLIENT_ID")
 assert GITHUB_CLIENT_ID is not None, "Please set `GITHUB_CLIENT_ID` in the `.env` file."
 GITHUB_CLIENT_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
 assert (
-    GITHUB_CLIENT_SECRET is not None
+        GITHUB_CLIENT_SECRET is not None
 ), "Please set `GITHUB_CLIENT_SECRET` in the `.env` file."
 
 # URLs and stuff
