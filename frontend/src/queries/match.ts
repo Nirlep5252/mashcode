@@ -47,6 +47,18 @@ export const useLeaderboard = createQuery({
       throw new Error(
         `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`,
       );
-    return (await response.json()) as DatabaseUser[];
+    const users = (await response.json()) as DatabaseUser[];
+    const githubUsers: (GithubUser & {
+      rating: number;
+    })[] = [];
+    for (const user of users) {
+      const resp = await fetch(`https://api.github.com/user/${user.id}`);
+      const data = await resp.json();
+      githubUsers.push({
+        ...(data as GithubUser),
+        rating: user.rating,
+      });
+    }
+    return githubUsers;
   },
 });

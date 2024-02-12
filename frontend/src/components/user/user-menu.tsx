@@ -50,7 +50,7 @@ export default function UserMenu() {
               className="w-full justify-start px-2 cursor-pointer"
               onClick={() => {
                 window.localStorage.removeItem("ghToken");
-                window.location.reload();
+                window.location.href = "/";
               }}
             >
               <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
