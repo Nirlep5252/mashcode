@@ -36,3 +36,17 @@ export const useMatchHistory = createQuery({
     return (await response.json()) as Match[];
   },
 });
+
+export const useLeaderboard = createQuery({
+  queryKey: ["leaderboard"],
+  fetcher: async () => {
+    const response = await fetch("/api/match/leaderboard", {
+      headers: { Authorization: `Bearer ${getGithubAccessToken()}` },
+    });
+    if (!response.ok)
+      throw new Error(
+        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`,
+      );
+    return (await response.json()) as DatabaseUser[];
+  },
+});

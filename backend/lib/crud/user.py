@@ -13,3 +13,7 @@ def create_user(db: Session, user_id: int):
     db.commit()
     db.refresh(user)
     return user
+
+
+def get_top_users(db: Session, limit: int):
+    return db.query(User).order_by(User.rating).limit(limit).all()

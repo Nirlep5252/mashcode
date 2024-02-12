@@ -20,7 +20,7 @@ async def auth_callback(code: str, state: str):
 
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            auth_url, headers={"Accept": "application/json"}
+                auth_url, headers={"Accept": "application/json"}
         ) as resp:
             data = await resp.json()
 
@@ -33,8 +33,8 @@ async def auth_callback(code: str, state: str):
 
 @router.get("/user")
 async def auth_user(
-    request: Request,
-    db: Session = Depends(get_db),
+        request: Request,
+        db: Session = Depends(get_db),
 ):
     if not request.state.user:
         return Response(status_code=401, content="Unauthorized")

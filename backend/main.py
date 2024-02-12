@@ -19,23 +19,23 @@ app.include_router(match_router)
 
 @app.middleware("http")
 async def auth_middleware(
-    request: Request,
-    call_next,
+        request: Request,
+        call_next,
 ):
-    if request.url.path.startswith("/auth"):
+    if request.url.path.startswith("/api/auth/callback") or request.url.path.startswith("/api/login"):
         return await call_next(request)
 
     if "Authorization" not in request.headers:
-        return Response(status_code=401, content="Unauthorized")
+        return Response(status_code=401, content="Unauthorized, missing Authorization header.")
 
     authorization = request.headers["Authorization"]
 
     async with aiohttp.ClientSession() as session:
         async with session.get(
-            "https://api.github.com/user",
-            headers={
-                "Authorization": authorization,
-            },
+                "https://api.github.com/user",
+                headers={
+                    "Authorization": authorization,
+                },
         ) as resp:
             user_data = await resp.json()
 
