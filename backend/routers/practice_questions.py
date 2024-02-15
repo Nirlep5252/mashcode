@@ -11,11 +11,14 @@ async def get_question_list():
         with open("routers/problem_details.json") as f:
             problem_details = json.load(f)
 
-        problem_id_and_title = {}
+        problem_id_and_title = []
         for problem_id in problem_details:
-            problem_id_and_title[int(problem_id)] = problem_details[problem_id][
-                "problem_title"
-            ]
+            problem_id_and_title.append(
+                {
+                    "id": problem_id,
+                    "title": problem_details[problem_id]["problem_title"],
+                }
+            )
         return problem_id_and_title
     except Exception as e:
         return {"error": str(e)}
