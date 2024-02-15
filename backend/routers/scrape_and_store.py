@@ -87,6 +87,7 @@ def get_problem_details_json():
         problem_dict = {}
         for url in urls:
             problem_details = get_problem_details(cses_url + urls[url])
+            problem_details["problem_title"] = url
             problem_dict[problem_id] = problem_details
             problem_id = problem_id + 1
             print(cses_url + urls[url] + " scraped")
@@ -97,4 +98,19 @@ def get_problem_details_json():
         return {"error": str(e)}
 
 
-get_problem_details_json()
+# get_problem_details_json()
+
+
+def test_problem_id_and_title():
+    with open("routers/problem_details.json") as f:
+        problem_details = json.load(f)
+
+    problem_id_and_title = {}
+    for problem_id in problem_details:
+        problem_id_and_title[problem_id] = problem_details[problem_id]["problem_title"]
+
+    print(problem_id_and_title)
+    return None
+
+
+test_problem_id_and_title()
