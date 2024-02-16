@@ -29,6 +29,8 @@ async def get_question(question_id: int):
     try:
         with open("routers/problem_details.json") as f:
             problem_details = json.load(f)
-        return problem_details[str(question_id)]
+
+        problem_details = problem_details[str(question_id)]
+        return problem_details
     except Exception as e:
         return {"error": str(e)}

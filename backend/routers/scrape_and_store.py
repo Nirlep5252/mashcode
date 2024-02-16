@@ -65,11 +65,11 @@ def get_problem_details(url):
         ]
         problem_examples = all_children[examples_h1_tag_index:]
         return {
-            "problem_statement": str(problem_statement),
-            "problem_input": str(problem_input),
-            "problem_output": str(problem_output),
-            "problem_constraints": str(problem_constraints),
-            "problem_examples": str(problem_examples),
+            "problem_statement": str(problem_statement[0]),
+            "problem_input": str(problem_input[0]),
+            "problem_output": str(problem_output[0]),
+            "problem_constraints": str(problem_constraints[0]),
+            "problem_examples": str(problem_examples[0]),
         }
     except Exception as e:
         return {"error": str(e)}
@@ -91,6 +91,8 @@ def get_problem_details_json():
             problem_dict[problem_id] = problem_details
             problem_id = problem_id + 1
             print(cses_url + urls[url] + " scraped")
+
+        # print(problem_dict)
         with open("routers/problem_details.json", "w") as f:
             json.dump(problem_dict, f)
         return None
@@ -98,7 +100,7 @@ def get_problem_details_json():
         return {"error": str(e)}
 
 
-# get_problem_details_json()
+get_problem_details_json()
 
 
 def test_problem_id_and_title():
@@ -113,4 +115,4 @@ def test_problem_id_and_title():
     return None
 
 
-test_problem_id_and_title()
+# test_problem_id_and_title()
