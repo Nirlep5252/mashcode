@@ -6,7 +6,6 @@ import { usePracticeQuestionDetails } from "@/queries/practice_questions";
 export const component = function PracticePage() {
   const { data: questionDetails, isLoading: isQuestionDetailsLoading } =
     usePracticeQuestionDetails();
-  const problemStatementHTML = questionDetails ? questionDetails.problem_statement : "";
   const options: HTMLReactParserOptions = {
     replace: (domNode) => {
       if (domNode.type === "tag" && domNode.name === "span" && domNode.attribs.class.includes("math")) {
@@ -30,7 +29,11 @@ export const component = function PracticePage() {
           ) : questionDetails ? (
             <div>
               <h2 className="font-bold">{questionDetails.problem_title}</h2>
-              {parse(problemStatementHTML,options)}
+              <div>{parse(questionDetails.problem_statement, options)}</div>
+              <div>{parse(questionDetails.problem_input, options)}</div>
+              <div>{parse(questionDetails.problem_output, options)}</div>
+              <div>{parse(questionDetails.problem_constraints, options)}</div>
+              <div>{parse(questionDetails.problem_examples, options)}</div>
             </div>
           ) : (
             "Error while fetching question"
