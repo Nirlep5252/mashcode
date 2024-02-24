@@ -1,20 +1,36 @@
 import React from "react";
 import "katex/dist/katex.min.css";
-import { InlineMath, BlockMath } from "react-katex";
+import { BlockMath, InlineMath } from "react-katex";
 import parse, { HTMLReactParserOptions } from "html-react-parser";
-import { usePracticeQuestionDetails } from "@/queries/practice_questions";
-import { useParams } from "@tanstack/react-router";
+import { usePracticeQuestion } from "@/queries/practice.ts";
+import { createFileRoute, useParams } from "@tanstack/react-router";
 
-export const component = function PracticePage() {
-  // const { id } = useParams();
+export const Route = createFileRoute("/practice/$id")({
+  component: PracticePage,
+});
+
+function PracticePage() {
+  const { id } = useParams({
+    strict: true,
+    from: "/practice/$id",
+  });
   const { data: questionDetails, isLoading: isQuestionDetailsLoading } =
-    usePracticeQuestionDetails();
+    usePracticeQuestion({
+      variables: {
+        id,
+      },
+    });
   const options: HTMLReactParserOptions = {
     replace: (domNode) => {
-      if (domNode.type === "tag" && domNode.name === "span" && domNode.attribs.class.includes("math")) {
+      if (
+        domNode.type === "tag" &&
+        domNode.name === "span" &&
+        domNode.attribs.class.includes("math")
+      ) {
         const isInline = domNode.attribs.class.includes("inline");
         const mathComponent = isInline ? InlineMath : BlockMath;
-        const latexString = domNode.children[0].type === "text" ? domNode.children[0].data : "";
+        const latexString =
+          domNode.children[0].type === "text" ? domNode.children[0].data : "";
         return React.createElement(mathComponent, { children: latexString });
       }
     },
@@ -45,4 +61,4 @@ export const component = function PracticePage() {
       </div>
     </div>
   );
-};
+}

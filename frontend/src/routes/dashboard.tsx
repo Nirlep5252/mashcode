@@ -7,14 +7,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card.tsx";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar.tsx";
 
-export const component = function Dashboard() {
+export const Route = createFileRoute("/dashboard")({
+  component: Dashboard,
+});
+
+function Dashboard() {
   const { data: matches, isLoading: isMatchHistoryLoading } = useMatchHistory();
   const { data: leaderboard, isLoading: isLeaderboardLoading } =
     useLeaderboard();
@@ -72,7 +76,7 @@ export const component = function Dashboard() {
             ) : leaderboard ? (
               <>
                 {leaderboard.map((user) => (
-                  <Link className={"w-full"} to={`/profile/${user.id}`}>
+                  <Link className={"w-full"} to={`/profile`}>
                     <Button
                       className={"w-full flex items-center justify-between"}
                       variant={"ghost"}
@@ -100,4 +104,4 @@ export const component = function Dashboard() {
       </div>
     </div>
   );
-};
+}
