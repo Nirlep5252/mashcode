@@ -3,7 +3,10 @@ import "katex/dist/katex.min.css";
 import { InlineMath, BlockMath } from "react-katex";
 import parse, { HTMLReactParserOptions } from "html-react-parser";
 import { usePracticeQuestionDetails } from "@/queries/practice_questions";
+import { useParams } from "@tanstack/react-router";
+
 export const component = function PracticePage() {
+  // const { id } = useParams();
   const { data: questionDetails, isLoading: isQuestionDetailsLoading } =
     usePracticeQuestionDetails();
   const options: HTMLReactParserOptions = {

@@ -6,9 +6,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useNavigate } from "@tanstack/react-router";
 
 export const component = function Practice() {
+  const navigate = useNavigate({ from: "/practice" });
   const { data: questions, isLoading: isQuestionsLoading } = usePracticeQuestions();
+  const handleSolve = (id: number) => {
+    navigate(
+      {
+        to: "/practice_page",
+        params: { id : id },
+      }
+    );
+  }
   return (
     <div className={"w-full h-screen flex items-center justify-around"}>
       <div className="w - 1/3 flex flex-col items-center justify-center gap-10">
@@ -24,7 +34,9 @@ export const component = function Practice() {
                 ? questions.map((question) => (
                     <div key={question.id} className={"flex items-center justify-between"}>
                       <div>{question.title}</div>
-                      <Button variant={"ghost"}>Solve</Button>
+                      <Button 
+                        onClick={() => handleSolve(question.id)}
+                      variant={"ghost"}>Solve</Button>
                     </div>
                   ))
                 : "No questions found"

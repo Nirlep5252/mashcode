@@ -1,5 +1,6 @@
 import { createQuery } from "react-query-kit";
 import { getGithubAccessToken } from "@/lib/utils.ts";
+import { useQuery } from "@tanstack/react-query";
 
 interface PracticeQuestion {
     id: number;
@@ -34,9 +35,10 @@ interface PracticeQuestionDetails {
 
 export const usePracticeQuestionDetails = createQuery({
     queryKey: ["practiceQuestionDetails"],
-    fetcher: async (id: number) => {
+    fetcher: async (id:number) => {
+        console.log("Fetching question details for id", id);
         const ghToken = getGithubAccessToken();
-        const response = await fetch(`/api/practice_questions/get_question/1`, {
+        const response = await fetch(`/api/practice_questions/get_question/2`, {
         headers: {
             Authorization: `Bearer ${ghToken}`,
         },
@@ -47,3 +49,19 @@ export const usePracticeQuestionDetails = createQuery({
         return (await response.json()) as PracticeQuestionDetails;
     },
 });
+
+// export function usePracticeQuestionDetails(id: number) {
+//     return useQuery(["practiceQuestionDetails", id], async () => {
+//         console.log("Fetching question details for id", id);
+//         const ghToken = getGithubAccessToken();
+//         const response = await fetch(`/api/practice_questions/get_question/${id}`, {
+//         headers: {
+//             Authorization: `Bearer ${ghToken}`,
+//         },
+//         });
+//         if (!response.ok) {
+//         throw new Error("Failed to fetch practice question details");
+//         }
+//         return (await response.json()) as PracticeQuestionDetails;
+//     });
+// }
