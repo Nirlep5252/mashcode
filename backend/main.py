@@ -12,30 +12,39 @@ from routers.match import router as match_router
 database.Base.metadata.create_all(bind=database.engine)
 logging.info("Connected to database")
 
-app = FastAPI(docs_url="/docs")
+app = FastAPI()
 app.include_router(auth_router)
 app.include_router(match_router)
 
 
 @app.middleware("http")
 async def auth_middleware(
-        request: Request,
-        call_next,
+    request: Request,
+    call_next,
 ):
-    if request.url.path.startswith("/api/auth/callback") or request.url.path.startswith("/api/login"):
+    NO_AUTH_ROUTES = [
+        "auth/callback",
+        "login",
+        "docs",
+        "openapi.json",
+    ]
+    print(request.url.path)
+    if any([request.url.path.startswith(f"/api/{route}") for route in NO_AUTH_ROUTES]):
         return await call_next(request)
 
     if "Authorization" not in request.headers:
-        return Response(status_code=401, content="Unauthorized, missing Authorization header.")
+        return Response(
+            status_code=401, content="Unauthorized, missing Authorization header."
+        )
 
     authorization = request.headers["Authorization"]
 
     async with aiohttp.ClientSession() as session:
         async with session.get(
-                "https://api.github.com/user",
-                headers={
-                    "Authorization": authorization,
-                },
+            "https://api.github.com/user",
+            headers={
+                "Authorization": authorization,
+            },
         ) as resp:
             user_data = await resp.json()
 
