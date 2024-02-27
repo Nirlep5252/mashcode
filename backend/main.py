@@ -8,13 +8,15 @@ from lib import database
 from lib.constants import API_URL, GITHUB_CLIENT_ID
 from routers.auth import router as auth_router
 from routers.match import router as match_router
+from routers.practice_questions import router as practice_questions_router
 
 database.Base.metadata.create_all(bind=database.engine)
 logging.info("Connected to database")
 
-app = FastAPI()
+app = FastAPI(docs_url="/docs")
 app.include_router(auth_router)
 app.include_router(match_router)
+app.include_router(practice_questions_router)
 
 
 @app.middleware("http")
@@ -22,14 +24,8 @@ async def auth_middleware(
     request: Request,
     call_next,
 ):
-    NO_AUTH_ROUTES = [
-        "auth/callback",
-        "login",
-        "docs",
-        "openapi.json",
-    ]
-    print(request.url.path)
-    if any([request.url.path.startswith(f"/api/{route}") for route in NO_AUTH_ROUTES]):
+    IGNORED_ROUTES = ["auth/callback", "login", "docs", "openapi.json"]
+    if any([request.url.path.startswith(f"/api/{route}") for route in IGNORED_ROUTES]):
         return await call_next(request)
 
     if "Authorization" not in request.headers:

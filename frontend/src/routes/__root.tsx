@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import React, { useEffect, useMemo } from "react";
 
@@ -17,7 +17,7 @@ const RootComponent: React.FC = () => {
     if (url.searchParams.has("access_token")) {
       window.localStorage.setItem(
         "ghToken",
-        url.searchParams.get("access_token")!
+        url.searchParams.get("access_token")!,
       );
       url.searchParams.delete("access_token");
       // window.history.replaceState({}, "", url.toString());
@@ -38,6 +38,6 @@ const RootComponent: React.FC = () => {
   );
 };
 
-export const Route = new RootRoute({
+export const Route = createRootRoute({
   component: RootComponent,
 });
