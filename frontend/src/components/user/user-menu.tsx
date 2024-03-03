@@ -5,6 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { API_URL } from "@/lib/constants";
 import { useUser } from "@/queries/auth";
 import {
   ArrowLeftStartOnRectangleIcon,
@@ -20,12 +21,15 @@ export default function UserMenu() {
       {isLoading ? (
         <>Loading...</>
       ) : isError || !user ? (
-        <a href={`/api/login?redirect=${window.location.href}`}>
+        <a href={`${API_URL}/login?redirect=${window.location.href}`}>
           <Button variant="ghost">Login</Button>
         </a>
       ) : (
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex items-center justify-center">
+          <DropdownMenuTrigger
+            asChild
+            className="flex items-center justify-center"
+          >
             <Button size="icon" variant="ghost">
               <img
                 className="rounded-full"

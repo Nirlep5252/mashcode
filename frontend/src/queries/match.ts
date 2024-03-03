@@ -1,5 +1,6 @@
 import { createQuery } from "react-query-kit";
 import { getGithubAccessToken } from "@/lib/utils.ts";
+import { API_URL } from "@/lib/constants";
 
 enum MatchWinner {
   Player1,
@@ -25,7 +26,7 @@ export const useMatchHistory = createQuery({
   queryKey: ["matchHistory"],
   fetcher: async () => {
     const ghToken = getGithubAccessToken();
-    const response = await fetch("/api/match/history", {
+    const response = await fetch(`${API_URL}/match/history`, {
       headers: {
         Authorization: `Bearer ${ghToken}`,
       },
@@ -40,12 +41,12 @@ export const useMatchHistory = createQuery({
 export const useLeaderboard = createQuery({
   queryKey: ["leaderboard"],
   fetcher: async () => {
-    const response = await fetch("/api/match/leaderboard", {
+    const response = await fetch(`${API_URL}/match/leaderboard`, {
       headers: { Authorization: `Bearer ${getGithubAccessToken()}` },
     });
     if (!response.ok)
       throw new Error(
-        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`,
+        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`
       );
     const users = (await response.json()) as DatabaseUser[];
     const githubUsers: (GithubUser & {
