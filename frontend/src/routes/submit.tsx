@@ -2,26 +2,20 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button.tsx";
 import {
-  githubLight,
-  githubLightInit,
   githubDark,
-  githubDarkInit,
+  githubLight, 
 } from "@uiw/codemirror-theme-github";
+import{
+  vscodeDark,
+} from "@uiw/codemirror-theme-vscode";
 import { LanguageSupport } from "@codemirror/language";
 import { markdown } from "@codemirror/lang-markdown";
 import { javascript } from "@codemirror/lang-javascript";
@@ -48,6 +42,7 @@ const EXTENSIONS: { [key: string]: LanguageSupport[] } = {
 };
 
 const THEMES: { [key: string]: any } = {
+  vscodeDark: vscodeDark,
   githubDark: githubDark,
   githubLight: githubLight,
 };
@@ -59,35 +54,37 @@ function Submit() {
   return (
     <div className={"w-full h-screen flex items-center justify-around"}>
       <div className="w - 1/3 flex flex-col items-center justify-center gap-10">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant={"ghost"}>
-              {language[0].toUpperCase() + language.slice(1)}
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel inset>Select Language</DropdownMenuLabel>
-            {Object.keys(EXTENSIONS).map((lang) => (
-              <DropdownMenuItem key={lang} onClick={() => setLanguage(lang)}>
-                {lang[0].toUpperCase() + lang.slice(1)}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant={"ghost"}>{theme}</Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel inset>Select Theme</DropdownMenuLabel>
-            {Object.keys(THEMES).map((theme) => (
-              <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
-                {theme}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <div className="previous-matches w-full flex column">
+        <div className="">
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button variant={"ghost"}>
+                {language[0].toUpperCase() + language.slice(1)}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel inset>Select Language</DropdownMenuLabel>
+              {Object.keys(EXTENSIONS).map((lang) => (
+                <DropdownMenuItem key={lang} onClick={() => setLanguage(lang)}>
+                  {lang[0].toUpperCase() + lang.slice(1)}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button variant={"ghost"}>{theme}</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel inset>Select Theme</DropdownMenuLabel>
+              {Object.keys(THEMES).map((theme) => (
+                <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
+                  {theme}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <div className="editor w-full flex column">
           <CodeMirror
             value={text}
             onChange={(newValue) => setText(newValue)}

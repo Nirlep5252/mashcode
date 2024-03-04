@@ -25,6 +25,8 @@
     "@uiw/codemirror-extensions-basic-setup": "^4.21.24",
     "@uiw/codemirror-extensions-langs": "^4.21.24",
     "@uiw/codemirror-theme-github": "^4.21.24",
+    "@uiw/codemirror-theme-vscode": "^4.21.24",
+    "@uiw/codemirror-themes": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.24",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
