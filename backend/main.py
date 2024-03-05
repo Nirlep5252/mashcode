@@ -9,7 +9,7 @@ from lib import database
 from lib.constants import API_URL, GITHUB_CLIENT_ID, HOME_URL
 from routers.auth import router as auth_router
 from routers.match import router as match_router
-from routers.practice_questions import router as practice_questions_router
+from routers.practice import router as practice_router
 
 database.Base.metadata.create_all(bind=database.engine)
 logging.info("Connected to database")

@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button.tsx";
-import { useLeaderboard, useMatchHistory } from "@/queries/match.ts";
+import { Button } from "@/components/ui/button";
+import { useLeaderboard, useMatchHistory } from "@/queries/match";
 import { useUser } from "@/queries/auth.ts";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card.tsx";
+} from "@/components/ui/card";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Avatar,
@@ -31,7 +31,7 @@ function Dashboard() {
   }
 
   if (!user) {
-    return (window.location.href = `${API_URL}/login?redirect=${window.location.href}`);
+    return <AuthError />;
   }
 
   return (

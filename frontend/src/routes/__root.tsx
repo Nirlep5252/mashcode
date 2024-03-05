@@ -20,7 +20,6 @@ const RootComponent: React.FC = () => {
         url.searchParams.get("access_token")!,
       );
       url.searchParams.delete("access_token");
-      // window.history.replaceState({}, "", url.toString());
       window.location.href = url.toString();
     }
   }, []);
