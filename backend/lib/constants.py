@@ -20,4 +20,3 @@ assert API_URL is not None, "Please set `API_URL` in the `.env` file."
 
 # Database credentials
 DB_URL = os.getenv("DB_URL")
-assert DB_URL is not None, "Please set `DB_URL` in the `.env` file."

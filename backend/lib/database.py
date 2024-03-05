@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from lib.constants import DB_URL
+assert DB_URL is not None, "Please set `DB_URL` in the `.env` file."
 
 SQLALCHEMY_DATABASE_URL = DB_URL
 
