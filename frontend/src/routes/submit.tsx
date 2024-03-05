@@ -8,14 +8,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button.tsx";
 import {
-  githubDark,
-  githubLight, 
-} from "@uiw/codemirror-theme-github";
-import{
-  vscodeDark,
-} from "@uiw/codemirror-theme-vscode";
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+import { Button } from "@/components/ui/button.tsx";
+import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
+import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { LanguageSupport } from "@codemirror/language";
 import { markdown } from "@codemirror/lang-markdown";
 import { javascript } from "@codemirror/lang-javascript";
@@ -24,6 +24,7 @@ import { html } from "@codemirror/lang-html";
 import { json } from "@codemirror/lang-json";
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
+import { Code } from "lucide-react";
 
 export const Route = createFileRoute("/submit")({
   component: Submit,
@@ -50,54 +51,55 @@ const THEMES: { [key: string]: any } = {
 function Submit() {
   const [language, setLanguage] = useState("python");
   const [theme, setTheme] = useState("githubDark");
-  const [text, setText] = useState("");
+  const [text, setText] = useState("Enter your code here...");
   return (
     <div className={"w-full h-screen flex items-center justify-around"}>
-      <div className="w - 1/3 flex flex-col items-center justify-center gap-10">
-        <div className="">
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant={"ghost"}>
-                {language[0].toUpperCase() + language.slice(1)}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel inset>Select Language</DropdownMenuLabel>
-              {Object.keys(EXTENSIONS).map((lang) => (
-                <DropdownMenuItem key={lang} onClick={() => setLanguage(lang)}>
-                  {lang[0].toUpperCase() + lang.slice(1)}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant={"ghost"}>{theme}</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel inset>Select Theme</DropdownMenuLabel>
-              {Object.keys(THEMES).map((theme) => (
-                <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
-                  {theme}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-        <div className="editor w-full flex column">
-          <CodeMirror
-            value={text}
-            onChange={(newValue) => setText(newValue)}
-            theme={THEMES[theme]}
-            extensions={EXTENSIONS[language]}
-            basicSetup={{ autocompletion: true }}
-            minWidth={"500px"}
-            minHeight={"500px"}
-          />
-        </div>
-        <Button size={"sm"} className={"font-bold scale-150 text-lg"}>
-          Submit
-        </Button>
+      <div
+        className={"w-full flex flex-col items-center justify-center gap-10"}
+      >
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="max-w-7xl rounded-lg border"
+        >
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-[650px] items-center justify-center p-6">
+              <span className="font-semibold">Problem Statement</span>
+            </div>
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel defaultSize={50}>
+            <ResizablePanelGroup direction="vertical">
+              <ResizablePanel defaultSize={5}>
+                <div className="flex h-full items-center justify-center p-6">
+                  <span className="font-semibold">Customisations</span>
+                </div>
+              </ResizablePanel>
+              <ResizableHandle />
+              <ResizablePanel defaultSize={75}>
+                <div className="flex h-full items-center justify-center p-6">
+                  <CodeMirror
+                    value={text}
+                    onChange={(newValue) => setText(newValue)}
+                    theme={THEMES[theme]}
+                    extensions={EXTENSIONS[language]}
+                    basicSetup={{ autocompletion: true }}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      overflow: "scroll",
+                    }}
+                  />
+                </div>
+              </ResizablePanel>
+              <ResizableHandle />
+              <ResizablePanel defaultSize={20}>
+                <div className="flex h-full items-center justify-center p-6">
+                  <span className="font-semibold">Output</span>
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </div>
     </div>
   );
