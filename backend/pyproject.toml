@@ -12,6 +12,7 @@ uvicorn = {extras = ["standard"], version = "^0.26.0"}
 aiohttp = "^3.9.1"
 sqlalchemy = "^2.0.25"
 psycopg2 = "^2.9.9"
+websockets = "^12.0"
 
 
 [build-system]

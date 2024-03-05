@@ -18,7 +18,7 @@ function Practice() {
   return (
     <div className={"w-full h-screen flex items-center justify-around"}>
       <div className="w - 1/3 flex flex-col items-center justify-center gap-10">
-        <div className="previous-matches w-full flex column">
+        <div className="questions-list w-full flex column">
           <Card className={"w-[380px] min-h-[400px]"}>
             <CardHeader>
               <CardTitle>Unsolved Questions</CardTitle>

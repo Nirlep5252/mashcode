@@ -1,5 +1,6 @@
 import { createQuery } from "react-query-kit";
 import { getGithubAccessToken } from "@/lib/utils.ts";
+import { API_URL } from "@/lib/constants";
 
 interface PracticeQuestion {
   id: number;
@@ -10,11 +11,14 @@ export const usePracticeQuestions = createQuery({
   queryKey: ["practiceQuestions"],
   fetcher: async () => {
     const ghToken = getGithubAccessToken();
-    const response = await fetch("/api/practice_questions/question_list", {
-      headers: {
-        Authorization: `Bearer ${ghToken}`,
-      },
-    });
+    const response = await fetch(
+      `${API_URL}/practice_questions/question_list`,
+      {
+        headers: {
+          Authorization: `Bearer ${ghToken}`,
+        },
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch practice questions");
     }
@@ -36,12 +40,12 @@ export const usePracticeQuestion = createQuery({
   fetcher: async (args: { id: string }) => {
     const ghToken = getGithubAccessToken();
     const response = await fetch(
-      `/api/practice_questions/get_question/${args.id}`,
+      `${API_URL}/practice_questions/get_question/${args.id}`,
       {
         headers: {
           Authorization: `Bearer ${ghToken}`,
         },
-      },
+      }
     );
     if (!response.ok) {
       throw new Error("Failed to fetch practice question details");
