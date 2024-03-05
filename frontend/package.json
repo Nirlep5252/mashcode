@@ -12,6 +12,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-cpp": "^6.0.2",
+    "@codemirror/lang-html": "^6.4.8",
+    "@codemirror/lang-java": "^6.0.1",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-markdown": "^6.2.4",
+    "@codemirror/lang-python": "^6.1.4",
+    "@codemirror/language": "^6.10.1",
     "@heroicons/react": "^2.1.1",
     "@monaco-editor/react": "^4.6.0",
     "@radix-ui/react-avatar": "^1.0.4",

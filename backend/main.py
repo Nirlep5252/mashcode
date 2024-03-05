@@ -19,7 +19,7 @@ origins = [HOME_URL]
 app = FastAPI()
 app.include_router(auth_router)
 app.include_router(match_router)
-app.include_router(practice_questions_router)
+app.include_router(practice_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
