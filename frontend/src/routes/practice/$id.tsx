@@ -76,6 +76,19 @@ function PracticePage() {
           domNode.children[0].type === "text" ? domNode.children[0].data : "";
         return React.createElement(mathComponent, { children: latexString });
       }
+      if (domNode.type === "tag" && domNode.name === "h1") {
+        if(domNode.children[0] && domNode.children[0].type === "text"){
+          const text = domNode.children[0].data;
+          return <h1 className="text-lg font-bold">{text}</h1>;
+        }
+      }
+      // if(domNode.type === "tag" && domNode.name === "p"){
+      //   if(domNode.children[1] && domNode.children[1].type === "text" && (domNode.children[1].data == "Input" || domNode.children[1].data == "Output")){ 
+      //     const text = domNode.children[1].data;
+      //     console.log(text);
+      //     return <p className="text-xl font-semibold">{text}</p>;
+      //   }
+      // }
     },
   };
   const [language, setLanguage] = useState("python");
@@ -103,13 +116,12 @@ function PracticePage() {
                     <div>
                       {parse(questionDetails.problem_statement, options)}
                     </div>
-                    <div>{parse(questionDetails.problem_input, options)}</div>
+                    <div>
+                      {parse(questionDetails.problem_input, options)}
+                    </div>
                     <div>{parse(questionDetails.problem_output, options)}</div>
                     <div>
                       {parse(questionDetails.problem_constraints, options)}
-                    </div>
-                    <div>
-                      {parse(questionDetails.problem_examples, options)}
                     </div>
                   </div>
                 ) : (
@@ -163,14 +175,18 @@ function PracticePage() {
                 </div>
               </ResizablePanel>
               <ResizableHandle />
-              <ResizablePanel defaultSize={75}>
+              <ResizablePanel defaultSize={65}>
                 <div className="flex h-full items-center justify-center p-6">
                   <CodeMirror
                     value={text}
                     onChange={(newValue) => setText(newValue)}
                     theme={THEMES[theme]}
                     extensions={EXTENSIONS[language]}
-                    basicSetup={{ autocompletion: true }}
+                    basicSetup={
+                      {
+                        autocompletion: true,
+                      }
+                    }
                     style={{
                       width: "100%",
                       height: "100%",
@@ -181,10 +197,31 @@ function PracticePage() {
                 </div>
               </ResizablePanel>
               <ResizableHandle />
-              <ResizablePanel defaultSize={15}>
-                <div className="flex h-full items-center justify-center p-6">
-                  <span className="font-semibold">Output</span>
-                </div>
+              <ResizablePanel defaultSize={25}>
+                <ResizablePanelGroup direction="horizontal">
+                  <ResizablePanel defaultSize={50}>
+                    <div className="flex h-full items-baseline pl-4 pt-2 overflow-scroll">
+                      <p className="text-sm">
+                        {
+                          isQuestionDetailsLoading ? "Loading question..." :
+                          questionDetails ? 
+                          <div>
+                            {parse(questionDetails.problem_examples, options)}
+                          </div>
+                          : "Error while fetching question"
+                        }
+                      </p>
+                    </div>
+                  </ResizablePanel>
+                  <ResizableHandle />
+                  <ResizablePanel defaultSize={50}>
+                    <div className="flex h-full items-center justify-center p-6">
+                      <p>
+                        Status 
+                      </p>
+                    </div>
+                  </ResizablePanel>
+                  </ResizablePanelGroup>
               </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
