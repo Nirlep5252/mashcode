@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import React, { useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import {
   DropdownMenu,
@@ -24,7 +24,11 @@ import { html } from "@codemirror/lang-html";
 import { json } from "@codemirror/lang-json";
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
-import { Code } from "lucide-react";
+
+import { usePracticeQuestion } from "@/queries/practice";
+import "katex/dist/katex.min.css";
+import { BlockMath, InlineMath } from "react-katex";
+import parse, { HTMLReactParserOptions } from "html-react-parser";
 
 export const Route = createFileRoute("/submit")({
   component: Submit,
@@ -51,7 +55,28 @@ const THEMES: { [key: string]: any } = {
 function Submit() {
   const [language, setLanguage] = useState("python");
   const [theme, setTheme] = useState("githubDark");
-  const [text, setText] = useState("Enter your code here...");
+  const [text, setText] = useState("#Enter your code here...");
+  const { data: questionDetails, isLoading: isQuestionDetailsLoading } =
+    usePracticeQuestion({
+      variables: {
+        id : "1",
+      },
+    });
+    const options: HTMLReactParserOptions = {
+      replace: (domNode) => {
+        if (
+          domNode.type === "tag" &&
+          domNode.name === "span" &&
+          domNode.attribs.class.includes("math")
+        ) {
+          const isInline = domNode.attribs.class.includes("inline");
+          const mathComponent = isInline ? InlineMath : BlockMath;
+          const latexString =
+            domNode.children[0].type === "text" ? domNode.children[0].data : "";
+          return React.createElement(mathComponent, { children: latexString });
+        }
+      },
+    };
   return (
     <div className={"w-full h-screen flex items-center justify-around"}>
       <div
@@ -62,16 +87,69 @@ function Submit() {
           className="max-w-7xl rounded-lg border"
         >
           <ResizablePanel defaultSize={50}>
-            <div className="flex h-[650px] items-center justify-center p-6">
-              <span className="font-semibold">Problem Statement</span>
+            <div className="flex h-[650px] justify-center p-6 overflow-scroll">
+            <p className="text-md">
+          {isQuestionDetailsLoading ? (
+            "Loading question..."
+          ) : questionDetails ? (
+            <div>
+              <h2 className="font-bold text-2xl mb-2 text-center">{questionDetails.problem_title}</h2>
+              <div>{parse(questionDetails.problem_statement, options)}</div>
+              <div>{parse(questionDetails.problem_input, options)}</div>
+              <div>{parse(questionDetails.problem_output, options)}</div>
+              <div>{parse(questionDetails.problem_constraints, options)}</div>
+              <div>{parse(questionDetails.problem_examples, options)}</div>
+            </div>
+          ) : (
+            "Error while fetching question"
+          )}
+        </p>
             </div>
           </ResizablePanel>
           <ResizableHandle />
           <ResizablePanel defaultSize={50}>
             <ResizablePanelGroup direction="vertical">
-              <ResizablePanel defaultSize={5}>
+              <ResizablePanel defaultSize={10}>
                 <div className="flex h-full items-center justify-center p-6">
-                  <span className="font-semibold">Customisations</span>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Button variant={"ghost"}>
+                        {language[0].toUpperCase() + language.slice(1)}
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel inset>
+                        Select Language
+                      </DropdownMenuLabel>
+                      {Object.keys(EXTENSIONS).map((lang) => (
+                        <DropdownMenuItem
+                          key={lang}
+                          onClick={() => setLanguage(lang)}
+                        >
+                          {lang[0].toUpperCase() + lang.slice(1)}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  <Button variant={"ghost"}>
+                        Submit
+                  </Button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Button variant={"ghost"}>{theme}</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel inset>Select Theme</DropdownMenuLabel>
+                      {Object.keys(THEMES).map((theme) => (
+                        <DropdownMenuItem
+                          key={theme}
+                          onClick={() => setTheme(theme)}
+                        >
+                          {theme}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </ResizablePanel>
               <ResizableHandle />
@@ -92,7 +170,7 @@ function Submit() {
                 </div>
               </ResizablePanel>
               <ResizableHandle />
-              <ResizablePanel defaultSize={20}>
+              <ResizablePanel defaultSize={15}>
                 <div className="flex h-full items-center justify-center p-6">
                   <span className="font-semibold">Output</span>
                 </div>
