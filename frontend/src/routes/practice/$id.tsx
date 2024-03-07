@@ -82,13 +82,14 @@ function PracticePage() {
           return <h1 className="text-lg font-bold">{text}</h1>;
         }
       }
-      // if(domNode.type === "tag" && domNode.name === "p"){
-      //   if(domNode.children[1] && domNode.children[1].type === "text" && (domNode.children[1].data == "Input" || domNode.children[1].data == "Output")){ 
-      //     const text = domNode.children[1].data;
-      //     console.log(text);
-      //     return <p className="text-xl font-semibold">{text}</p>;
-      //   }
-      // }
+      if(domNode.type === "tag" && domNode.name === "p"){
+        console.log(domNode.children)
+        if(domNode.children[0] && domNode.children[0].type === "text" && (domNode.children[0].data == "Input:" || domNode.children[0].data == "Output:")){ 
+          const text = domNode.children[0].data;
+          //console.log(text);
+          return <p className="text-md font-semibold">{text}</p>;
+        }
+      }
     },
   };
   const [language, setLanguage] = useState("python");
@@ -203,7 +204,7 @@ function PracticePage() {
                     <div className="flex h-full items-baseline pl-4 pt-2 overflow-scroll">
                       <p className="text-sm">
                         {
-                          isQuestionDetailsLoading ? "Loading question..." :
+                          isQuestionDetailsLoading ? "Loading sample test case..." :
                           questionDetails ? 
                           <div>
                             {parse(questionDetails.problem_examples, options)}
