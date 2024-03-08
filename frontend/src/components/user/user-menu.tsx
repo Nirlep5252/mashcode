@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { API_URL } from "@/lib/constants";
-import { useUser } from "@/queries/auth";
+import { useCurrentUser } from "@/queries/user";
 import {
   ArrowLeftStartOnRectangleIcon,
   UserIcon,
@@ -14,7 +14,7 @@ import {
 import { Link } from "@tanstack/react-router";
 
 export default function UserMenu() {
-  const { data: user, isLoading, isError } = useUser();
+  const { data: user, isLoading, isError } = useCurrentUser();
 
   return (
     <>

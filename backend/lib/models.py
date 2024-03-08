@@ -21,7 +21,7 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True, nullable=False)
-    created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
+    created_at = Column(DateTime, nullable=False, default=datetime.now())
     rating = Column(Integer, nullable=False, default=0)
 
 
@@ -31,7 +31,7 @@ class Match(Base):
     id = Column(
         Integer, autoincrement=True, primary_key=True, index=True, nullable=False
     )
-    created_at = Column(DateTime, nullable=False)
+    created_at = Column(DateTime, nullable=False, default=datetime.now())
     winner: Column[MatchWinner] = Column(Enum(MatchWinner), nullable=True)
     status: Column[MatchStatus] = Column(
         Enum(MatchStatus), nullable=False, default=MatchStatus.PENDING

@@ -1,19 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { useLeaderboard, useMatchHistory } from "@/queries/match";
-import { useUser } from "@/queries/auth.ts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { useCurrentUser } from "@/queries/user";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar.tsx";
-import { API_URL } from "@/lib/constants";
+import AuthError from "@/components/auth-error";
 
 export const Route = createFileRoute("/dashboard")({
   component: Dashboard,
@@ -24,7 +19,7 @@ function Dashboard() {
   const { data: leaderboard, isLoading: isLeaderboardLoading } =
     useLeaderboard();
 
-  const { data: user, isLoading: isUserLoading } = useUser();
+  const { data: user, isLoading: isUserLoading } = useCurrentUser();
 
   if (isUserLoading) {
     return "Loading...";
@@ -41,16 +36,33 @@ function Dashboard() {
           <CardHeader>
             <CardTitle>Match History</CardTitle>
           </CardHeader>
-          <CardContent className={"flex items-center justify-center"}>
+          <CardContent
+            className={"flex flex-col items-center justify-center w-full"}
+          >
             {isMatchHistoryLoading
               ? "Loading matches..."
               : matches
                 ? matches.length > 0
-                  ? matches.map((match) => (
-                      <div key={match.id}>
-                        {match.id} - {match.created_at.toString()}
-                      </div>
-                    ))
+                  ? matches.map((match) => {
+                      return (
+                        <Link
+                          to="/match/$id"
+                          params={{
+                            id: match.id.toString(),
+                          }}
+                          key={match.id}
+                          className="w-full"
+                        >
+                          <Button
+                            variant={"ghost"}
+                            className="w-full"
+                            size="lg"
+                          >
+                            {match.id} - {match.created_at.toString()}
+                          </Button>
+                        </Link>
+                      );
+                    })
                   : "No matches found"
                 : "Error while fetching matches"}
           </CardContent>
@@ -73,17 +85,25 @@ function Dashboard() {
           <CardHeader>
             <CardTitle>Leaderboard (Top 10)</CardTitle>
           </CardHeader>
-          <CardContent className={"flex items-center justify-center"}>
+          <CardContent className={"flex flex-col items-center justify-center"}>
             {isLeaderboardLoading ? (
               "Loading leaderboard..."
             ) : leaderboard ? (
               <>
                 {leaderboard.map((user) => (
-                  <Link key={user.id} className={"w-full"} to={`/profile`}>
+                  <Link
+                    key={user.id}
+                    className={"w-full"}
+                    to={`/profile/$id`}
+                    params={{
+                      id: user.id.toString(),
+                    }}
+                  >
                     <Button
                       className={"w-full flex items-center justify-between"}
                       variant={"ghost"}
                       key={user.id}
+                      size={"lg"}
                     >
                       <div className={"flex justify-center items-center gap-3"}>
                         <Avatar className={"h-8 w-8"}>

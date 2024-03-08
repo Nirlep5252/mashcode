@@ -12,22 +12,19 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SubmitImport } from './routes/submit'
-import { Route as ProfileImport } from './routes/profile'
 import { Route as DashboardImport } from './routes/dashboard'
 import { Route as IndexImport } from './routes/index'
+import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as PracticeIndexImport } from './routes/practice/index'
+import { Route as ProfileIdImport } from './routes/profile/$id'
 import { Route as PracticeIdImport } from './routes/practice/$id'
 import { Route as MatchQueueImport } from './routes/match/queue'
+import { Route as MatchIdImport } from './routes/match/$id'
 
 // Create/Update Routes
 
 const SubmitRoute = SubmitImport.update({
   path: '/submit',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ProfileRoute = ProfileImport.update({
-  path: '/profile',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -41,8 +38,18 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ProfileIndexRoute = ProfileIndexImport.update({
+  path: '/profile/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const PracticeIndexRoute = PracticeIndexImport.update({
   path: '/practice/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProfileIdRoute = ProfileIdImport.update({
+  path: '/profile/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +60,11 @@ const PracticeIdRoute = PracticeIdImport.update({
 
 const MatchQueueRoute = MatchQueueImport.update({
   path: '/match/queue',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MatchIdRoute = MatchIdImport.update({
+  path: '/match/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -68,12 +80,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardImport
       parentRoute: typeof rootRoute
     }
-    '/profile': {
-      preLoaderRoute: typeof ProfileImport
-      parentRoute: typeof rootRoute
-    }
     '/submit': {
       preLoaderRoute: typeof SubmitImport
+      parentRoute: typeof rootRoute
+    }
+    '/match/$id': {
+      preLoaderRoute: typeof MatchIdImport
       parentRoute: typeof rootRoute
     }
     '/match/queue': {
@@ -84,8 +96,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeIdImport
       parentRoute: typeof rootRoute
     }
+    '/profile/$id': {
+      preLoaderRoute: typeof ProfileIdImport
+      parentRoute: typeof rootRoute
+    }
     '/practice/': {
       preLoaderRoute: typeof PracticeIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile/': {
+      preLoaderRoute: typeof ProfileIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -96,11 +116,13 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   DashboardRoute,
-  ProfileRoute,
   SubmitRoute,
+  MatchIdRoute,
   MatchQueueRoute,
   PracticeIdRoute,
+  ProfileIdRoute,
   PracticeIndexRoute,
+  ProfileIndexRoute,
 ])
 
 /* prettier-ignore-end */

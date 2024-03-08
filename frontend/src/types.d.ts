@@ -50,3 +50,23 @@ interface DatabaseUser {
   created_at: Date;
   rating: number;
 }
+
+enum MatchWinner {
+  Player1,
+  Player2,
+}
+
+enum MatchStatus {
+  Pending,
+  Completed,
+}
+
+interface Match {
+  id: number;
+  created_at: Date;
+  winner: MatchWinner;
+  status: MatchStatus;
+  problem_id: number;
+  player1_id: number;
+  player2_id: number;
+}

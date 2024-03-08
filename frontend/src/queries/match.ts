@@ -2,26 +2,7 @@ import { createQuery } from "react-query-kit";
 import { getGithubAccessToken } from "@/lib/utils.ts";
 import { API_URL } from "@/lib/constants";
 
-enum MatchWinner {
-  Player1,
-  Player2,
-}
-
-enum MatchStatus {
-  Pending,
-  Completed,
-}
-
-interface Match {
-  id: number;
-  created_at: Date;
-  winner: MatchWinner;
-  status: MatchStatus;
-  problem_id: number;
-  player1_id: number;
-  player2_id: number;
-}
-
+// TODO: convert this to infiniteQuery so we can paginate it later
 export const useMatchHistory = createQuery({
   queryKey: ["matchHistory"],
   fetcher: async () => {
@@ -38,6 +19,7 @@ export const useMatchHistory = createQuery({
   },
 });
 
+// TODO: convert this to infiniteQuery so we can paginate it later
 export const useLeaderboard = createQuery({
   queryKey: ["leaderboard"],
   fetcher: async () => {
