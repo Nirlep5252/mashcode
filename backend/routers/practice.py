@@ -11,7 +11,7 @@ async def get_question_list():
         with open("routers/problem_details.json") as f:
             problem_details = json.load(f)
 
-        problem_id_and_title = []
+        problem_id_and_title: list[dict[str, object]] = []
         for problem_id in problem_details:
             problem_id_and_title.append(
                 {
