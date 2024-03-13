@@ -10,114 +10,94 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as ProfileImport } from './routes/profile'
-import { Route as SubmitImport } from './routes/submit'
-import { Route as DashboardImport } from './routes/dashboard'
-import { Route as IndexImport } from './routes/index'
-import { Route as ProfileIndexImport } from './routes/profile/index'
-import { Route as PracticeIndexImport } from './routes/practice/index'
-import { Route as ProfileIdImport } from './routes/profile/$id'
-import { Route as PracticeIdImport } from './routes/practice/$id'
-import { Route as MatchQueueImport } from './routes/match/queue'
-import { Route as MatchIdImport } from './routes/match/$id'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as DashboardImport } from "./routes/dashboard";
+import { Route as IndexImport } from "./routes/index";
+import { Route as ProfileIndexImport } from "./routes/profile/index";
+import { Route as PracticeIndexImport } from "./routes/practice/index";
+import { Route as ProfileIdImport } from "./routes/profile/$id";
+import { Route as PracticeIdImport } from "./routes/practice/$id";
+import { Route as MatchQueueImport } from "./routes/match/queue";
+import { Route as MatchIdImport } from "./routes/match/$id";
 
 // Create/Update Routes
 
-const ProfileRoute = ProfileImport.update({
-  path: '/profile',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SubmitRoute = SubmitImport.update({
-  path: '/submit',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const DashboardRoute = DashboardImport.update({
-  path: '/dashboard',
+  path: "/dashboard",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
-  path: '/',
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProfileIndexRoute = ProfileIndexImport.update({
-  path: '/profile/',
+  path: "/profile/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const PracticeIndexRoute = PracticeIndexImport.update({
-  path: '/practice/',
+  path: "/practice/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProfileIdRoute = ProfileIdImport.update({
-  path: '/profile/$id',
+  path: "/profile/$id",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const PracticeIdRoute = PracticeIdImport.update({
-  path: '/practice/$id',
+  path: "/practice/$id",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const MatchQueueRoute = MatchQueueImport.update({
-  path: '/match/queue',
+  path: "/match/queue",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const MatchIdRoute = MatchIdImport.update({
-  path: '/match/$id',
+  path: "/match/$id",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard': {
-      preLoaderRoute: typeof DashboardImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile': {
-      preLoaderRoute: typeof ProfileImport
-      parentRoute: typeof rootRoute
-    }
-    '/submit': {
-      preLoaderRoute: typeof SubmitImport
-      parentRoute: typeof rootRoute
-    }
-    '/match/$id': {
-      preLoaderRoute: typeof MatchIdImport
-      parentRoute: typeof rootRoute
-    }
-    '/match/queue': {
-      preLoaderRoute: typeof MatchQueueImport
-      parentRoute: typeof rootRoute
-    }
-    '/practice/$id': {
-      preLoaderRoute: typeof PracticeIdImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile/$id': {
-      preLoaderRoute: typeof ProfileIdImport
-      parentRoute: typeof rootRoute
-    }
-    '/practice/': {
-      preLoaderRoute: typeof PracticeIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile/': {
-      preLoaderRoute: typeof ProfileIndexImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/dashboard": {
+      preLoaderRoute: typeof DashboardImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/match/$id": {
+      preLoaderRoute: typeof MatchIdImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/match/queue": {
+      preLoaderRoute: typeof MatchQueueImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/practice/$id": {
+      preLoaderRoute: typeof PracticeIdImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/profile/$id": {
+      preLoaderRoute: typeof ProfileIdImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/practice/": {
+      preLoaderRoute: typeof PracticeIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/profile/": {
+      preLoaderRoute: typeof ProfileIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
@@ -126,14 +106,12 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   DashboardRoute,
-  ProfileRoute,
-  SubmitRoute,
   MatchIdRoute,
   MatchQueueRoute,
   PracticeIdRoute,
   ProfileIdRoute,
   PracticeIndexRoute,
   ProfileIndexRoute,
-])
+]);
 
 /* prettier-ignore-end */

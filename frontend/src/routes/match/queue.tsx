@@ -17,7 +17,7 @@ function Queue() {
           token: localStorage.getItem("ghToken"),
         });
       },
-    }
+    },
   );
 
   return (

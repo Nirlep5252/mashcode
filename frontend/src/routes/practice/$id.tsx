@@ -1,6 +1,6 @@
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import React, { useState } from "react";
-import CodeMirror from "@uiw/react-codemirror";
+import CodeMirror, { Extension } from "@uiw/react-codemirror";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -46,7 +46,7 @@ const EXTENSIONS: { [key: string]: LanguageSupport[] } = {
   java: [java()],
 };
 
-const THEMES: { [key: string]: any } = {
+const THEMES: { [key: string]: Extension } = {
   vscodeDark: vscodeDark,
   githubDark: githubDark,
   githubLight: githubLight,
@@ -77,14 +77,19 @@ function PracticePage() {
         return React.createElement(mathComponent, { children: latexString });
       }
       if (domNode.type === "tag" && domNode.name === "h1") {
-        if(domNode.children[0] && domNode.children[0].type === "text"){
+        if (domNode.children[0] && domNode.children[0].type === "text") {
           const text = domNode.children[0].data;
           return <h1 className="text-lg font-bold">{text}</h1>;
         }
       }
-      if(domNode.type === "tag" && domNode.name === "p"){
-        console.log(domNode.children)
-        if(domNode.children[0] && domNode.children[0].type === "text" && (domNode.children[0].data == "Input:" || domNode.children[0].data == "Output:")){ 
+      if (domNode.type === "tag" && domNode.name === "p") {
+        console.log(domNode.children);
+        if (
+          domNode.children[0] &&
+          domNode.children[0].type === "text" &&
+          (domNode.children[0].data == "Input:" ||
+            domNode.children[0].data == "Output:")
+        ) {
           const text = domNode.children[0].data;
           //console.log(text);
           return <p className="text-md font-semibold">{text}</p>;
@@ -117,9 +122,7 @@ function PracticePage() {
                     <div>
                       {parse(questionDetails.problem_statement, options)}
                     </div>
-                    <div>
-                      {parse(questionDetails.problem_input, options)}
-                    </div>
+                    <div>{parse(questionDetails.problem_input, options)}</div>
                     <div>{parse(questionDetails.problem_output, options)}</div>
                     <div>
                       {parse(questionDetails.problem_constraints, options)}
@@ -183,11 +186,9 @@ function PracticePage() {
                     onChange={(newValue) => setText(newValue)}
                     theme={THEMES[theme]}
                     extensions={EXTENSIONS[language]}
-                    basicSetup={
-                      {
-                        autocompletion: true,
-                      }
-                    }
+                    basicSetup={{
+                      autocompletion: true,
+                    }}
                     style={{
                       width: "100%",
                       height: "100%",
@@ -203,26 +204,25 @@ function PracticePage() {
                   <ResizablePanel defaultSize={50}>
                     <div className="flex h-full items-baseline pl-4 pt-2 overflow-scroll">
                       <p className="text-sm">
-                        {
-                          isQuestionDetailsLoading ? "Loading sample test case..." :
-                          questionDetails ? 
+                        {isQuestionDetailsLoading ? (
+                          "Loading sample test case..."
+                        ) : questionDetails ? (
                           <div>
                             {parse(questionDetails.problem_examples, options)}
                           </div>
-                          : "Error while fetching question"
-                        }
+                        ) : (
+                          "Error while fetching question"
+                        )}
                       </p>
                     </div>
                   </ResizablePanel>
                   <ResizableHandle />
                   <ResizablePanel defaultSize={50}>
                     <div className="flex h-full items-center justify-center p-6">
-                      <p>
-                        Status 
-                      </p>
+                      <p>Status</p>
                     </div>
                   </ResizablePanel>
-                  </ResizablePanelGroup>
+                </ResizablePanelGroup>
               </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
