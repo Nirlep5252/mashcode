@@ -38,6 +38,7 @@
     "@uiw/react-codemirror": "^4.21.24",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "flexlayout-react": "^0.7.15",
     "framer-motion": "^10.18.0",
     "html-react-parser": "^5.1.7",
     "katex": "^0.16.9",
