@@ -52,9 +52,16 @@ function Practice() {
             ></CardContent>
           </Card>
         </div>
-        <Button size={"lg"} className={"font-bold scale-150 text-lg"}>
+        <Link
+          to={"/practice/$id"}
+          params={{
+            id: Math.floor(Math.random() * 100).toString()
+          }}
+        >
+          <Button size={"lg"} className={"font-bold scale-150 text-lg"}>
           Practice
         </Button>
+        </Link>
       </div>
     </div>
   );
