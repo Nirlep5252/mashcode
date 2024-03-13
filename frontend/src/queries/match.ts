@@ -1,6 +1,7 @@
 import { createQuery } from "react-query-kit";
 import { getGithubAccessToken } from "@/lib/utils.ts";
 import { API_URL } from "@/lib/constants";
+import { Match } from "@/types/match";
 
 // TODO: convert this to infiniteQuery so we can paginate it later
 export const useMatchHistory = createQuery({
@@ -23,19 +24,22 @@ export const useMatchHistory = createQuery({
 export const useLeaderboard = createQuery({
   queryKey: ["leaderboard"],
   fetcher: async () => {
+    const accessToken = getGithubAccessToken();
     const response = await fetch(`${API_URL}/match/leaderboard`, {
-      headers: { Authorization: `Bearer ${getGithubAccessToken()}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
     if (!response.ok)
       throw new Error(
-        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`
+        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`,
       );
     const users = (await response.json()) as DatabaseUser[];
     const githubUsers: (GithubUser & {
       rating: number;
     })[] = [];
     for (const user of users) {
-      const resp = await fetch(`https://api.github.com/user/${user.id}`);
+      const resp = await fetch(`https://api.github.com/user/${user.id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       const data = await resp.json();
       githubUsers.push({
         ...(data as GithubUser),

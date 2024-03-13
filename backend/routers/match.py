@@ -2,7 +2,7 @@ import aiohttp
 from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
 from sqlalchemy.orm import Session
 
-from lib.crud.match import create_match, get_matches
+from lib.crud.match import create_match, get_active_match, get_matches
 from lib.crud.user import create_user, get_top_users, get_user
 from lib.database import get_db
 from lib.models import User
@@ -62,6 +62,18 @@ async def queue(
     user_db_data = get_user(db, user_github_data["id"])
     if not user_db_data:
         user_db_data = create_user(db, user_github_data["id"])
+
+    is_user_in_match = get_active_match(db, user_db_data.id)
+    if is_user_in_match:
+        await websocket.send_json(
+            {
+            "type": "error",
+            "message": "You are already in a match. Please finish that first."
+            }
+        )
+        await websocket.close()
+        return
+
     await websocket.send_json(
         {
             "type": "comment",
@@ -89,8 +101,20 @@ async def queue(
                 "message": f"Match Found! Opponent: {user_db_data.id} with rating {user_db_data.rating}!",
             }
         )
-        create_match(db, users_waiting[0].id, user_db_data.id, 1)
+        player1_ws = websocket
+        player2_ws = users_queued[users_waiting[0]]
+        match = create_match(db, users_waiting[0].id, user_db_data.id, 1)
+        redirect_json = {
+            "type": "redirect",
+            "to": f"/match/{match.id}",
+            "message": "Redirecting to match..."
+        }
+        await player1_ws.send_json(redirect_json)
+        await player2_ws.send_json(redirect_json)
         del users_queued[users_waiting[0]]
+        await player1_ws.close()
+        await player2_ws.close()
+        return
     else:
         users_queued[user_db_data] = websocket
 

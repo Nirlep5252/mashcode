@@ -9,13 +9,13 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar.tsx";
 import AuthError from "@/components/auth-error";
+import { MatchHistoryList } from "@/components/match/match-history/match-history-list";
 
 export const Route = createFileRoute("/dashboard")({
   component: Dashboard,
 });
 
 function Dashboard() {
-  const { data: matches, isLoading: isMatchHistoryLoading } = useMatchHistory();
   const { data: leaderboard, isLoading: isLeaderboardLoading } =
     useLeaderboard();
 
@@ -32,41 +32,7 @@ function Dashboard() {
   return (
     <div className={"w-full h-screen flex items-center justify-around"}>
       <div className="previous-matches w-1/3 flex items-center justify-center">
-        <Card className={"w-[380px] min-h-[400px]"}>
-          <CardHeader>
-            <CardTitle>Match History</CardTitle>
-          </CardHeader>
-          <CardContent
-            className={"flex flex-col items-center justify-center w-full"}
-          >
-            {isMatchHistoryLoading
-              ? "Loading matches..."
-              : matches
-                ? matches.length > 0
-                  ? matches.map((match) => {
-                      return (
-                        <Link
-                          to="/match/$id"
-                          params={{
-                            id: match.id.toString(),
-                          }}
-                          key={match.id}
-                          className="w-full"
-                        >
-                          <Button
-                            variant={"ghost"}
-                            className="w-full"
-                            size="lg"
-                          >
-                            {match.id} - {match.created_at.toString()}
-                          </Button>
-                        </Link>
-                      );
-                    })
-                  : "No matches found"
-                : "Error while fetching matches"}
-          </CardContent>
-        </Card>
+        <MatchHistoryList />
       </div>
       <div className="play-btn w-1/3 flex items-center justify-center">
         <Link to={"/match/queue"}>

@@ -17,6 +17,17 @@ def get_matches(
     )
 
 
+def get_active_match(db: Session, user_id: int) -> Match | None:
+    return (
+        db.query(Match)
+        .filter(
+            or_(Match.player1_id == user_id, Match.player2_id == user_id),
+            Match.status == "PENDING",
+        )
+        .first()
+    )
+
+
 def create_match(
     db: Session, player1_id: int, player2_id: int, problem_id: int
 ) -> Match:

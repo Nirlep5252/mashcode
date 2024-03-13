@@ -22,7 +22,12 @@ export const useCurrentUser = createQuery({
 export const useAnyGithubUser = createQuery({
   queryKey: ["anyGithubUser"],
   fetcher: async (args: { id: string }) => {
-    const response = await fetch(`https://api.github.com/user/${args.id}`);
+    const accessToken = getGithubAccessToken();
+    const response = await fetch(`https://api.github.com/user/${args.id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     if (!response.ok) {
       throw new Error(`Failed to fetch user: ${response.statusText}`);
     }

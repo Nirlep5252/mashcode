@@ -18,9 +18,9 @@ export const MatchHistoryList = () => {
           {isError && `Error while fetching matches: ${error?.message}`}
           {matches
             ? matches.map((match) => {
-                return <MatchHistoryItem {...match} />;
+                return <MatchHistoryItem key={match.id} {...match} />;
               })
-            : "No matches found."}
+            : !isLoading && "No matches found."}
         </CardContent>
       </Card>
     </>
