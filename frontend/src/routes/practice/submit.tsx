@@ -21,7 +21,7 @@ export const Route = createFileRoute("/practice/submit")({
   component: Submit,
 });
 
-var layout: IJsonModel = {
+const layout: IJsonModel = {
   global: { tabEnableClose: false },
   borders: [],
   layout: {

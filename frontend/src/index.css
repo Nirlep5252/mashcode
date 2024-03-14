@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.flexlayout__layout {
+  top: 70px !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
