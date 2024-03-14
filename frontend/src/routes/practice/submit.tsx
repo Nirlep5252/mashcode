@@ -6,11 +6,8 @@ import CodeMirror, { Extension } from "@uiw/react-codemirror";
 import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { LanguageSupport } from "@codemirror/language";
-import { markdown } from "@codemirror/lang-markdown";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
-import { html } from "@codemirror/lang-html";
-import { json } from "@codemirror/lang-json";
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
 
@@ -29,7 +26,7 @@ var layout: IJsonModel = {
   borders: [],
   layout: {
     type: "row",
-    weight: 100,
+    weight: 50,
     children: [
       {
         type: "tabset",
@@ -84,14 +81,10 @@ var layout: IJsonModel = {
 const model = Model.fromJson(layout);
 
 const EXTENSIONS: { [key: string]: LanguageSupport[] } = {
-  markdown: [markdown()],
   python: [python()],
   javascript: [javascript()],
-  typescript: [javascript()],
   cpp: [cpp()],
   "c++": [cpp()],
-  html: [html()],
-  json: [json()],
   java: [java()],
 };
 
