@@ -2,6 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout, Model, TabNode, IJsonModel } from "flexlayout-react";
 import "flexlayout-react/style/dark.css";
 
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 import CodeMirror, { Extension } from "@uiw/react-codemirror";
 import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
@@ -22,53 +31,57 @@ export const Route = createFileRoute("/practice/submit")({
 });
 
 const layout: IJsonModel = {
-  global: { tabEnableClose: false },
+  global: { tabEnableClose: true, tabSetEnableMaximize: false },
   borders: [],
   layout: {
     type: "row",
-    weight: 50,
     children: [
       {
-        type: "tabset",
-        weight: 100,
-        selected: 0,
+        type: "row",
+        weight: 50,
         children: [
           {
-            type: "tab",
-            name: "Problem Statement",
-            component: "problemStatement",
+            type: "tabset",
+            selected: 0,
+            children: [
+              {
+                type: "tab",
+                name: "Problem Statement",
+                component: "ProblemStatement",
+              },
+            ],
           },
         ],
       },
       {
         type: "row",
+        weight: 50,
         children: [
           {
             type: "tabset",
-            weight: 50,
             selected: 0,
             children: [
               {
                 type: "tab",
-                name: "Code",
-                component: "codeEditor",
+                name: "Code Editor",
+                component: "CodeEditor",
               },
             ],
           },
           {
             type: "tabset",
-            weight: 50,
+            weight: 40,
             selected: 0,
             children: [
               {
                 type: "tab",
-                name: "Example Cases",
-                component: "exampleCases",
+                name: "Test Cases",
+                component: "TestCases",
               },
               {
                 type: "tab",
-                name: "Status",
-                component: "status",
+                name: "Submissions",
+                component: "Submissions",
               },
             ],
           },
@@ -142,7 +155,7 @@ function Submit() {
     if (node.getComponent() === "text") {
       return <div>Text Component</div>;
     }
-    if (node.getComponent() === "problemStatement") {
+    if (node.getComponent() === "ProblemStatement") {
       return (
         <div className="flex h-[650px] justify-center p-6 overflow-scroll">
           <p className="text-md">
@@ -165,9 +178,46 @@ function Submit() {
         </div>
       );
     }
-    if (node.getComponent() === "codeEditor") {
+    if (node.getComponent() === "CodeEditor") {
       return (
-        <div className="flex h-full items-center justify-center p-6">
+        <div className="flex flex-col h-full items-center justify-center p-6">
+          <div className="flex flex-row gap-1">
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button variant={"ghost"}>
+                  {language[0].toUpperCase() + language.slice(1)}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel inset>Select Language</DropdownMenuLabel>
+                {Object.keys(EXTENSIONS).map((lang) => (
+                  <DropdownMenuItem
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                  >
+                    {lang[0].toUpperCase() + lang.slice(1)}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Button variant="outline">
+              Run
+            </Button>
+            <Button variant="default">Submit</Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button variant={"ghost"}>{theme}</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel inset>Select Theme</DropdownMenuLabel>
+                {Object.keys(THEMES).map((theme) => (
+                  <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
+                    {theme}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
           <CodeMirror
             value={text}
             onChange={(newValue) => setText(newValue)}
@@ -186,7 +236,7 @@ function Submit() {
         </div>
       );
     }
-    if (node.getComponent() === "exampleCases") {
+    if (node.getComponent() === "TestCases") {
       return (
         <div className="flex h-full items-baseline pl-4 pt-2 overflow-scroll">
           <p className="text-sm">
@@ -201,7 +251,7 @@ function Submit() {
         </div>
       );
     }
-    if (node.getComponent() === "status") {
+    if (node.getComponent() === "Submissions") {
       return <div>Status</div>;
     }
   };
