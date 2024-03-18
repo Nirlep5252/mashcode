@@ -1,4 +1,7 @@
+import { CodeEditor } from "@/components/match/code-editor";
+import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { ProblemStatement } from "@/components/problem/problem-statement";
+import { useMatch } from "@/queries/match";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { IJsonModel, Layout, Model, TabNode } from "flexlayout-react";
 
@@ -73,11 +76,36 @@ function Match() {
     from: "/match/$id",
   });
 
+  const {
+    data: match,
+    isLoading: isMatchLoading,
+    isError: isMatchError,
+    error: matchError,
+  } = useMatch({
+    variables: {
+      id,
+    },
+  });
+
+  if (isMatchLoading) {
+    return <>Loading...</>;
+  }
+
+  if (isMatchError) {
+    return <>{matchError.message}</>;
+  }
+
   function factory(node: TabNode) {
-    if (node.getComponent() === "ProblemStatement") {
-      return <ProblemStatement problemId={id} />;
+    switch (node.getComponent()) {
+      case "ProblemStatement":
+        return <ProblemStatement problemId={id} />;
+      case "CodeEditor":
+        return <CodeEditor />;
+      case "TestCases":
+        return <ExampleTestCase problemId={id} />;
+      default:
+        return <>Invalid Component</>;
     }
-    return <>Invalid Component</>;
   }
 
   return (

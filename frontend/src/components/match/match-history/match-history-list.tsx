@@ -19,7 +19,7 @@ export const MatchHistoryList = () => {
           ? matches.map((match) => {
               return <MatchHistoryItem key={match.id} {...match} />;
             })
-          : !isLoading && "No matches found."}
+          : !isLoading && !isError && "No matches found."}
       </CardContent>
     </Card>
   );

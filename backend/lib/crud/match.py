@@ -4,6 +4,10 @@ from sqlalchemy.orm import Session
 from lib.models import Match
 
 
+def get_match(db: Session, match_id: int) -> Match | None:
+    return db.query(Match).filter(Match.id == match_id).first()
+
+
 def get_matches(
     db: Session, user_id: int, limit: int = 10, skip: int = 0
 ) -> list[Match]:

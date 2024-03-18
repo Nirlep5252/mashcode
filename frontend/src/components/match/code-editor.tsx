@@ -2,12 +2,13 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+} from "@/components/ui/select";
 
 import CodeMirror, { Extension } from "@uiw/react-codemirror";
 import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
@@ -37,59 +38,63 @@ export const CodeEditor: React.FC = () => {
   const [theme, setTheme] = useState("githubDark");
   const [text, setText] = useState("#Enter your code here...");
   return (
-  <div className="flex flex-col h-full items-center justify-center p-6">
-          <div className="flex flex-row gap-1">
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button variant={"ghost"}>
-                  {language[0].toUpperCase() + language.slice(1)}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel inset>Select Language</DropdownMenuLabel>
-                {Object.keys(EXTENSIONS).map((lang) => (
-                  <DropdownMenuItem
-                    key={lang}
-                    onClick={() => setLanguage(lang)}
-                  >
-                    {lang[0].toUpperCase() + lang.slice(1)}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button variant="outline">
-              Run
-            </Button>
-            <Button variant="default">Submit</Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button variant={"ghost"}>{theme}</Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel inset>Select Theme</DropdownMenuLabel>
-                {Object.keys(THEMES).map((theme) => (
-                  <DropdownMenuItem key={theme} onClick={() => setTheme(theme)}>
-                    {theme}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <CodeMirror
-            value={text}
-            onChange={(newValue) => setText(newValue)}
-            theme={THEMES[theme]}
-            extensions={EXTENSIONS[language]}
-            basicSetup={{
-              autocompletion: true,
-            }}
-            style={{
-              width: "100%",
-              height: "100%",
-              overflow: "scroll",
-            }}
-            minHeight="100%"
-          />
-        </div>
+    <div className="flex flex-col h-full items-center justify-center">
+      <div className="flex gap-2 flex-row absolute z-50 bg-background left-2 bottom-2 p-2 rounded-lg">
+        <Select onValueChange={(value) => setLanguage(value)}>
+          <SelectTrigger>
+            {language[0].toUpperCase() + language.slice(1)}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Select Language</SelectLabel>
+              {Object.keys(EXTENSIONS).map((lang) => (
+                <SelectItem
+                  value={lang}
+                  key={lang}
+                >
+                  {lang[0].toUpperCase() + lang.slice(1)}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <Select onValueChange={(value) => setTheme(value)}>
+          <SelectTrigger>{theme}</SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Select Theme</SelectLabel>
+              {Object.keys(THEMES).map((theme) => (
+                <SelectItem
+                  value={theme}
+                  key={theme}
+                >
+                  {theme}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="flex flex-row gap-3 absolute z-50 bg-background right-2 bottom-2 p-2 rounded-lg">
+        <Button variant="outline">Run</Button>
+        <Button variant="default">Submit</Button>
+      </div>
+
+      <CodeMirror
+        value={text}
+        onChange={(newValue) => setText(newValue)}
+        theme={THEMES[theme]}
+        extensions={EXTENSIONS[language]}
+        basicSetup={{
+          autocompletion: true,
+        }}
+        style={{
+          width: "100%",
+          height: "100%",
+          overflow: "scroll",
+        }}
+        minHeight="100%"
+      />
+    </div>
   );
 };

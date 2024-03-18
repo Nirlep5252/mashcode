@@ -1,13 +1,29 @@
 import aiohttp
 from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
+from fastapi.responses import Response
 from sqlalchemy.orm import Session
 
-from lib.crud.match import create_match, get_active_match, get_matches
+from lib.crud.match import create_match, get_active_match, get_matches, get_match
 from lib.crud.user import create_user, get_top_users, get_user
 from lib.database import get_db
 from lib.models import User
 
 router = APIRouter(prefix="/match")
+
+
+@router.get("/get_match/{match_id}")
+async def get_match_from_id(
+    request: Request, match_id: int, db: Session = Depends(get_db)
+):
+    match = get_match(db, match_id)
+    if not match:
+        return Response(status_code=404, content="Match not found")
+    if (
+        match.player1_id != request.state.user["id"]
+        and match.player2_id != request.state.user["id"]
+    ):
+        return Response(status_code=401, content="Unauthorized")
+    return match
 
 
 @router.get("/history")
@@ -67,8 +83,8 @@ async def queue(
     if is_user_in_match:
         await websocket.send_json(
             {
-            "type": "error",
-            "message": "You are already in a match. Please finish that first."
+                "type": "error",
+                "message": "You are already in a match. Please finish that first.",
             }
         )
         await websocket.close()
@@ -107,7 +123,7 @@ async def queue(
         redirect_json = {
             "type": "redirect",
             "to": f"/match/{match.id}",
-            "message": "Redirecting to match..."
+            "message": "Redirecting to match...",
         }
         await player1_ws.send_json(redirect_json)
         await player2_ws.send_json(redirect_json)

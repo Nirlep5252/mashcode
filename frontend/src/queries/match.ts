@@ -3,6 +3,22 @@ import { getGithubAccessToken } from "@/lib/utils.ts";
 import { API_URL } from "@/lib/constants";
 import { Match } from "@/types/match";
 
+export const useMatch = createQuery({
+  queryKey: ["match", "matchId"],
+  fetcher: async (args: { id: string }) => {
+    const ghToken = getGithubAccessToken();
+    const response = await fetch(`${API_URL}/match/get_match/${args.id}`, {
+      headers: {
+        Authorization: `Bearer ${ghToken}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+    return (await response.json()) as Match;
+  },
+});
+
 // TODO: convert this to infiniteQuery so we can paginate it later
 export const useMatchHistory = createQuery({
   queryKey: ["matchHistory"],
@@ -14,7 +30,7 @@ export const useMatchHistory = createQuery({
       },
     });
     if (!response.ok) {
-      throw new Error("Failed to fetch match history");
+      throw new Error(await response.text());
     }
     return (await response.json()) as Match[];
   },
