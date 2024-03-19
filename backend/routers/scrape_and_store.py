@@ -65,18 +65,25 @@ def get_problem_details(url):
         ]
         problem_examples = all_children[examples_h1_tag_index:]
 
+        problem_limits = soup.find("ul", "task-constraints")
+        problem_limits = problem_limits.find_all("li")
+        problem_time_limit = problem_limits[0].text.strip("Time limit:")
+        problem_memory_limit = problem_limits[1].text.strip("Memory limit:")
+
         return {
             "problem_statement": "".join(str(e) for e in problem_statement),
             "problem_input": "".join(str(e) for e in problem_input),
             "problem_output": "".join(str(e) for e in problem_output),
             "problem_constraints": "".join(str(e) for e in problem_constraints),
             "problem_examples": "".join(str(e) for e in problem_examples),
+            "problem_time_limit": problem_time_limit,
+            "problem_memory_limit": problem_memory_limit,
         }
     except Exception as e:
         return {"error": str(e)}
 
 
-# print(get_problem_details("https://cses.fi/problemset/task/1068"))
+# print(get_problem_details("https://cses.fi/problemset/task/1068"))  # Just for testing
 
 
 def get_problem_details_json():
