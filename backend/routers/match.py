@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import Response
 from sqlalchemy.orm import Session
 
-from lib.crud.match import create_match, get_active_match, get_matches, get_match
+from lib.crud.match import create_match, get_active_match, get_match, get_matches
 from lib.crud.user import create_user, get_top_users, get_user
 from lib.database import get_db
 from lib.models import User
