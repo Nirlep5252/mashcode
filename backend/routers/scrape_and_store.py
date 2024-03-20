@@ -69,7 +69,9 @@ def get_problem_details(url):
         problem_limits = problem_limits.find_all("li")
         problem_time_limit = problem_limits[0].text.strip("Time limit:")
         problem_memory_limit = problem_limits[1].text.strip("Memory limit:")
-
+        for i in problem_statement:  # To replace relative image url with absolute url
+            if i.find("img"):
+                i.find("img")["src"] = "https://cses.fi" + i.find("img")["src"]
         return {
             "problem_statement": "".join(str(e) for e in problem_statement),
             "problem_input": "".join(str(e) for e in problem_input),
@@ -83,7 +85,7 @@ def get_problem_details(url):
         return {"error": str(e)}
 
 
-# print(get_problem_details("https://cses.fi/problemset/task/1068"))  # Just for testing
+# print(get_problem_details("https://cses.fi/problemset/task/2413"))  # Just for testing
 
 
 def get_problem_details_json():
