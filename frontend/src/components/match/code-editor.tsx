@@ -105,7 +105,12 @@ const allThemes = Object.keys(themes).filter(
   (val) => !val.startsWith("defaultSettings") && !val.endsWith("Init")
 ) as unknown as (keyof typeof themes)[];
 
-export const CodeEditor: React.FC = () => {
+interface Props {
+  onSubmit: (value: string) => void;
+  onRun: (value: string) => void;
+}
+
+export const CodeEditor: React.FC<Props> = (props) => {
   const [language, setLanguage] = useState("python");
   const [theme, setTheme] = useState<(typeof allThemes)[number]>("vscodeDark");
   const [text, setText] = useState("#Enter your code here...");
@@ -146,8 +151,12 @@ export const CodeEditor: React.FC = () => {
         </Select>
       </div>
       <div className="flex flex-row gap-3 absolute z-50 bg-background right-2 bottom-2 p-2 rounded-lg">
-        <Button variant="outline">Run</Button>
-        <Button variant="default">Submit</Button>
+        <Button variant="outline" onClick={() => props.onRun(text)}>
+          Run
+        </Button>
+        <Button variant="default" onClick={() => props.onSubmit(text)}>
+          Submit
+        </Button>
       </div>
 
       <CodeMirror

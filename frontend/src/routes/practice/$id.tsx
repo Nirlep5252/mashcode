@@ -6,6 +6,7 @@ import "flexlayout-react/style/dark.css";
 import { ProblemStatement } from "@/components/problem/problem-statement";
 import { CodeEditor } from "@/components/match/code-editor";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
+import { useSubmission } from "@/mutations/pratice";
 
 export const Route = createFileRoute("/practice/$id")({
   component: PracticePage,
@@ -79,6 +80,14 @@ function PracticePage() {
     strict: true,
     from: "/practice/$id",
   });
+
+  const mutation = useSubmission();
+  const handleSubmit = (code: string) => {
+    mutation.mutate({ problem_id: parseInt(id), language_id:71,source_code: code});
+  };
+  const handleRun = (code: string) => {
+    console.log("Run code", code);
+  };
   const factory = (node: TabNode) => {
     if (node.getComponent() === "text") {
       return <div>Text Component</div>;
@@ -90,7 +99,18 @@ function PracticePage() {
     }
     if (node.getComponent() === "CodeEditor") {
       return (
-        <CodeEditor />
+        <CodeEditor onSubmit={
+          (code) => {
+            handleSubmit(code)
+          }
+        } 
+        onRun={
+          (code) =>
+          {
+            handleRun(code)
+          }
+        }
+         />
       );
     }
     if (node.getComponent() === "TestCases") {

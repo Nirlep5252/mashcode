@@ -36,6 +36,7 @@
     "@uiw/codemirror-themes": "^4.21.24",
     "@uiw/codemirror-themes-all": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.24",
+    "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "flexlayout-react": "^0.7.15",

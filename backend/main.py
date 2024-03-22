@@ -1,4 +1,5 @@
 import logging
+from typing import Awaitable, Callable
 
 import aiohttp
 from fastapi import FastAPI, Request
@@ -10,8 +11,6 @@ from lib.constants import API_URL, GITHUB_CLIENT_ID, HOME_URL
 from routers.auth import router as auth_router
 from routers.match import router as match_router
 from routers.practice import router as practice_router
-
-from typing import Awaitable, Callable
 
 database.Base.metadata.create_all(bind=database.engine)
 logging.info("Connected to database")

@@ -1,6 +1,9 @@
 import json
 
 from fastapi import APIRouter
+from pydantic import BaseModel
+
+from lib.judge0 import get_submission_verdict
 
 router = APIRouter(prefix="/practice_questions")
 
@@ -34,3 +37,18 @@ async def get_question(question_id: int):
         return problem_details
     except Exception as e:
         return {"error": str(e)}
+
+
+class Submission(BaseModel):
+    language_id: int
+    source_code: str
+
+
+@router.post("/submission/{problem_id}")
+async def get_verdict(problem_id: int, submission: Submission):
+    url = "http://localhost:2358/submissions/"
+    expected_output = "Hello World"  # To be changed to the desired output
+    verdict = await get_submission_verdict(
+        url, problem_id, submission.language_id, submission.source_code, expected_output
+    )
+    return verdict

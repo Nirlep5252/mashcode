@@ -1,7 +1,6 @@
 # languageid, problemid, sourcecode submitted to docker container
 
 import json
-import time
 
 import aiohttp
 
@@ -56,16 +55,16 @@ async def get_submission_verdict(
             expected_output=expected_output,
         )
         token = token["token"]
-        time.sleep(
-            int(
-                float(
-                    problem_details_data[str(problem_id)]["problem_time_limit"].strip(
-                        "s"
-                    )
-                )
-            )
-            + 5
-        )
+        # await asyncio.sleep(
+        #     int(
+        #         float(
+        #             problem_details_data[str(problem_id)]["problem_time_limit"].strip(
+        #                 "s"
+        #             )
+        #         )
+        #     )
+        #     + 5
+        # )
         async with session.get(url + token) as response:
             request_json = await response.json()
             return request_json["status"]["description"]
