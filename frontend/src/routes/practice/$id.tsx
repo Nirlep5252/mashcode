@@ -86,7 +86,7 @@ function PracticePage() {
     mutation.mutate({ problem_id: parseInt(id), language_id:71,source_code: code});
   };
   const handleRun = (code: string) => {
-    console.log("Run code", code);
+    mutation.mutate({ problem_id: parseInt(id), language_id:71,source_code: code});
   };
   const factory = (node: TabNode) => {
     if (node.getComponent() === "text") {

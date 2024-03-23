@@ -46,9 +46,11 @@ class Submission(BaseModel):
 
 @router.post("/submission/{problem_id}")
 async def get_verdict(problem_id: int, submission: Submission):
+    with open("routers/problem_details.json") as f:
+        problem_details = json.load(f)
     url = "http://localhost:2358/submissions/"
-    expected_output = "Hello World"  # To be changed to the desired output
+    expected_output = problem_details[str(problem_id)]["sample_output"]
     verdict = await get_submission_verdict(
-        url, problem_id, submission.language_id, submission.source_code, expected_output
+        url, problem_id, submission.language_id, submission.source_code
     )
     return verdict
