@@ -9,7 +9,8 @@
     "routes:watch": "tsr watch",
     "routes:generate": "tsr generate",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier format -w ."
   },
   "dependencies": {
     "@codemirror/lang-cpp": "^6.0.2",

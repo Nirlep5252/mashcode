@@ -102,7 +102,7 @@ const EXTENSIONS: { [key: string]: LanguageSupport[] } = {
 };
 
 const allThemes = Object.keys(themes).filter(
-  (val) => !val.startsWith("defaultSettings") && !val.endsWith("Init")
+  (val) => !val.startsWith("defaultSettings") && !val.endsWith("Init"),
 ) as unknown as (keyof typeof themes)[];
 
 interface Props {

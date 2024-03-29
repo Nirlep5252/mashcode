@@ -55,12 +55,12 @@ function Practice() {
         <Link
           to={"/practice/$id"}
           params={{
-            id: Math.floor(Math.random() * 100).toString()
+            id: Math.floor(Math.random() * 100).toString(),
           }}
         >
           <Button size={"lg"} className={"font-bold scale-150 text-lg"}>
-          Practice
-        </Button>
+            Practice
+          </Button>
         </Link>
       </div>
     </div>

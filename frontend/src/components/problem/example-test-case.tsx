@@ -51,8 +51,8 @@ export const ExampleTestCase: React.FC<Props> = ({ problemId }) => {
   }
   return (
     <div className="flex flex-col ml-2">
-        <div className="text-xl font-semibold mt-1">Example</div>
-        {parse(questionDetails.problem_examples, options)}
+      <div className="text-xl font-semibold mt-1">Example</div>
+      {parse(questionDetails.problem_examples, options)}
     </div>
-  )
+  );
 };
