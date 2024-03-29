@@ -1,5 +1,3 @@
-# languageid, problemid, sourcecode submitted to docker container
-
 import json
 
 import aiohttp
@@ -34,7 +32,9 @@ async def get_token(language_id, problem_id, source_code):
             ),
             "max_file_size": 1024,
         }
-        async with session.post(f"{JUDGE0_URL}/submissions?wait=true", json=submission_data) as response:
+        async with session.post(
+            f"{JUDGE0_URL}/submissions?wait=true", json=submission_data
+        ) as response:
             request_json = await response.json()
             print(request_json)
             token = request_json["token"]
