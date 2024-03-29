@@ -32,6 +32,7 @@ async def get_token(language_id, problem_id, source_code, url):
         }
         async with session.post(url, json=submission_data) as response:
             request_json = await response.json()
+            # print(request_json)
             token = request_json["token"]
             return {"token": token}
 
@@ -45,10 +46,11 @@ async def get_submission_verdict(
     async with aiohttp.ClientSession() as session:
         token = await get_token(lanuage_id, problem_id, source_code, url)
         token = token["token"]
-        # print(token)
+        print(token)
         # code for wait till the submission is judged is left
-        async with session.get(url + token) as response:
+        async with session.get(f"{url}{token}?wait=true") as response:
             request_json = await response.json()
+            print(request_json)
             return request_json["status"]["description"]
 
 
