@@ -4,8 +4,12 @@ import json
 
 import aiohttp
 
+from lib.constants import JUDGE0_URL
 
-async def get_token(language_id, problem_id, source_code, url):
+assert JUDGE0_URL is not None, "Please set `JUDGE0_URL` in the `.env` file."
+
+
+async def get_token(language_id, problem_id, source_code):
     problem_details_data = json.load(open("routers/problem_details.json"))
     async with aiohttp.ClientSession() as session:
         submission_data = {
@@ -30,29 +34,23 @@ async def get_token(language_id, problem_id, source_code, url):
             ),
             "max_file_size": 1024,
         }
-        async with session.post(url, json=submission_data) as response:
+        async with session.post(f"{JUDGE0_URL}/submissions?wait=true", json=submission_data) as response:
             request_json = await response.json()
-            # print(request_json)
+            print(request_json)
             token = request_json["token"]
             return {"token": token}
 
 
 async def get_submission_verdict(
-    url,
     problem_id,
     lanuage_id=71,
     source_code="print('Hello World')",
 ):
     async with aiohttp.ClientSession() as session:
-        token = await get_token(lanuage_id, problem_id, source_code, url)
+        token = await get_token(lanuage_id, problem_id, source_code)
         token = token["token"]
         print(token)
-        # code for wait till the submission is judged is left
-        async with session.get(f"{url}{token}?wait=true") as response:
+        async with session.get(f"{JUDGE0_URL}/submissions/{token}") as response:
             request_json = await response.json()
             print(request_json)
             return request_json["status"]["description"]
-
-
-# verdict = asyncio.run(get_submission_verdict("http://localhost:2358/submissions/", 1))
-# print(verdict)

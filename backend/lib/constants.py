@@ -19,3 +19,5 @@ assert API_URL is not None, "Please set `API_URL` in the `.env` file."
 
 # Database credentials
 DB_URL = os.getenv("DB_URL")
+
+JUDGE0_URL = os.getenv("JUDGE0_URL")

@@ -83,34 +83,36 @@ function PracticePage() {
 
   const mutation = useSubmission();
   const handleSubmit = (code: string) => {
-    mutation.mutate({ problem_id: parseInt(id), language_id:71,source_code: code});
+    mutation.mutate({
+      problem_id: parseInt(id),
+      language_id: 71,
+      source_code: code,
+    });
   };
   const handleRun = (code: string) => {
-    mutation.mutate({ problem_id: parseInt(id), language_id:71,source_code: code});
+    mutation.mutate({
+      problem_id: parseInt(id),
+      language_id: 71,
+      source_code: code,
+    });
   };
   const factory = (node: TabNode) => {
     if (node.getComponent() === "text") {
       return <div>Text Component</div>;
     }
     if (node.getComponent() === "ProblemStatement") {
-      return (
-        <ProblemStatement problemId={id} />
-      );
+      return <ProblemStatement problemId={id} />;
     }
     if (node.getComponent() === "CodeEditor") {
       return (
-        <CodeEditor onSubmit={
-          (code) => {
-            handleSubmit(code)
-          }
-        } 
-        onRun={
-          (code) =>
-          {
-            handleRun(code)
-          }
-        }
-         />
+        <CodeEditor
+          onSubmit={(code) => {
+            handleSubmit(code);
+          }}
+          onRun={(code) => {
+            handleRun(code);
+          }}
+        />
       );
     }
     if (node.getComponent() === "TestCases") {
