@@ -6,6 +6,21 @@
   top: 70px !important;
 }
 
+.flexlayout__tabset_tabbar_outer,
+.flexlayout__tabset_tabbar_inner,
+.flexlayout__tab_button {
+  background: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: none !important;
+}
+
+.flexlayout__tab_button--selected {
+  background: hsl(var(--muted)) !important;
+}
+.flexlayout__splitter {
+  background: hsl(var(--accent)) !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

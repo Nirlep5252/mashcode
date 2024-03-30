@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from lib.crud.match import create_match, get_active_match, get_match, get_matches
 from lib.crud.user import create_user, get_top_users, get_user
 from lib.database import get_db
-from lib.models import User
+from lib.models import MatchStatus, User
 
 router = APIRouter(prefix="/match")
 
@@ -141,3 +141,62 @@ async def queue(
     except WebSocketDisconnect:
         if user_db_data in users_queued:
             del users_queued[user_db_data]
+
+
+@router.websocket("/{match_id}")
+async def match_ws(websocket: WebSocket, match_id: int, db: Session = Depends(get_db)):
+    await websocket.accept()
+
+    # First thing we need to authorize user before adding them to queue
+    auth_data = await websocket.receive_json()
+    if auth_data.get("type") != "auth":
+        await websocket.send_json({"type": "error", "message": "Missing auth"})
+        await websocket.close()
+        return
+
+    token = auth_data.get("token")
+    if not token:
+        await websocket.send_json({"type": "error", "message": "Missing token"})
+        await websocket.close()
+        return
+
+    user_github_data = None
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            "https://api.github.com/user", headers={"Authorization": f"Bearer {token}"}
+        ) as response:
+            user_github_data = await response.json()
+            if "message" in user_github_data:
+                await websocket.send_json(
+                    {"type": "error", "message": user_github_data["message"]}
+                )
+                await websocket.close()
+                return
+
+    match = get_match(db, match_id)
+    if not match:
+        await websocket.send_json({"type": "error", "message": "Match not found"})
+        await websocket.close()
+        return
+
+    if match.status == MatchStatus.COMPLETED:
+        await websocket.send_json(
+            {"type": "error", "message": "Match already completed"}
+        )
+        await websocket.close()
+        return
+
+    if (
+        match.player1_id != user_github_data["id"]
+        and match.player2_id != user_github_data["id"]
+    ):
+        await websocket.send_json({"type": "error", "message": "Unauthorized"})
+        await websocket.close()
+        return
+
+    while True:
+        data = await websocket.receive_json()
+
+        if "type" not in data:
+            await websocket.send_json({"type": "error", "message": "Missing type"})
+            continue

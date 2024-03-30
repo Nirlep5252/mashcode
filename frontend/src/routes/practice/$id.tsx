@@ -7,6 +7,7 @@ import { ProblemStatement } from "@/components/problem/problem-statement";
 import { CodeEditor } from "@/components/match/code-editor";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { useSubmission } from "@/mutations/pratice";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/practice/$id")({
   component: PracticePage,
@@ -82,20 +83,6 @@ function PracticePage() {
   });
 
   const mutation = useSubmission();
-  const handleSubmit = (code: string) => {
-    mutation.mutate({
-      problem_id: parseInt(id),
-      language_id: 71,
-      source_code: code,
-    });
-  };
-  const handleRun = (code: string) => {
-    mutation.mutate({
-      problem_id: parseInt(id),
-      language_id: 71,
-      source_code: code,
-    });
-  };
   const factory = (node: TabNode) => {
     if (node.getComponent() === "text") {
       return <div>Text Component</div>;
@@ -106,11 +93,36 @@ function PracticePage() {
     if (node.getComponent() === "CodeEditor") {
       return (
         <CodeEditor
-          onSubmit={(code) => {
-            handleSubmit(code);
+          codeId={`practice-${id}`}
+          onSubmit={async (code, language_id) => {
+            const data = await mutation.mutateAsync({
+              problem_id: parseInt(id),
+              language_id: language_id,
+              source_code: code,
+            });
+            if (data.status) {
+              if (data.status.description === "Wrong Answer") {
+                toast.error(data.status.description);
+              } else {
+                toast.success(data.status.description);
+              }
+            } else toast.error(data.detail);
+            return data;
           }}
-          onRun={(code) => {
-            handleRun(code);
+          onRun={async (code, language_id) => {
+            const data = await mutation.mutateAsync({
+              problem_id: parseInt(id),
+              language_id: language_id,
+              source_code: code,
+            });
+            if (data.status) {
+              if (data.status.description === "Wrong Answer") {
+                toast.error(data.status.description);
+              } else {
+                toast.success(data.status.description);
+              }
+            } else toast.error(data.detail);
+            return data;
           }}
         />
       );

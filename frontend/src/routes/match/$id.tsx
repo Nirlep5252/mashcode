@@ -1,9 +1,11 @@
 import { CodeEditor } from "@/components/match/code-editor";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { ProblemStatement } from "@/components/problem/problem-statement";
+import { API_WS_URL } from "@/lib/constants";
 import { useMatch } from "@/queries/match";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { IJsonModel, Layout, Model, TabNode } from "flexlayout-react";
+import useWebSocket from "react-use-websocket";
 
 export const Route = createFileRoute("/match/$id")({
   component: Match,
@@ -87,6 +89,19 @@ function Match() {
     },
   });
 
+  const { sendJsonMessage } = useWebSocket(`${API_WS_URL}/match/${id}`, {
+    onOpen: () => {
+      sendJsonMessage({
+        type: "auth",
+        token: localStorage.getItem("ghToken"),
+      });
+    },
+    onMessage: (event) => {
+      const data = JSON.parse(event.data);
+      console.log(data);
+    },
+  });
+
   if (isMatchLoading) {
     return <>Loading...</>;
   }
@@ -98,11 +113,21 @@ function Match() {
   function factory(node: TabNode) {
     switch (node.getComponent()) {
       case "ProblemStatement":
-        return <ProblemStatement problemId={id} />;
+        return (
+          <ProblemStatement problemId={match?.problem_id.toString() || ""} />
+        );
       case "CodeEditor":
-        return <CodeEditor />;
+        return (
+          <CodeEditor
+            codeId={`match-${id}`}
+            onSubmit={async () => {}}
+            onRun={async () => {}}
+          />
+        );
       case "TestCases":
-        return <ExampleTestCase problemId={id} />;
+        return (
+          <ExampleTestCase problemId={match?.problem_id.toString() || ""} />
+        );
       default:
         return <>Invalid Component</>;
     }

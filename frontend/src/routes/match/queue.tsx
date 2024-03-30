@@ -11,13 +11,20 @@ function Queue() {
     `${API_WS_URL}/match/queue`,
     {
       onOpen: () => {
-        console.log("ws connected");
         sendJsonMessage({
           type: "auth",
           token: localStorage.getItem("ghToken"),
         });
       },
-    },
+      onMessage: (event) => {
+        const data = JSON.parse(event.data);
+        switch (data.type) {
+          case "redirect":
+            window.location.href = data.to;
+            break;
+        }
+      },
+    }
   );
 
   return (

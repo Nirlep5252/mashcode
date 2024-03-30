@@ -1,6 +1,7 @@
 import json
 
 from fastapi import APIRouter
+from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 
 from lib.judge0 import get_submission_verdict
@@ -46,10 +47,10 @@ class Submission(BaseModel):
 
 @router.post("/submission/{problem_id}")
 async def get_verdict(problem_id: int, submission: Submission):
-    with open("routers/problem_details.json") as f:
-        problem_details = json.load(f)
-    expected_output = problem_details[str(problem_id)]["sample_output"]
-    verdict = await get_submission_verdict(
-        problem_id, submission.language_id, submission.source_code
+    if submission.source_code == "":
+        return HTTPException(status_code=400, detail="Source code cannot be empty")
+    return await get_submission_verdict(
+        problem_id=problem_id,
+        lanuage_id=submission.language_id,
+        source_code=submission.source_code,
     )
-    return verdict
