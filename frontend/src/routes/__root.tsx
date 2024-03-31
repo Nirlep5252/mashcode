@@ -5,6 +5,7 @@ import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import React, { useEffect, useMemo } from "react";
 import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const RootComponent: React.FC = () => {
   const queryClient = useMemo(() => new QueryClient(), []);
@@ -13,7 +14,7 @@ const RootComponent: React.FC = () => {
     const url = new URL(window.location.href);
 
     if (url.searchParams.has("error")) {
-      // TODO: use sonner for toast
+      toast.error(url.searchParams.get("error")!);
     }
     if (url.searchParams.has("access_token")) {
       window.localStorage.setItem(

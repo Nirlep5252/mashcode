@@ -41,9 +41,9 @@ async def get_token(language_id: int, problem_id: int, source_code: str):
 async def get_submission_verdict(
     problem_id: int,
     source_code: str,
-    lanuage_id: int = 71,
+    language_id: int = 71,
 ):
     async with aiohttp.ClientSession() as session:
-        token = (await get_token(lanuage_id, problem_id, source_code))["token"]
+        token = (await get_token(language_id, problem_id, source_code))["token"]
         async with session.get(f"{JUDGE0_URL}/submissions/{token}") as response:
             return await response.json()

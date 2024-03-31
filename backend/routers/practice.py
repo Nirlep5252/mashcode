@@ -51,6 +51,6 @@ async def get_verdict(problem_id: int, submission: Submission):
         return HTTPException(status_code=400, detail="Source code cannot be empty")
     return await get_submission_verdict(
         problem_id=problem_id,
-        lanuage_id=submission.language_id,
+        language_id=submission.language_id,
         source_code=submission.source_code,
     )

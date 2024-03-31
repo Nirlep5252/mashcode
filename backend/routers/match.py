@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 import aiohttp
 from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import Response
@@ -6,6 +8,7 @@ from sqlalchemy.orm import Session
 from lib.crud.match import create_match, get_active_match, get_match, get_matches
 from lib.crud.user import create_user, get_top_users, get_user
 from lib.database import get_db
+from lib.judge0 import get_submission_verdict
 from lib.models import MatchStatus, User
 
 router = APIRouter(prefix="/match")
@@ -143,6 +146,9 @@ async def queue(
             del users_queued[user_db_data]
 
 
+match_websockets: dict[int, list[WebSocket]] = defaultdict(list)
+
+
 @router.websocket("/{match_id}")
 async def match_ws(websocket: WebSocket, match_id: int, db: Session = Depends(get_db)):
     await websocket.accept()
@@ -194,9 +200,44 @@ async def match_ws(websocket: WebSocket, match_id: int, db: Session = Depends(ge
         await websocket.close()
         return
 
-    while True:
-        data = await websocket.receive_json()
+    match_websockets[match_id].append(websocket)
 
-        if "type" not in data:
-            await websocket.send_json({"type": "error", "message": "Missing type"})
-            continue
+    try:
+        while True:
+            data = await websocket.receive_json()
+
+            if "type" not in data:
+                await websocket.send_json({"type": "error", "message": "Missing type"})
+                continue
+
+            if data["type"] == "submit":
+                if "source_code" not in data or "language_id" not in data:
+                    await websocket.send_json(
+                        {
+                            "type": "error",
+                            "message": "Missing source_code or language_id",
+                        }
+                    )
+                    await websocket.send_json({"type": "submit_result"})
+                    continue
+
+                if data["source_code"] == "":
+                    await websocket.send_json(
+                        {"type": "error", "message": "Source code cannot be empty"}
+                    )
+                    await websocket.send_json({"type": "submit_result"})
+                    continue
+
+                res = await get_submission_verdict(
+                    problem_id=match.problem_id or 1,
+                    source_code=data["source_code"],
+                    language_id=data["language_id"],
+                )
+                await websocket.send_json(
+                    {
+                        "type": "submit_result",
+                        "result": res,
+                    }
+                )
+    except WebSocketDisconnect:
+        match_websockets[match_id].remove(websocket)

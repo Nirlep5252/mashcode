@@ -6,6 +6,7 @@ import { useMatch } from "@/queries/match";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { IJsonModel, Layout, Model, TabNode } from "flexlayout-react";
 import useWebSocket from "react-use-websocket";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/match/$id")({
   component: Match,
@@ -98,7 +99,17 @@ function Match() {
     },
     onMessage: (event) => {
       const data = JSON.parse(event.data);
-      console.log(data);
+      switch (data.type) {
+        case "submit_result":
+          if (data.result) toast.info(data.result.status.description);
+          break;
+        case "error":
+          toast.error(data.message);
+          break;
+      }
+    },
+    filter: () => {
+      return false;
     },
   });
 
@@ -120,8 +131,20 @@ function Match() {
         return (
           <CodeEditor
             codeId={`match-${id}`}
-            onSubmit={async () => {}}
-            onRun={async () => {}}
+            onSubmit={async (sourceCode: string, languageId: number) => {
+              sendJsonMessage({
+                type: "submit",
+                source_code: sourceCode,
+                language_id: languageId,
+              });
+            }}
+            onRun={async (sourceCode: string, languageId: number) => {
+              sendJsonMessage({
+                type: "submit",
+                source_code: sourceCode,
+                language_id: languageId,
+              });
+            }}
           />
         );
       case "TestCases":
