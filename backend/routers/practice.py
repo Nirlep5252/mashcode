@@ -43,6 +43,7 @@ async def get_question(question_id: int):
 class Submission(BaseModel):
     language_id: int
     source_code: str
+    run: bool
 
 
 @router.post("/submission/{problem_id}")
@@ -53,4 +54,5 @@ async def get_verdict(problem_id: int, submission: Submission):
         problem_id=problem_id,
         language_id=submission.language_id,
         source_code=submission.source_code,
+        run=submission.run,
     )

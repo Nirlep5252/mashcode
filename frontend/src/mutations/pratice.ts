@@ -7,6 +7,7 @@ export const useSubmission = createMutation({
     problem_id: number;
     language_id: number;
     source_code: string;
+    run: boolean;
   }) => {
     const ghToken = getGithubAccessToken();
     const res = await fetch(
@@ -16,6 +17,7 @@ export const useSubmission = createMutation({
         body: JSON.stringify({
           language_id: variable.language_id,
           source_code: variable.source_code,
+          run: variable.run,
         }),
         headers: {
           Authorization: `Bearer ${ghToken}`,

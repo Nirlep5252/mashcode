@@ -99,14 +99,20 @@ function PracticePage() {
               problem_id: parseInt(id),
               language_id: language_id,
               source_code: code,
+              run: false,
             });
-            if (data.status) {
-              if (data.status.description === "Wrong Answer") {
-                toast.error(data.status.description);
-              } else {
-                toast.success(data.status.description);
+            if (data) {
+              let wronganswerFlag = false;
+              for (const key in data) {
+                if (data[key].description === "Wrong Answer") {
+                  wronganswerFlag = true;
+                  toast.error("Wrong on test case " + key);
+                }
               }
-            } else toast.error(data.detail);
+              if (!wronganswerFlag) {
+                toast.success("All test cases passed");
+              }
+            }
             return data;
           }}
           onRun={async (code, language_id) => {
@@ -114,6 +120,7 @@ function PracticePage() {
               problem_id: parseInt(id),
               language_id: language_id,
               source_code: code,
+              run: true,
             });
             if (data.status) {
               if (data.status.description === "Wrong Answer") {
