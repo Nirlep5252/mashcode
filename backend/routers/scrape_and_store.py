@@ -100,6 +100,7 @@ def get_problem_details(url):
             "problem_memory_limit": problem_memory_limit,
             "sample_input": sample_input[0],
             "sample_output": sample_output[0],
+            "problem_url": url,
         }
     except Exception as e:
         return {"error": str(e)}

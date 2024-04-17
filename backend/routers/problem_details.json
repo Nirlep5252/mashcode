@@ -9,6 +9,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n",
     "sample_output": "3 10 5 16 8 4 2 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1068",
     "problem_title": "Weird Algorithm"
   },
   "2": {
@@ -21,6 +22,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 3 1 5\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/1083",
     "problem_title": "Missing Number"
   },
   "3": {
@@ -33,6 +35,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "ATTCGGGA\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1069",
     "problem_title": "Repetitions"
   },
   "4": {
@@ -45,6 +48,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n3 2 5 1 7\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/1094",
     "problem_title": "Increasing Array"
   },
   "5": { "error": "", "problem_title": "Permutations" },
@@ -58,6 +62,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n2 3\n1 1\n4 2\n",
     "sample_output": "8\n1\n15\n",
+    "problem_url": "https://cses.fi/problemset/task/1071",
     "problem_title": "Number Spiral"
   },
   "7": {
@@ -70,6 +75,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n",
     "sample_output": "0\n6\n28\n96\n252\n550\n1056\n1848\n",
+    "problem_url": "https://cses.fi/problemset/task/1072",
     "problem_title": "Two Knights"
   },
   "8": { "error": "", "problem_title": "Two Sets" },
@@ -83,6 +89,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n",
     "sample_output": "8\n",
+    "problem_url": "https://cses.fi/problemset/task/1617",
     "problem_title": "Bit Strings"
   },
   "10": {
@@ -95,6 +102,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "20\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/1618",
     "problem_title": "Trailing Zeros"
   },
   "11": {
@@ -107,6 +115,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n2 1\n2 2\n3 3\n",
     "sample_output": "YES\nNO\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/1754",
     "problem_title": "Coin Piles"
   },
   "12": {
@@ -119,6 +128,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "AAAACACBA\n",
     "sample_output": "AACABACAA\n",
+    "problem_url": "https://cses.fi/problemset/task/1755",
     "problem_title": "Palindrome Reorder"
   },
   "13": {
@@ -131,6 +141,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2\n",
     "sample_output": "00\n01\n11\n10\n",
+    "problem_url": "https://cses.fi/problemset/task/2205",
     "problem_title": "Gray Code"
   },
   "14": {
@@ -143,6 +154,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2\n",
     "sample_output": "3\n1 2\n1 3\n2 3\n",
+    "problem_url": "https://cses.fi/problemset/task/2165",
     "problem_title": "Tower of Hanoi"
   },
   "15": {
@@ -155,6 +167,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aabac\n",
     "sample_output": "20\naaabc\naaacb\naabac\naabca\naacab\naacba\nabaac\nabaca\nabcaa\nacaab\nacaba\nacbaa\nbaaac\nbaaca\nbacaa\nbcaaa\ncaaab\ncaaba\ncabaa\ncbaaa\n",
+    "problem_url": "https://cses.fi/problemset/task/1622",
     "problem_title": "Creating Strings"
   },
   "16": {
@@ -167,6 +180,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n3 2 7 4 1\n",
     "sample_output": "1\n",
+    "problem_url": "https://cses.fi/problemset/task/1623",
     "problem_title": "Apple Division"
   },
   "17": { "error": "", "problem_title": "Chessboard and Queens" },
@@ -180,6 +194,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n7\n19\n12\n",
     "sample_output": "7\n4\n1\n",
+    "problem_url": "https://cses.fi/problemset/task/2431",
     "problem_title": "Digit Queries"
   },
   "19": {
@@ -192,6 +207,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 1\n2 2\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1078",
     "problem_title": "Grid Paths"
   },
   "20": {
@@ -204,6 +220,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 3 2 2 3\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1621",
     "problem_title": "Distinct Numbers"
   },
   "21": {
@@ -216,6 +233,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3 5\n60 45 80 60\n30 60 75\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1084",
     "problem_title": "Apartments"
   },
   "22": {
@@ -228,6 +246,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 10\n7 2 3 9\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1090",
     "problem_title": "Ferris Wheel"
   },
   "23": {
@@ -240,6 +259,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n5 3 7 8 5\n4 8 3\n",
     "sample_output": "3\n8\n-1\n",
+    "problem_url": "https://cses.fi/problemset/task/1091",
     "problem_title": "Concert Tickets"
   },
   "24": {
@@ -252,6 +272,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n5 8\n2 4\n3 9\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1619",
     "problem_title": "Restaurant Customers"
   },
   "25": {
@@ -264,6 +285,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n3 5\n4 9\n5 8\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1629",
     "problem_title": "Movie Festival"
   },
   "26": {
@@ -276,6 +298,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 8\n2 7 5 1\n",
     "sample_output": "2 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1640",
     "problem_title": "Sum of Two Values"
   },
   "27": {
@@ -288,6 +311,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n-1 3 -2 5 3 -5 2 2\n",
     "sample_output": "9\n",
+    "problem_url": "https://cses.fi/problemset/task/1643",
     "problem_title": "Maximum Subarray Sum"
   },
   "28": {
@@ -300,6 +324,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 3 1 5 2\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/1074",
     "problem_title": "Stick Lengths"
   },
   "29": {
@@ -312,6 +337,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 9 1 2 7\n",
     "sample_output": "6\n",
+    "problem_url": "https://cses.fi/problemset/task/2183",
     "problem_title": "Missing Coin Sum"
   },
   "30": {
@@ -324,6 +350,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n4 2 1 5 3\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/2216",
     "problem_title": "Collecting Numbers"
   },
   "31": {
@@ -336,6 +363,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n4 2 1 5 3\n2 3\n1 5\n2 3\n",
     "sample_output": "2\n3\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/2217",
     "problem_title": "Collecting Numbers II"
   },
   "32": {
@@ -348,6 +376,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n1 2 1 3 2 7 4 2\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/1141",
     "problem_title": "Playlist"
   },
   "33": {
@@ -360,6 +389,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n3 8 2 1 5\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1073",
     "problem_title": "Towers"
   },
   "34": {
@@ -372,6 +402,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 3\n3 6 2\n",
     "sample_output": "5 3 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1163",
     "problem_title": "Traffic Lights"
   },
   "35": {
@@ -384,6 +415,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "7\n",
     "sample_output": "2 4 6 1 5 3 7\n",
+    "problem_url": "https://cses.fi/problemset/task/2162",
     "problem_title": "Josephus Problem I"
   },
   "36": {
@@ -396,6 +428,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "7 2\n",
     "sample_output": "3 6 2 7 5 1 4\n",
+    "problem_url": "https://cses.fi/problemset/task/2163",
     "problem_title": "Josephus Problem II"
   },
   "37": {
@@ -408,6 +441,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n1 6\n2 4\n4 8\n3 6\n",
     "sample_output": "1 0 0 0\n0 1 0 1\n",
+    "problem_url": "https://cses.fi/problemset/task/2168",
     "problem_title": "Nested Ranges Check"
   },
   "38": {
@@ -420,6 +454,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n1 6\n2 4\n4 8\n3 6\n",
     "sample_output": "2 0 0 0\n0 1 0 1\n",
+    "problem_url": "https://cses.fi/problemset/task/2169",
     "problem_title": "Nested Ranges Count"
   },
   "39": {
@@ -432,6 +467,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n1 2\n2 4\n4 4\n",
     "sample_output": "2\n1 2 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1164",
     "problem_title": "Room Allocation"
   },
   "40": {
@@ -444,6 +480,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 7\n3 2 5\n",
     "sample_output": "8\n",
+    "problem_url": "https://cses.fi/problemset/task/1620",
     "problem_title": "Factory Machines"
   },
   "41": {
@@ -456,6 +493,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n6 10\n8 15\n5 12\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1630",
     "problem_title": "Tasks and Deadlines"
   },
   "42": {
@@ -468,6 +506,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n2 8 3\n",
     "sample_output": "16\n",
+    "problem_url": "https://cses.fi/problemset/task/1631",
     "problem_title": "Reading Books"
   },
   "43": {
@@ -480,6 +519,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 8\n2 7 5 1\n",
     "sample_output": "1 3 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1641",
     "problem_title": "Sum of Three Values"
   },
   "44": {
@@ -492,6 +532,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 15\n3 2 5 8 1 3 2 3\n",
     "sample_output": "2 4 6 7\n",
+    "problem_url": "https://cses.fi/problemset/task/1642",
     "problem_title": "Sum of Four Values"
   },
   "45": {
@@ -504,6 +545,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n2 5 1 4 8 3 2 5\n",
     "sample_output": "0 1 0 3 4 3 3 7\n",
+    "problem_url": "https://cses.fi/problemset/task/1645",
     "problem_title": "Nearest Smaller Values"
   },
   "46": {
@@ -516,6 +558,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 7\n2 4 1 2 7\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1660",
     "problem_title": "Subarray Sums I"
   },
   "47": {
@@ -528,6 +571,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 7\n2 -1 3 5 -2\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1661",
     "problem_title": "Subarray Sums II"
   },
   "48": {
@@ -540,6 +584,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n3 1 2 7 4\n",
     "sample_output": "1\n",
+    "problem_url": "https://cses.fi/problemset/task/1662",
     "problem_title": "Subarray Divisibility"
   },
   "49": {
@@ -552,6 +597,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 2\n1 2 3 1 1\n",
     "sample_output": "10\n",
+    "problem_url": "https://cses.fi/problemset/task/2428",
     "problem_title": "Subarray Distinct Values"
   },
   "50": {
@@ -564,6 +610,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n2 4 7 3 5\n",
     "sample_output": "8\n",
+    "problem_url": "https://cses.fi/problemset/task/1085",
     "problem_title": "Array Division"
   },
   "51": {
@@ -576,6 +623,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 3\n2 4 3 5 8 1 2 1\n",
     "sample_output": "3 4 5 5 2 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1076",
     "problem_title": "Sliding Window Median"
   },
   "52": {
@@ -588,6 +636,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 3\n2 4 3 5 8 1 2 1\n",
     "sample_output": "2 2 5 7 7 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1077",
     "problem_title": "Sliding Window Cost"
   },
   "53": {
@@ -600,6 +649,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 2\n1 5\n8 10\n3 6\n2 5\n6 9\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/1632",
     "problem_title": "Movie Festival II"
   },
   "54": {
@@ -612,6 +662,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 1 2\n-1 3 -2 5 3 -5 2 2\n",
     "sample_output": "8\n",
+    "problem_url": "https://cses.fi/problemset/task/1644",
     "problem_title": "Maximum Subarray Sum II"
   },
   "55": {
@@ -624,6 +675,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/1633",
     "problem_title": "Dice Combinations"
   },
   "56": {
@@ -636,6 +688,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 11\n1 5 7\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1634",
     "problem_title": "Minimizing Coins"
   },
   "57": {
@@ -648,6 +701,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 9\n2 3 5\n",
     "sample_output": "8\n",
+    "problem_url": "https://cses.fi/problemset/task/1635",
     "problem_title": "Coin Combinations I"
   },
   "58": {
@@ -660,6 +714,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 9\n2 3 5\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1636",
     "problem_title": "Coin Combinations II"
   },
   "59": {
@@ -672,6 +727,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "27\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/1637",
     "problem_title": "Removing Digits"
   },
   "60": {
@@ -684,6 +740,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 10\n4 8 5 3\n5 12 8 1\n",
     "sample_output": "13\n",
+    "problem_url": "https://cses.fi/problemset/task/1158",
     "problem_title": "Book Shop"
   },
   "61": {
@@ -696,6 +753,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 5\n2 0 2\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1746",
     "problem_title": "Array Description"
   },
   "62": {
@@ -708,6 +766,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n2\n6\n1337\n",
     "sample_output": "8\n2864\n640403945\n",
+    "problem_url": "https://cses.fi/problemset/task/2413",
     "problem_title": "Counting Towers"
   },
   "63": {
@@ -720,6 +779,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "LOVE\nMOVIE\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1639",
     "problem_title": "Edit Distance"
   },
   "64": {
@@ -732,6 +792,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 5\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1744",
     "problem_title": "Rectangle Cutting"
   },
   "65": {
@@ -744,6 +805,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n4 2 5 2\n",
     "sample_output": "9\n2 4 5 6 7 8 9 11 13\n",
+    "problem_url": "https://cses.fi/problemset/task/1745",
     "problem_title": "Money Sums"
   },
   "66": {
@@ -756,6 +818,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n4 5 1 3\n",
     "sample_output": "8\n",
+    "problem_url": "https://cses.fi/problemset/task/1097",
     "problem_title": "Removal Game"
   },
   "67": {
@@ -768,6 +831,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "7\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/1093",
     "problem_title": "Two Sets II"
   },
   "68": {
@@ -780,6 +844,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n7 3 5 3 6 2 9 8\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/1145",
     "problem_title": "Increasing Subsequence"
   },
   "69": {
@@ -792,6 +857,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n2 4 4\n3 6 6\n6 8 2\n5 7 3\n",
     "sample_output": "7\n",
+    "problem_url": "https://cses.fi/problemset/task/1140",
     "problem_title": "Projects"
   },
   "70": {
@@ -804,6 +870,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 10\n4 8 6 1\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1653",
     "problem_title": "Elevator Rides"
   },
   "71": {
@@ -816,6 +883,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 7\n",
     "sample_output": "781\n",
+    "problem_url": "https://cses.fi/problemset/task/2181",
     "problem_title": "Counting Tilings"
   },
   "72": {
@@ -828,6 +896,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "123 321\n",
     "sample_output": "171\n",
+    "problem_url": "https://cses.fi/problemset/task/2220",
     "problem_title": "Counting Numbers"
   },
   "73": {
@@ -840,6 +909,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 8\n########\n#..#...#\n####.#.#\n#..#...#\n########\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1192",
     "problem_title": "Counting Rooms"
   },
   "74": {
@@ -852,6 +922,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 8\n########\n#.A#...#\n#.##.#B#\n#......#\n########\n",
     "sample_output": "YES\n9\nLDDRRRRRU\n",
+    "problem_url": "https://cses.fi/problemset/task/1193",
     "problem_title": "Labyrinth"
   },
   "75": {
@@ -864,6 +935,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 2\n1 2\n3 4\n",
     "sample_output": "1\n2 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1666",
     "problem_title": "Building Roads"
   },
   "76": {
@@ -876,6 +948,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 5\n1 2\n1 3\n1 4\n2 3\n5 4\n",
     "sample_output": "3\n1 4 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1667",
     "problem_title": "Message Route"
   },
   "77": {
@@ -888,6 +961,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2\n1 3\n4 5\n",
     "sample_output": "1 2 2 1 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1668",
     "problem_title": "Building Teams"
   },
   "78": {
@@ -900,6 +974,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n1 3\n1 2\n5 3\n1 5\n2 4\n4 5\n",
     "sample_output": "4\n3 5 1 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1669",
     "problem_title": "Round Trip"
   },
   "79": {
@@ -912,6 +987,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 8\n########\n#M..A..#\n#.#.M#.#\n#M#..#..\n#.######\n",
     "sample_output": "YES\n5\nRRDDR\n",
+    "problem_url": "https://cses.fi/problemset/task/1194",
     "problem_title": "Monsters"
   },
   "80": {
@@ -924,6 +1000,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 4\n1 2 6\n1 3 2\n3 2 3\n1 3 4\n",
     "sample_output": "0 5 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1671",
     "problem_title": "Shortest Routes I"
   },
   "81": {
@@ -936,6 +1013,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3 5\n1 2 5\n1 3 9\n2 3 3\n1 2\n2 1\n1 3\n1 4\n3 2\n",
     "sample_output": "5\n5\n8\n-1\n3\n",
+    "problem_url": "https://cses.fi/problemset/task/1672",
     "problem_title": "Shortest Routes II"
   },
   "82": {
@@ -948,6 +1026,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2 3\n2 4 -1\n1 3 -2\n3 4 7\n1 4 4\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/1673",
     "problem_title": "High Score"
   },
   "83": {
@@ -960,6 +1039,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 4\n1 2 3\n2 3 1\n1 3 7\n2 1 5\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1195",
     "problem_title": "Flight Discount"
   },
   "84": {
@@ -972,6 +1052,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2 1\n2 4 1\n3 1 1\n4 1 -3\n4 3 -2\n",
     "sample_output": "YES\n1 2 4 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1197",
     "problem_title": "Cycle Finding"
   },
   "85": {
@@ -984,6 +1065,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 6 3\n1 2 1\n1 3 3\n2 3 2\n2 4 6\n3 2 8\n3 4 1\n",
     "sample_output": "4 4 7\n",
+    "problem_url": "https://cses.fi/problemset/task/1196",
     "problem_title": "Flight Routes"
   },
   "86": {
@@ -996,6 +1078,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 3\n2 1\n2 4\n3 2\n3 4\n",
     "sample_output": "4\n2 1 3 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1678",
     "problem_title": "Round Trip II"
   },
   "87": {
@@ -1008,6 +1091,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2\n3 1\n4 5\n",
     "sample_output": "3 4 1 5 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1679",
     "problem_title": "Course Schedule"
   },
   "88": {
@@ -1020,6 +1104,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 5\n1 2\n2 5\n1 3\n3 4\n4 5\n",
     "sample_output": "4\n1 3 4 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1680",
     "problem_title": "Longest Flight Route"
   },
   "89": {
@@ -1032,6 +1117,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2\n2 4\n1 3\n3 4\n1 4\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1681",
     "problem_title": "Game Routes"
   },
   "90": {
@@ -1044,6 +1130,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 4 5\n1 2 4\n2 4 5\n1 3 2\n3 4 3\n",
     "sample_output": "5 2 1 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1202",
     "problem_title": "Investigation"
   },
   "91": {
@@ -1056,6 +1143,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n2 1 1 4\n1 2\n3 4\n4 1\n",
     "sample_output": "1\n2\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/1750",
     "problem_title": "Planets Queries I"
   },
   "92": {
@@ -1068,6 +1156,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n2 3 2 3 2\n1 2\n1 3\n1 4\n",
     "sample_output": "1\n2\n-1\n",
+    "problem_url": "https://cses.fi/problemset/task/1160",
     "problem_title": "Planets Queries II"
   },
   "93": {
@@ -1080,6 +1169,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 4 3 1 4\n",
     "sample_output": "3 3 1 3 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1751",
     "problem_title": "Planets Cycles"
   },
   "94": {
@@ -1092,6 +1182,7 @@
     "problem_memory_limit": "128 MB",
     "sample_input": "5 6\n1 2 3\n2 3 5\n2 4 2\n3 4 8\n5 1 7\n5 4 4\n",
     "sample_output": "14\n",
+    "problem_url": "https://cses.fi/problemset/task/1675",
     "problem_title": "Road Reparation"
   },
   "95": {
@@ -1104,6 +1195,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2\n1 3\n4 5\n",
     "sample_output": "4 2\n3 3\n2 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1676",
     "problem_title": "Road Construction"
   },
   "96": {
@@ -1116,6 +1208,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2\n2 3\n3 1\n1 4\n3 4\n",
     "sample_output": "NO\n4 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1682",
     "problem_title": "Flight Routes Check"
   },
   "97": {
@@ -1128,6 +1221,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n1 2\n2 3\n3 1\n3 4\n4 5\n5 4\n",
     "sample_output": "2\n1 1 1 2 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1683",
     "problem_title": "Planets and Kingdoms"
   },
   "98": {
@@ -1140,6 +1234,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 5\n+ 1 + 2\n- 1 + 3\n+ 4 - 2\n",
     "sample_output": "- + + + -\n",
+    "problem_url": "https://cses.fi/problemset/task/1684",
     "problem_title": "Giant Pizza"
   },
   "99": {
@@ -1152,6 +1247,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 4\n4 5 2 7\n1 2\n2 1\n1 3\n2 4\n",
     "sample_output": "16\n",
+    "problem_url": "https://cses.fi/problemset/task/1686",
     "problem_title": "Coin Collector"
   },
   "100": {
@@ -1164,6 +1260,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6 8\n1 2\n1 3\n2 3\n2 4\n2 6\n3 5\n3 6\n4 5\n",
     "sample_output": "1 2 6 3 2 4 5 3 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1691",
     "problem_title": "Mail Delivery"
   },
   "101": {
@@ -1176,6 +1273,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2\n",
     "sample_output": "00110\n",
+    "problem_url": "https://cses.fi/problemset/task/1692",
     "problem_title": "De Bruijn Sequence"
   },
   "102": {
@@ -1188,6 +1286,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n1 2\n1 3\n2 4\n2 5\n3 1\n4 2\n",
     "sample_output": "1 3 1 2 4 2 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1693",
     "problem_title": "Teleporters Path"
   },
   "103": {
@@ -1200,6 +1299,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 6\n1 2\n1 3\n2 3\n3 2\n2 4\n3 4\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1690",
     "problem_title": "Hamiltonian Flights"
   },
   "104": {
@@ -1212,6 +1312,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2 1\n",
     "sample_output": "8 1 10 13 6 3 20 17 \n11 14 7 2 19 16 23 4 \n26 9 12 15 24 5 18 21 \n49 58 25 28 51 22 33 30 \n40 27 50 59 32 29 52 35 \n57 48 41 44 37 34 31 62 \n42 39 46 55 60 63 36 53 \n47 56 43 38 45 54 61 64\n",
+    "problem_url": "https://cses.fi/problemset/task/1689",
     "problem_title": "Knight's Tour"
   },
   "105": {
@@ -1224,6 +1325,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2 3\n2 4 2\n1 3 4\n3 4 5\n4 1 3\n",
     "sample_output": "6\n",
+    "problem_url": "https://cses.fi/problemset/task/1694",
     "problem_title": "Download Speed"
   },
   "106": {
@@ -1236,6 +1338,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2\n1 3\n2 3\n3 4\n1 4\n",
     "sample_output": "2\n3 4\n1 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1695",
     "problem_title": "Police Chase"
   },
   "107": {
@@ -1248,6 +1351,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 2 4\n1 1\n1 2\n2 1\n3 1\n",
     "sample_output": "2\n1 2\n3 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1696",
     "problem_title": "School Dance"
   },
   "108": {
@@ -1260,6 +1364,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6 7\n1 2\n1 3\n2 6\n3 4\n3 5\n4 6\n5 6\n",
     "sample_output": "2\n3\n1 2 6\n4\n1 3 4 6\n",
+    "problem_url": "https://cses.fi/problemset/task/1711",
     "problem_title": "Distinct Routes"
   },
   "109": {
@@ -1272,6 +1377,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 4\n3 2 4 5 1 1 5 3\n2 4\n5 6\n1 8\n3 3\n",
     "sample_output": "11\n2\n24\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/1646",
     "problem_title": "Static Range Sum Queries"
   },
   "110": {
@@ -1284,6 +1390,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 4\n3 2 4 5 1 1 5 3\n2 4\n5 6\n1 8\n3 3\n",
     "sample_output": "2\n1\n1\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/1647",
     "problem_title": "Static Range Minimum Queries"
   },
   "111": {
@@ -1296,6 +1403,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 4\n3 2 4 5 1 1 5 3\n2 1 4\n2 5 6\n1 3 1\n2 1 4\n",
     "sample_output": "14\n2\n11\n",
+    "problem_url": "https://cses.fi/problemset/task/1648",
     "problem_title": "Dynamic Range Sum Queries"
   },
   "112": {
@@ -1308,6 +1416,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 4\n3 2 4 5 1 1 5 3\n2 1 4\n2 5 6\n1 2 3\n2 1 4\n",
     "sample_output": "2\n1\n3\n",
+    "problem_url": "https://cses.fi/problemset/task/1649",
     "problem_title": "Dynamic Range Minimum Queries"
   },
   "113": {
@@ -1320,6 +1429,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 4\n3 2 4 5 1 1 5 3\n2 4\n5 6\n1 8\n3 3\n",
     "sample_output": "3\n0\n6\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/1650",
     "problem_title": "Range Xor Queries"
   },
   "114": {
@@ -1332,6 +1442,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 3\n3 2 4 5 1 1 5 3\n2 4\n1 2 5 1\n2 4\n",
     "sample_output": "5\n6\n",
+    "problem_url": "https://cses.fi/problemset/task/1651",
     "problem_title": "Range Update Queries"
   },
   "115": {
@@ -1344,6 +1455,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n.*..\n*.**\n**..\n****\n2 2 3 4\n3 1 3 1\n1 1 2 2\n",
     "sample_output": "3\n1\n2\n",
+    "problem_url": "https://cses.fi/problemset/task/1652",
     "problem_title": "Forest Queries"
   },
   "116": {
@@ -1356,6 +1468,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 5\n3 2 4 1 5 5 2 6\n4 4 7 1 1\n",
     "sample_output": "3 5 0 1 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1143",
     "problem_title": "Hotel Queries"
   },
   "117": {
@@ -1368,6 +1481,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 6 1 4 2\n3 1 3 1 1\n",
     "sample_output": "1 2 2 6 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1749",
     "problem_title": "List Removals"
   },
   "118": {
@@ -1380,6 +1494,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n3 7 2 2 5\n? 2 3\n! 3 6\n? 2 3\n",
     "sample_output": "3\n2\n",
+    "problem_url": "https://cses.fi/problemset/task/1144",
     "problem_title": "Salary Queries"
   },
   "119": {
@@ -1392,6 +1507,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 4\n1 2 -1 3 1 -5 1 4\n2 2 6\n1 4 -2\n2 2 6\n2 3 4\n",
     "sample_output": "5\n2\n0\n",
+    "problem_url": "https://cses.fi/problemset/task/2166",
     "problem_title": "Prefix Sum Queries"
   },
   "120": {
@@ -1404,6 +1520,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6 3\n8 6 4 5 7 5\n2 2\n1 5 1\n2 2\n",
     "sample_output": "5\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/2206",
     "problem_title": "Pizzeria Queries"
   },
   "121": {
@@ -1416,6 +1533,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2 -3 5 -1\n2 6\n3 1\n2 -2\n",
     "sample_output": "9\n13\n6\n",
+    "problem_url": "https://cses.fi/problemset/task/1190",
     "problem_title": "Subarray Sum Queries"
   },
   "122": {
@@ -1428,6 +1546,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n3 2 3 1 2\n1 3\n2 4\n1 5\n",
     "sample_output": "2\n3\n3\n",
+    "problem_url": "https://cses.fi/problemset/task/1734",
     "problem_title": "Distinct Values Queries"
   },
   "123": {
@@ -1440,6 +1559,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n2 10 4 2 5\n3 5\n2 2\n1 4\n",
     "sample_output": "2\n0\n14\n",
+    "problem_url": "https://cses.fi/problemset/task/2416",
     "problem_title": "Increasing Array Queries"
   },
   "124": {
@@ -1452,6 +1572,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n.*..\n*.**\n**..\n****\n2 2 2 3 4\n1 3 3\n2 2 2 3 4\n",
     "sample_output": "3\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/1739",
     "problem_title": "Forest Queries II"
   },
   "125": {
@@ -1464,6 +1585,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6 5\n2 3 1 1 5 3\n3 3 5\n1 2 4 2\n3 3 5\n2 2 4 5\n3 3 5\n",
     "sample_output": "7\n11\n15\n",
+    "problem_url": "https://cses.fi/problemset/task/1735",
     "problem_title": "Range Updates and Sums"
   },
   "126": {
@@ -1476,6 +1598,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n4 2 3 1 7\n2 1 5\n1 1 5\n2 1 5\n",
     "sample_output": "17\n32\n",
+    "problem_url": "https://cses.fi/problemset/task/1736",
     "problem_title": "Polynomial Queries"
   },
   "127": {
@@ -1488,6 +1611,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n2 3 1 2 5\n3 1\n2 1 1 5\n2 2 1 5\n1 2 2 5\n2 1 1 5\n2 2 1 5\n",
     "sample_output": "13\n13\n13\n15\n",
+    "problem_url": "https://cses.fi/problemset/task/1737",
     "problem_title": "Range Queries and Copies"
   },
   "128": {
@@ -1500,6 +1624,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 1 2 3\n",
     "sample_output": "4 1 1 0 0\n",
+    "problem_url": "https://cses.fi/problemset/task/1674",
     "problem_title": "Subordinates"
   },
   "129": {
@@ -1512,6 +1637,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 2\n1 3\n3 4\n3 5\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1130",
     "problem_title": "Tree Matching"
   },
   "130": {
@@ -1524,6 +1650,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 2\n1 3\n3 4\n3 5\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1131",
     "problem_title": "Tree Diameter"
   },
   "131": {
@@ -1536,6 +1663,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 2\n1 3\n3 4\n3 5\n",
     "sample_output": "2 3 2 3 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1132",
     "problem_title": "Tree Distances I"
   },
   "132": {
@@ -1548,6 +1676,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 2\n1 3\n3 4\n3 5\n",
     "sample_output": "6 9 5 8 8\n",
+    "problem_url": "https://cses.fi/problemset/task/1133",
     "problem_title": "Tree Distances II"
   },
   "133": {
@@ -1560,6 +1689,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 1 3 3\n4 1\n4 2\n4 3\n",
     "sample_output": "3\n1\n-1\n",
+    "problem_url": "https://cses.fi/problemset/task/1687",
     "problem_title": "Company Queries I"
   },
   "134": {
@@ -1572,6 +1702,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 1 3 3\n4 5\n2 5\n1 4\n",
     "sample_output": "3\n1\n1\n",
+    "problem_url": "https://cses.fi/problemset/task/1688",
     "problem_title": "Company Queries II"
   },
   "135": {
@@ -1584,6 +1715,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2\n1 3\n3 4\n3 5\n1 3\n2 5\n1 4\n",
     "sample_output": "1\n3\n2\n",
+    "problem_url": "https://cses.fi/problemset/task/1135",
     "problem_title": "Distance Queries"
   },
   "136": {
@@ -1596,6 +1728,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2\n1 3\n3 4\n3 5\n1 3\n2 5\n1 4\n",
     "sample_output": "3 1 3 1 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1136",
     "problem_title": "Counting Paths"
   },
   "137": {
@@ -1608,6 +1741,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n4 2 5 2 1\n1 2\n1 3\n3 4\n3 5\n2 3\n1 5 3\n2 3\n",
     "sample_output": "8\n10\n",
+    "problem_url": "https://cses.fi/problemset/task/1137",
     "problem_title": "Subtree Queries"
   },
   "138": {
@@ -1620,6 +1754,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n4 2 5 2 1\n1 2\n1 3\n3 4\n3 5\n2 4\n1 3 2\n2 4\n",
     "sample_output": "11\n8\n",
+    "problem_url": "https://cses.fi/problemset/task/1138",
     "problem_title": "Path Queries"
   },
   "139": {
@@ -1632,6 +1767,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n2 4 1 3 3\n1 2\n1 3\n2 4\n2 5\n2 3 5\n1 2 2\n2 3 5\n",
     "sample_output": "4 3\n",
+    "problem_url": "https://cses.fi/problemset/task/2134",
     "problem_title": "Path Queries II"
   },
   "140": {
@@ -1644,6 +1780,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 3 2 2 1\n1 2\n1 3\n3 4\n3 5\n",
     "sample_output": "3 1 2 1 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1139",
     "problem_title": "Distinct Colors"
   },
   "141": {
@@ -1656,6 +1793,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 2\n2 3\n3 4\n3 5\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/2079",
     "problem_title": "Finding a Centroid"
   },
   "142": {
@@ -1668,6 +1806,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 2\n1 2\n2 3\n3 4\n3 5\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/2080",
     "problem_title": "Fixed-Length Paths I"
   },
   "143": {
@@ -1680,6 +1819,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 2 3\n1 2\n2 3\n3 4\n3 5\n",
     "sample_output": "6\n",
+    "problem_url": "https://cses.fi/problemset/task/2081",
     "problem_title": "Fixed-Length Paths II"
   },
   "144": {
@@ -1692,6 +1832,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n7 1\n7 3\n2 2\n1337 1313\n",
     "sample_output": "2\n6\n1\n1107\n",
+    "problem_url": "https://cses.fi/problemset/task/2164",
     "problem_title": "Josephus Queries"
   },
   "145": {
@@ -1704,6 +1845,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n3 4\n2 8\n123 123\n",
     "sample_output": "81\n256\n921450052\n",
+    "problem_url": "https://cses.fi/problemset/task/1095",
     "problem_title": "Exponentiation"
   },
   "146": {
@@ -1716,6 +1858,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n3 7 1\n15 2 2\n3 4 5\n",
     "sample_output": "2187\n50625\n763327764\n",
+    "problem_url": "https://cses.fi/problemset/task/1712",
     "problem_title": "Exponentiation II"
   },
   "147": {
@@ -1728,6 +1871,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n16\n17\n18\n",
     "sample_output": "5\n2\n6\n",
+    "problem_url": "https://cses.fi/problemset/task/1713",
     "problem_title": "Counting Divisors"
   },
   "148": {
@@ -1740,6 +1884,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n3 14 15 7 9\n",
     "sample_output": "7\n",
+    "problem_url": "https://cses.fi/problemset/task/1081",
     "problem_title": "Common Divisors"
   },
   "149": {
@@ -1752,6 +1897,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n",
     "sample_output": "21\n",
+    "problem_url": "https://cses.fi/problemset/task/1082",
     "problem_title": "Sum of Divisors"
   },
   "150": {
@@ -1764,6 +1910,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2\n2 2\n3 1\n",
     "sample_output": "6 28 1728\n",
+    "problem_url": "https://cses.fi/problemset/task/2182",
     "problem_title": "Divisor Analysis"
   },
   "151": {
@@ -1776,6 +1923,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "20 2\n2 5\n",
     "sample_output": "12\n",
+    "problem_url": "https://cses.fi/problemset/task/2185",
     "problem_title": "Prime Multiples"
   },
   "152": {
@@ -1788,6 +1936,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n5 4 20 1 16 17 5 15\n",
     "sample_output": "19\n",
+    "problem_url": "https://cses.fi/problemset/task/2417",
     "problem_title": "Counting Coprime Pairs"
   },
   "153": {
@@ -1800,6 +1949,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n5 3\n8 1\n9 5\n",
     "sample_output": "10\n8\n126\n",
+    "problem_url": "https://cses.fi/problemset/task/1079",
     "problem_title": "Binomial Coefficients"
   },
   "154": {
@@ -1812,6 +1962,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aabac\n",
     "sample_output": "20\n",
+    "problem_url": "https://cses.fi/problemset/task/1715",
     "problem_title": "Creating Strings II"
   },
   "155": {
@@ -1824,6 +1975,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 2\n",
     "sample_output": "6\n",
+    "problem_url": "https://cses.fi/problemset/task/1716",
     "problem_title": "Distributing Apples"
   },
   "156": {
@@ -1836,6 +1988,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n",
     "sample_output": "9\n",
+    "problem_url": "https://cses.fi/problemset/task/1717",
     "problem_title": "Christmas Party"
   },
   "157": {
@@ -1848,6 +2001,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/2064",
     "problem_title": "Bracket Sequences I"
   },
   "158": {
@@ -1860,6 +2014,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6\n(()\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/2187",
     "problem_title": "Bracket Sequences II"
   },
   "159": {
@@ -1872,6 +2027,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n",
     "sample_output": "24\n",
+    "problem_url": "https://cses.fi/problemset/task/2209",
     "problem_title": "Counting Necklaces"
   },
   "160": {
@@ -1884,6 +2040,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n",
     "sample_output": "16456\n",
+    "problem_url": "https://cses.fi/problemset/task/2210",
     "problem_title": "Counting Grids"
   },
   "161": {
@@ -1896,6 +2053,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "10\n",
     "sample_output": "55\n",
+    "problem_url": "https://cses.fi/problemset/task/1722",
     "problem_title": "Fibonacci Numbers"
   },
   "162": {
@@ -1908,6 +2066,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n",
     "sample_output": "125\n",
+    "problem_url": "https://cses.fi/problemset/task/1096",
     "problem_title": "Throwing Dice"
   },
   "163": {
@@ -1920,6 +2079,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 4 8\n1 2\n2 3\n3 1\n3 2\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1723",
     "problem_title": "Graph Paths I"
   },
   "164": {
@@ -1932,6 +2092,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 4 8\n1 2 5\n2 3 4\n3 1 1\n3 2 2\n",
     "sample_output": "27\n",
+    "problem_url": "https://cses.fi/problemset/task/1724",
     "problem_title": "Graph Paths II"
   },
   "165": {
@@ -1944,6 +2105,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2 9 10\n",
     "sample_output": "0.194444\n",
+    "problem_url": "https://cses.fi/problemset/task/1725",
     "problem_title": "Dice Probability"
   },
   "166": {
@@ -1956,6 +2118,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "10\n",
     "sample_output": "23.120740\n",
+    "problem_url": "https://cses.fi/problemset/task/1726",
     "problem_title": "Moving Robots"
   },
   "167": {
@@ -1968,6 +2131,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2 3\n",
     "sample_output": "2.444444\n",
+    "problem_url": "https://cses.fi/problemset/task/1727",
     "problem_title": "Candy Lottery"
   },
   "168": {
@@ -1980,6 +2144,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n5 2 7\n",
     "sample_output": "1.057143\n",
+    "problem_url": "https://cses.fi/problemset/task/1728",
     "problem_title": "Inversion Probability"
   },
   "169": {
@@ -1992,6 +2157,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "10 3\n1 3 4\n",
     "sample_output": "WLWWWWLWLW\n",
+    "problem_url": "https://cses.fi/problemset/task/1729",
     "problem_title": "Stick Game"
   },
   "170": {
@@ -2004,6 +2170,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n4\n5 7 2 5\n2\n4 1\n3\n3 5 6\n",
     "sample_output": "first\nfirst\nsecond\n",
+    "problem_url": "https://cses.fi/problemset/task/1730",
     "problem_title": "Nim Game I"
   },
   "171": {
@@ -2016,6 +2183,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n4\n5 7 2 5\n2\n4 1\n3\n4 4 4\n",
     "sample_output": "first\nfirst\nsecond\n",
+    "problem_url": "https://cses.fi/problemset/task/1098",
     "problem_title": "Nim Game II"
   },
   "172": {
@@ -2028,6 +2196,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n3\n0 2 1\n4\n1 1 1 1\n2\n5 3\n",
     "sample_output": "first\nsecond\nfirst\n",
+    "problem_url": "https://cses.fi/problemset/task/1099",
     "problem_title": "Stair Game"
   },
   "173": {
@@ -2040,6 +2209,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n6\n7\n8\n",
     "sample_output": "first\nsecond\nfirst\n",
+    "problem_url": "https://cses.fi/problemset/task/2207",
     "problem_title": "Grundy's Game"
   },
   "174": {
@@ -2052,6 +2222,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n3\n1 2 3\n2\n2 2\n4\n5 5 4 5\n",
     "sample_output": "first\nsecond\nfirst\n",
+    "problem_url": "https://cses.fi/problemset/task/2208",
     "problem_title": "Another Game"
   },
   "175": {
@@ -2064,6 +2235,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "ababc\n4\nab\nabab\nc\ncb\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1731",
     "problem_title": "Word Combinations"
   },
   "176": {
@@ -2076,6 +2248,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "saippuakauppias\npp\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1753",
     "problem_title": "String Matching"
   },
   "177": {
@@ -2088,6 +2261,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "abcababcab\n",
     "sample_output": "2 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1732",
     "problem_title": "Finding Borders"
   },
   "178": {
@@ -2100,6 +2274,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "abcabca\n",
     "sample_output": "3 6 7\n",
+    "problem_url": "https://cses.fi/problemset/task/1733",
     "problem_title": "Finding Periods"
   },
   "179": {
@@ -2112,6 +2287,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "acab\n",
     "sample_output": "abac\n",
+    "problem_url": "https://cses.fi/problemset/task/1110",
     "problem_title": "Minimal Rotation"
   },
   "180": {
@@ -2124,6 +2300,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aybabtu\n",
     "sample_output": "bab\n",
+    "problem_url": "https://cses.fi/problemset/task/1111",
     "problem_title": "Longest Palindrome"
   },
   "181": {
@@ -2136,6 +2313,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6\nABCDB\n",
     "sample_output": "52\n",
+    "problem_url": "https://cses.fi/problemset/task/1112",
     "problem_title": "Required Substring"
   },
   "182": {
@@ -2148,6 +2326,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "7 5\naybabtu\n2 3 5\n1 3 x\n2 3 5\n1 5 x\n2 3 5\n",
     "sample_output": "YES\nNO\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/2420",
     "problem_title": "Palindrome Queries"
   },
   "183": {
@@ -2160,6 +2339,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aybabtu\n3\nbab\nabc\nayba\n",
     "sample_output": "YES\nNO\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/2102",
     "problem_title": "Finding Patterns"
   },
   "184": {
@@ -2172,6 +2352,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aybabtu\n3\nbab\nabc\na\n",
     "sample_output": "1\n0\n2\n",
+    "problem_url": "https://cses.fi/problemset/task/2103",
     "problem_title": "Counting Patterns"
   },
   "185": {
@@ -2184,6 +2365,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aybabtu\n3\nbab\nabc\na\n",
     "sample_output": "3\n-1\n1\n",
+    "problem_url": "https://cses.fi/problemset/task/2104",
     "problem_title": "Pattern Positions"
   },
   "186": {
@@ -2196,6 +2378,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "abaa\n",
     "sample_output": "8\n",
+    "problem_url": "https://cses.fi/problemset/task/2105",
     "problem_title": "Distinct Substrings"
   },
   "187": {
@@ -2208,6 +2391,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "cabababc\n",
     "sample_output": "abab\n",
+    "problem_url": "https://cses.fi/problemset/task/2106",
     "problem_title": "Repeating Substring"
   },
   "188": {
@@ -2220,6 +2404,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "abaabca\n",
     "sample_output": "0 0 1 2 0 0 1\n0 0 1 1 2 0 1\n",
+    "problem_url": "https://cses.fi/problemset/task/2107",
     "problem_title": "String Functions"
   },
   "189": {
@@ -2232,6 +2417,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "babaacbaab\n10\n",
     "sample_output": "aba\n",
+    "problem_url": "https://cses.fi/problemset/task/2108",
     "problem_title": "Substring Order I"
   },
   "190": {
@@ -2244,6 +2430,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "baabaa\n10\n",
     "sample_output": "ab\n",
+    "problem_url": "https://cses.fi/problemset/task/2109",
     "problem_title": "Substring Order II"
   },
   "191": {
@@ -2256,6 +2443,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "abab\n",
     "sample_output": "2 2 2 1\n",
+    "problem_url": "https://cses.fi/problemset/task/2110",
     "problem_title": "Substring Distribution"
   },
   "192": {
@@ -2268,6 +2456,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n1 1 5 3 2 3\n1 1 5 3 4 1\n1 1 5 3 3 2\n",
     "sample_output": "LEFT\nRIGHT\nTOUCH\n",
+    "problem_url": "https://cses.fi/problemset/task/2189",
     "problem_title": "Point Location Test"
   },
   "193": {
@@ -2280,6 +2469,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 1 5 3 1 2 4 3\n1 1 5 3 1 1 4 3\n1 1 5 3 2 3 4 1\n1 1 5 3 2 4 4 1\n1 1 5 3 3 2 7 4\n",
     "sample_output": "NO\nYES\nYES\nYES\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/2190",
     "problem_title": "Line Segment Intersection"
   },
   "194": {
@@ -2292,6 +2482,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n1 1\n4 2\n3 5\n1 4\n",
     "sample_output": "16\n",
+    "problem_url": "https://cses.fi/problemset/task/2191",
     "problem_title": "Polygon Area"
   },
   "195": {
@@ -2304,6 +2495,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n1 1\n4 2\n3 5\n1 4\n2 3\n3 1\n1 3\n",
     "sample_output": "INSIDE\nOUTSIDE\nBOUNDARY\n",
+    "problem_url": "https://cses.fi/problemset/task/2192",
     "problem_title": "Point in Polygon"
   },
   "196": {
@@ -2316,6 +2508,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n1 1\n5 3\n3 5\n1 4\n",
     "sample_output": "6 8\n",
+    "problem_url": "https://cses.fi/problemset/task/2193",
     "problem_title": "Polygon Lattice Points"
   },
   "197": {
@@ -2328,6 +2521,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n2 1\n4 4\n1 2\n6 3\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/2194",
     "problem_title": "Minimum Euclidean Distance"
   },
   "198": {
@@ -2340,6 +2534,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6\n2 1\n2 5\n3 3\n4 3\n4 4\n6 3\n",
     "sample_output": "4\n2 1\n2 5\n4 4\n6 3\n",
+    "problem_url": "https://cses.fi/problemset/task/2195",
     "problem_title": "Convex Hull"
   },
   "199": {
@@ -2352,6 +2547,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2 3 2\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1628",
     "problem_title": "Meet in the Middle"
   },
   "200": {
@@ -2364,6 +2560,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n110111\n001000\n100001\n101000\n101110\n",
     "sample_output": "1\n",
+    "problem_url": "https://cses.fi/problemset/task/2136",
     "problem_title": "Hamming Distance"
   },
   "201": {
@@ -2376,6 +2573,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n00010\n11111\n00110\n11001\n00010\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/2137",
     "problem_title": "Beautiful Subgrids"
   },
   "202": {
@@ -2388,6 +2586,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n1 2\n1 3\n1 4\n2 3\n3 5\n4 5\n",
     "sample_output": "5 3 2 2 1\n",
+    "problem_url": "https://cses.fi/problemset/task/2138",
     "problem_title": "Reachable Nodes"
   },
   "203": {
@@ -2400,6 +2599,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 4 3\n1 2\n2 3\n3 1\n4 3\n1 3\n1 4\n4 1\n",
     "sample_output": "YES\nNO\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/2143",
     "problem_title": "Reachability Queries"
   },
   "204": {
@@ -2412,6 +2612,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "7 2\nAYBABTU\n3 5\n3 5\n",
     "sample_output": "AYABTUB\n",
+    "problem_url": "https://cses.fi/problemset/task/2072",
     "problem_title": "Cut and Paste"
   },
   "205": {
@@ -2424,6 +2625,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "7 2\nAYBABTU\n3 4\n4 7\n",
     "sample_output": "AYAUTBB\n",
+    "problem_url": "https://cses.fi/problemset/task/2073",
     "problem_title": "Substring Reversals"
   },
   "206": {
@@ -2436,6 +2638,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 3\n2 1 3 4 5 3 4 4\n2 2 4\n1 3 6\n2 2 4\n",
     "sample_output": "8\n9\n",
+    "problem_url": "https://cses.fi/problemset/task/2074",
     "problem_title": "Reversals and Sums"
   },
   "207": {
@@ -2448,6 +2651,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 5\n1 2\n1 4\n2 4\n3 5\n4 5\n",
     "sample_output": "2\n3 5\n4 5\n",
+    "problem_url": "https://cses.fi/problemset/task/2076",
     "problem_title": "Necessary Roads"
   },
   "208": {
@@ -2460,6 +2664,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 5\n1 2\n1 4\n2 4\n3 5\n4 5\n",
     "sample_output": "2\n4 5\n",
+    "problem_url": "https://cses.fi/problemset/task/2077",
     "problem_title": "Necessary Cities"
   },
   "209": {
@@ -2472,6 +2677,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n1 2\n1 3\n2 3\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/2078",
     "problem_title": "Eulerian Subgraphs"
   },
   "210": {
@@ -2484,6 +2690,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 100\n20 30 30 50 90\n90 60 20 20 10\n",
     "sample_output": "4800\n",
+    "problem_url": "https://cses.fi/problemset/task/2084",
     "problem_title": "Monster Game I"
   },
   "211": {
@@ -2496,6 +2703,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 100\n50 20 30 90 30\n60 20 20 10 90\n",
     "sample_output": "2600\n",
+    "problem_url": "https://cses.fi/problemset/task/2085",
     "problem_title": "Monster Game II"
   },
   "212": {
@@ -2508,6 +2716,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 3\n2 3 1 2 2 3 4 1\n",
     "sample_output": "110\n",
+    "problem_url": "https://cses.fi/problemset/task/2086",
     "problem_title": "Subarray Squares"
   },
   "213": {
@@ -2520,6 +2729,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6 2\n2 7 1 4 6 4\n",
     "sample_output": "11\n",
+    "problem_url": "https://cses.fi/problemset/task/2087",
     "problem_title": "Houses and Schools"
   },
   "214": {
@@ -2532,6 +2742,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 7 3 2 5\n",
     "sample_output": "43\n",
+    "problem_url": "https://cses.fi/problemset/task/2088",
     "problem_title": "Knuth Division"
   },
   "215": {
@@ -2544,6 +2755,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3 4\n5 2 5\n4 3 2 3\n",
     "sample_output": "0 0 1 2 1 2 4 2 0  \n",
+    "problem_url": "https://cses.fi/problemset/task/2111",
     "problem_title": "Apples and Bananas"
   },
   "216": {
@@ -2556,6 +2768,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "1001011010\n",
     "sample_output": "1 2 3 0 2 1 0 1 0\n",
+    "problem_url": "https://cses.fi/problemset/task/2112",
     "problem_title": "One Bit Positions"
   },
   "217": {
@@ -2568,6 +2781,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 3 2 1 4\n1 2 3\n",
     "sample_output": "3 11 13 10 16 9 4\n",
+    "problem_url": "https://cses.fi/problemset/task/2113",
     "problem_title": "Signal Processing"
   },
   "218": {
@@ -2580,6 +2794,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 4 3\n1 2\n2 3\n1 3\n2 5\n1 3\n3 4\n3 5\n",
     "sample_output": "2\n-1\n4\n",
+    "problem_url": "https://cses.fi/problemset/task/2101",
     "problem_title": "New Roads Queries"
   },
   "219": {
@@ -2592,6 +2807,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3 3\n1 4\n2 3\n3 5\n1 2 5\n2 3 5\n1 1 2\n",
     "sample_output": "2 2 2 1\n",
+    "problem_url": "https://cses.fi/problemset/task/2133",
     "problem_title": "Dynamic Connectivity"
   },
   "220": {
@@ -2604,6 +2820,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5 3\n1 2 5 100\n1 3 10 50\n1 4 7 500\n2 4 8 350\n3 4 2 100\n",
     "sample_output": "750\n",
+    "problem_url": "https://cses.fi/problemset/task/2121",
     "problem_title": "Parcel Delivery"
   },
   "221": {
@@ -2616,6 +2833,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n17 8 16 9\n7 15 12 19\n6 9 10 11\n14 7 13 10\n",
     "sample_output": "33\n1 4\n2 1\n3 3\n4 2\n",
+    "problem_url": "https://cses.fi/problemset/task/2129",
     "problem_title": "Task Assignment"
   },
   "222": {
@@ -2628,6 +2846,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 10 2\n1 2\n1 3\n2 5\n2 4\n3 5 \n3 6\n4 8\n5 8\n6 7 \n7 8\n",
     "sample_output": "6\n4\n1 2 4 8 \n4\n1 3 5 8 \n",
+    "problem_url": "https://cses.fi/problemset/task/2130",
     "problem_title": "Distinct Routes II"
   },
   "223": {
@@ -2640,6 +2859,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "ACGTACGT\n",
     "sample_output": "AAA\n",
+    "problem_url": "https://cses.fi/problemset/task/1087",
     "problem_title": "Shortest Subsequence"
   },
   "224": {
@@ -2652,6 +2872,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "7\n",
     "sample_output": "12\n",
+    "problem_url": "https://cses.fi/problemset/task/1146",
     "problem_title": "Counting Bits"
   },
   "225": { "error": "", "problem_title": "Swap Game" },
@@ -2665,6 +2886,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 2 4\n",
     "sample_output": "1 2\n2 3\n2 4\n4 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1134",
     "problem_title": "Pr\u00fcfer Code"
   },
   "227": {
@@ -2677,6 +2899,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 3\n1 2\n2 3\n3 1\n",
     "sample_output": "1 2\n3 2\n3 1\n",
+    "problem_url": "https://cses.fi/problemset/task/1756",
     "problem_title": "Acyclic Graph Edges"
   },
   "228": {
@@ -2689,6 +2912,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 3\n1 2\n1 3\n2 3\n",
     "sample_output": "1 2\n2 3\n3 1\n",
+    "problem_url": "https://cses.fi/problemset/task/2177",
     "problem_title": "Strongly Connected Edges"
   },
   "229": {
@@ -2701,6 +2925,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 4\n1 2\n2 3\n3 4\n1 4\n",
     "sample_output": "1 2\n3 2\n3 4\n1 4\n",
+    "problem_url": "https://cses.fi/problemset/task/2179",
     "problem_title": "Even Outdegree Edges"
   },
   "230": {
@@ -2713,6 +2938,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/2422",
     "problem_title": "Multiplication Table"
   },
   "231": {
@@ -2725,6 +2951,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n4 1 5 3 3 2 4 1\n",
     "sample_output": "10\n",
+    "problem_url": "https://cses.fi/problemset/task/1142",
     "problem_title": "Advertisement"
   },
   "232": {
@@ -2737,6 +2964,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "abccabab\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/2186",
     "problem_title": "Special Substrings"
   },
   "233": {
@@ -2749,6 +2977,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n",
     "sample_output": "6\n",
+    "problem_url": "https://cses.fi/problemset/task/2229",
     "problem_title": "Permutation Inversions"
   },
   "234": {
@@ -2761,6 +2990,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n5 1 5 9\n",
     "sample_output": "13\n",
+    "problem_url": "https://cses.fi/problemset/task/1655",
     "problem_title": "Maximum Xor Subarray"
   },
   "235": {
@@ -2773,6 +3003,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 3\n2 5\n6 10\n4 7\n9 10\n5 9\n2 10\n7 10\n",
     "sample_output": "0\n2\n1\n",
+    "problem_url": "https://cses.fi/problemset/task/1664",
     "problem_title": "Movie Festival Queries"
   },
   "236": {
@@ -2785,6 +3016,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 3 2 0 2\n",
     "sample_output": "4\n1 2\n2 3\n2 5\n3 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1697",
     "problem_title": "Chess Tournament"
   },
   "237": {
@@ -2797,6 +3029,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n5 3 2 1 4\n3 5 1 2 4\n",
     "sample_output": "3 1 4 2 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1702",
     "problem_title": "Tree Traversals"
   },
   "238": {
@@ -2809,6 +3042,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 2\n1 3\n3 4\n3 5\n",
     "sample_output": "2\n2 4\n4 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1704",
     "problem_title": "Network Renovation"
   },
   "239": {
@@ -2821,6 +3055,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n1 2\n1 3\n2 4\n2 5\n3 4\n4 5\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1707",
     "problem_title": "Graph Girth"
   },
   "240": {
@@ -2833,6 +3068,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n2 3 7 3\n3 1 3 5\n6 2 6 6\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1740",
     "problem_title": "Intersection Points"
   },
   "241": {
@@ -2845,6 +3081,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 4\n",
     "sample_output": "1 5 2 4 3\n",
+    "problem_url": "https://cses.fi/problemset/task/2214",
     "problem_title": "Inverse Inversions"
   },
   "242": {
@@ -2857,6 +3094,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n5 3\n5 2\n7 7\n",
     "sample_output": "2 1 4 5 3\nIMPOSSIBLE\n1 2 3 4 5 6 7\n",
+    "problem_url": "https://cses.fi/problemset/task/2215",
     "problem_title": "Monotone Subsequences"
   },
   "243": {
@@ -2869,6 +3107,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "HATTIVATTI\n",
     "sample_output": "AHATITITVT\n",
+    "problem_url": "https://cses.fi/problemset/task/1743",
     "problem_title": "String Reorder"
   },
   "244": {
@@ -2881,6 +3120,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n2 1\n3 2\n1 1\n",
     "sample_output": ">\n<\n?\n",
+    "problem_url": "https://cses.fi/problemset/task/2425",
     "problem_title": "Stack Weights"
   },
   "245": {
@@ -2893,6 +3133,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n2 1 5 3\n",
     "sample_output": "1\n",
+    "problem_url": "https://cses.fi/problemset/task/1747",
     "problem_title": "Pyramid Array"
   },
   "246": {
@@ -2905,6 +3146,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n2 1 3\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/1748",
     "problem_title": "Increasing Subsequence II"
   },
   "247": {
@@ -2917,6 +3159,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aybabtu\n",
     "sample_output": "103\n",
+    "problem_url": "https://cses.fi/problemset/task/1149",
     "problem_title": "String Removals"
   },
   "248": {
@@ -2929,6 +3172,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "001011\n3\n3 2 5\n",
     "sample_output": "4 2 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1188",
     "problem_title": "Bit Inversions"
   },
   "249": {
@@ -2941,6 +3185,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n2 10 5 12 9 5 1 5\n",
     "sample_output": "9\n",
+    "problem_url": "https://cses.fi/problemset/task/2419",
     "problem_title": "Xor Pyramid"
   },
   "250": {
@@ -2953,6 +3198,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n",
     "sample_output": "12\n",
+    "problem_url": "https://cses.fi/problemset/task/1086",
     "problem_title": "Writing Numbers"
   },
   "251": {
@@ -2965,6 +3211,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "cb#ab\n",
     "sample_output": "babc\n",
+    "problem_url": "https://cses.fi/problemset/task/1113",
     "problem_title": "String Transform"
   },
   "252": { "error": "", "problem_title": "Letter Pair Move Game" },
@@ -2979,6 +3226,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8\n7 8 2 6 5 1 3 4\n",
     "sample_output": "20 6 5 6\n",
+    "problem_url": "https://cses.fi/problemset/task/1162",
     "problem_title": "Sorting Methods"
   },
   "255": {
@@ -2991,6 +3239,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 5\n2 2 2 1 3 1 2 1\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1191",
     "problem_title": "Cyclic Array"
   },
   "256": {
@@ -3003,6 +3252,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n4 4 4 6 6 6\n",
     "sample_output": "1 3 3 3\n",
+    "problem_url": "https://cses.fi/problemset/task/2414",
     "problem_title": "List of Sums"
   },
   "257": {
@@ -3015,6 +3265,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n3 8 5 6 5\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/2132",
     "problem_title": "Increasing Array II"
   },
   "258": {
@@ -3027,6 +3278,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n3 5 0\n2 4 2\n",
     "sample_output": "2\n",
+    "problem_url": "https://cses.fi/problemset/task/1189",
     "problem_title": "Food Division"
   },
   "259": {
@@ -3039,6 +3291,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n3 7 2 9 2\n",
     "sample_output": "3 2 5\n4 1 5\n2 4 4\n1 1 3\n2 4 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1654",
     "problem_title": "Bit Problem"
   },
   "260": {
@@ -3051,6 +3304,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n5 2 1 3 4\n",
     "sample_output": "2\n2\n1 3\n4 5\n1\n3 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1698",
     "problem_title": "Swap Round Sorting"
   },
   "261": {
@@ -3063,6 +3317,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6\n",
     "sample_output": "101\n",
+    "problem_url": "https://cses.fi/problemset/task/2430",
     "problem_title": "Binary Subsequences"
   },
   "262": {
@@ -3075,6 +3330,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2\n3\n1 2\n2 3\n1 2\n1 3\n3\n1 2\n2 3\n1 3\n3 2\n",
     "sample_output": "NO\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/1700",
     "problem_title": "Tree Isomorphism I"
   },
   "263": {
@@ -3087,6 +3343,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "6 4\n",
     "sample_output": "1560\n",
+    "problem_url": "https://cses.fi/problemset/task/2228",
     "problem_title": "Counting Sequences"
   },
   "264": {
@@ -3099,6 +3356,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 5\n1 2\n2 3\n2 4\n3 5\n4 5\n",
     "sample_output": "3\n1 2 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1703",
     "problem_title": "Critical Cities"
   },
   "265": {
@@ -3111,6 +3369,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2\n2 3\n1 5\n",
     "sample_output": "10011\n",
+    "problem_url": "https://cses.fi/problemset/task/1706",
     "problem_title": "School Excursion"
   },
   "266": {
@@ -3123,6 +3382,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n..o\no.o\n...\n",
     "sample_output": "2\n1 2\n2 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1709",
     "problem_title": "Coin Grid"
   },
   "267": {
@@ -3135,6 +3395,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\nU 2\nR 3\nD 1\nL 5\nU 2\n",
     "sample_output": "9\n",
+    "problem_url": "https://cses.fi/problemset/task/1742",
     "problem_title": "Robot Path"
   },
   "268": {
@@ -3147,6 +3408,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2 1 4\n3 7\n9 8\n1 5\n4 2\n",
     "sample_output": "20\n",
+    "problem_url": "https://cses.fi/problemset/task/2426",
     "problem_title": "Programmers and Artists"
   },
   "269": {
@@ -3159,6 +3421,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 2\n2 1\n2 3\n",
     "sample_output": "2 1 3 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1757",
     "problem_title": "Course Schedule II"
   },
   "270": {
@@ -3171,6 +3434,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "27\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/2174",
     "problem_title": "Removing Digits II"
   },
   "271": {
@@ -3183,6 +3447,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n0 1 0 1\n2 0 1 3\n",
     "sample_output": "5\n",
+    "problem_url": "https://cses.fi/problemset/task/2180",
     "problem_title": "Coin Arrangement"
   },
   "272": {
@@ -3195,6 +3460,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 4\n",
     "sample_output": "2728\n",
+    "problem_url": "https://cses.fi/problemset/task/2176",
     "problem_title": "Counting Bishops"
   },
   "273": {
@@ -3207,6 +3473,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n0 1 3 2 0\n1 2 2 0 1\n",
     "sample_output": ".....\n..X..\n.XX.X\nXX...\n.....\n",
+    "problem_url": "https://cses.fi/problemset/task/2432",
     "problem_title": "Grid Puzzle I"
   },
   "274": {
@@ -3219,6 +3486,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n0 1 3 2 0\n1 2 2 0 1\n2 5 1 5 1\n0 2 5 1 2\n3 8 9 3 5\n1 4 3 7 3\n0 3 6 2 8\n",
     "sample_output": "32\n.....\n..X..\n.XX.X\nXX...\n.....\n",
+    "problem_url": "https://cses.fi/problemset/task/2131",
     "problem_title": "Grid Puzzle II"
   },
   "275": {
@@ -3231,6 +3499,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aabccb\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1080",
     "problem_title": "Empty String"
   },
   "276": {
@@ -3243,6 +3512,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "101\n",
     "sample_output": "1 4 1 0 \n",
+    "problem_url": "https://cses.fi/problemset/task/2115",
     "problem_title": "Bit Substrings"
   },
   "277": {
@@ -3255,6 +3525,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4\n2 3 1 4\n",
     "sample_output": "2\n1 3\n2 3\n",
+    "problem_url": "https://cses.fi/problemset/task/2075",
     "problem_title": "Reversal Sorting"
   },
   "278": {
@@ -3267,6 +3538,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "aabc\n",
     "sample_output": "6\n",
+    "problem_url": "https://cses.fi/problemset/task/2421",
     "problem_title": "Counting Reorders"
   },
   "279": {
@@ -3279,6 +3551,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 10\n2 6 3\n8 5 4\n3 5 2\n",
     "sample_output": "28\n",
+    "problem_url": "https://cses.fi/problemset/task/1159",
     "problem_title": "Book Shop II"
   },
   "280": {
@@ -3291,6 +3564,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 5 3\n1 2\n1 3\n2 3\n3 4\n4 5\n3 4\n2 3\n4 5\n",
     "sample_output": "2 2 3\n",
+    "problem_url": "https://cses.fi/problemset/task/1677",
     "problem_title": "Network Breakdown"
   },
   "281": {
@@ -3303,6 +3577,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6\n1 2 3\n1 3 4\n2 3 1\n2 4 5\n3 4 1\n4 5 8\n",
     "sample_output": "4\n1 3 4 5\n",
+    "problem_url": "https://cses.fi/problemset/task/1203",
     "problem_title": "Visiting Cities"
   },
   "282": {
@@ -3315,6 +3590,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n2 9 1 2 7\n2 4\n4 4\n1 5\n",
     "sample_output": "4\n1\n6\n",
+    "problem_url": "https://cses.fi/problemset/task/2184",
     "problem_title": "Missing Coin Sum Queries"
   },
   "283": {
@@ -3327,6 +3603,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 5\n",
     "sample_output": "6\n",
+    "problem_url": "https://cses.fi/problemset/task/1157",
     "problem_title": "Number Grid"
   },
   "284": {
@@ -3339,6 +3616,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 7\n...*.*.\n.*.....\n.......\n......*\n",
     "sample_output": "24 17 13 9 6 3 1 \n16 9 7 5 3 1 0 \n9 3 2 1 0 0 0 \n3 0 0 0 0 0 0\n",
+    "problem_url": "https://cses.fi/problemset/task/1148",
     "problem_title": "Maximum Building II"
   },
   "285": {
@@ -3351,6 +3629,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2\n4 6\n4 7\n",
     "sample_output": "YES\nAADDBB\nACCDEB\nBCAEEC\nBBAACC\nNO\n",
+    "problem_url": "https://cses.fi/problemset/task/2423",
     "problem_title": "Filling Trominos"
   },
   "286": {
@@ -3363,6 +3642,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "8 3\n2 3 3\n",
     "sample_output": "13\n",
+    "problem_url": "https://cses.fi/problemset/task/1161",
     "problem_title": "Stick Divisions"
   },
   "287": {
@@ -3375,6 +3655,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3 2\n2 5 3\n",
     "sample_output": "3\n",
+    "problem_url": "https://cses.fi/problemset/task/1665",
     "problem_title": "Coding Company"
   },
   "288": {
@@ -3387,6 +3668,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2\n2 3\n2 4\n3 1\n3 4\n",
     "sample_output": "4\n",
+    "problem_url": "https://cses.fi/problemset/task/1699",
     "problem_title": "Flight Route Requests"
   },
   "289": {
@@ -3399,6 +3681,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n2 3 1 5 4\n",
     "sample_output": "1 2 1 1 2\n",
+    "problem_url": "https://cses.fi/problemset/task/2402",
     "problem_title": "Two Stacks Sorting"
   },
   "290": {
@@ -3411,6 +3694,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "2\n3\n1 2\n2 3\n1 2\n1 3\n3\n1 2\n2 3\n1 3\n3 2\n",
     "sample_output": "YES\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/1701",
     "problem_title": "Tree Isomorphism II"
   },
   "291": {
@@ -3423,6 +3707,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 6 3\n1 2\n1 3\n2 3\n2 4\n3 4\n4 5\n1 4 2\n3 5 4\n3 5 2\n",
     "sample_output": "YES\nNO\nYES\n",
+    "problem_url": "https://cses.fi/problemset/task/1705",
     "problem_title": "Forbidden Cities"
   },
   "292": {
@@ -3435,6 +3720,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n1 3 4 5\n3 1 7 4\n5 3 8 6\n",
     "sample_output": "24\n",
+    "problem_url": "https://cses.fi/problemset/task/1741",
     "problem_title": "Area of Rectangles"
   },
   "293": {
@@ -3447,6 +3733,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n.....\n..AB.\n.....\nB....\n...A.\n",
     "sample_output": "16\n",
+    "problem_url": "https://cses.fi/problemset/task/2429",
     "problem_title": "Grid Completion"
   },
   "294": {
@@ -3459,6 +3746,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5 3\n1 2\n2 3\n3 4\n3 5\n",
     "sample_output": "2\n1 4\n",
+    "problem_url": "https://cses.fi/problemset/task/1752",
     "problem_title": "Creating Offices"
   },
   "295": {
@@ -3471,6 +3759,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n",
     "sample_output": "14\n",
+    "problem_url": "https://cses.fi/problemset/task/1075",
     "problem_title": "Permutations II"
   },
   "296": {
@@ -3483,6 +3772,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "3\n",
     "sample_output": "17\n9\n1\n",
+    "problem_url": "https://cses.fi/problemset/task/2415",
     "problem_title": "Functional Graph Distribution"
   },
   "297": {
@@ -3495,6 +3785,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "4 5\n1 2\n2 3\n3 1\n1 4\n3 4\n",
     "sample_output": "1\n4 2\n",
+    "problem_url": "https://cses.fi/problemset/task/1685",
     "problem_title": "New Flight Routes"
   },
   "298": {
@@ -3507,6 +3798,7 @@
     "problem_memory_limit": "512 MB",
     "sample_input": "5\n1 3 1 1 1 3\n1 3 1 2 1 3\n2 2 1 1 2 2\n2 2 1 1 2 1\n4 7 1 3 3 6\n",
     "sample_output": "YES\nRR\nNO\nNO\nYES\nRDL\nYES\nRRRRDDDLLLLLLUUURDDRURDRURD\n",
+    "problem_url": "https://cses.fi/problemset/task/2418",
     "problem_title": "Grid Path Construction"
   }
 }

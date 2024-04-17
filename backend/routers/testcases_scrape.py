@@ -1,3 +1,4 @@
+import json
 import os
 import urllib.request
 
@@ -84,28 +85,63 @@ for question in questions:
     #     continue
 
     print(question + " " + questions[question])
-    if not os.path.exists(f"testcases/{question}"):
-        os.mkdir(f"testcases/{question}")
+
+    ## Get the question id
+
+    question_id = None
+
+    with open("routers/problem_details.json", "r") as f:
+        problem_details_data = json.load(f)
+        for key in problem_details_data:
+            if problem_details_data[key]["problem_title"] == questions[question]:
+                question_id = key
+                break
+
+    if question_id is None:
+        continue
+
+    if not os.path.exists(f"testcases/{question_id}"):
+        os.mkdir(f"testcases/{question_id}")
 
     submission_link = getAnySubmissionLink(question)
     testcase_input_counter = 1
     testcase_output_counter = 1
     if submission_link is not None:
         urls = getSubmissionDetails(submission_link)
+        print("Getting testcases for " + question + " " + questions[question] + " ...")
+        # print("Submission link: " + submission_link)
         for a in urls.select("div.samp-actions"):
+            if a.select("a.save") == []:
+                # print(a)
+                continue
             c = a.select("a.save")
             url = c[0].get("href")
-            if url and url[-4] != "3":
+            # print(url)
+
+            if url and url[6] == "1":
+                # print(
+                #     "Scrapping testcase input for "
+                #     + question
+                #     + " "
+                #     + questions[question]
+                # )
                 url = "https://cses.fi" + url
-                if url[-4] == "1":
-                    filename = f"testcases/{question}/testcase_input_{testcase_input_counter}.txt"
-                    if os.path.exists(filename):
-                        continue
-                    urllib.request.urlretrieve(url, filename)
-                    testcase_input_counter += 1
-                else:
-                    filename = f"testcases/{question}/testcase_output_{testcase_output_counter}.txt"
-                    if os.path.exists(filename):
-                        continue
-                    urllib.request.urlretrieve(url, filename)
-                    testcase_output_counter += 1
+                filename = f"testcases/{question_id}/testcase_input_{testcase_input_counter}.txt"
+                if os.path.exists(filename):
+                    continue
+                urllib.request.urlretrieve(url, filename)
+                testcase_input_counter += 1
+
+            elif url and url[6] == "2":
+                # print(
+                #     "Scrapping testcase output for "
+                #     + question
+                #     + " "
+                #     + questions[question]
+                # )
+                url = "https://cses.fi" + url
+                filename = f"testcases/{question_id}/testcase_output_{testcase_output_counter}.txt"
+                if os.path.exists(filename):
+                    continue
+                urllib.request.urlretrieve(url, filename)
+                testcase_output_counter += 1
