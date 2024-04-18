@@ -3,75 +3,15 @@ import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { ProblemStatement } from "@/components/problem/problem-statement";
 import { API_WS_URL } from "@/lib/constants";
 import { useMatch } from "@/queries/match";
+import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
 import { createFileRoute, useParams } from "@tanstack/react-router";
-import { IJsonModel, Layout, Model, TabNode } from "flexlayout-react";
+import { Layout, Model, TabNode } from "flexlayout-react";
 import useWebSocket from "react-use-websocket";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/match/$id")({
   component: Match,
 });
-
-const layout: IJsonModel = {
-  global: { tabEnableClose: true, tabSetEnableMaximize: false },
-  borders: [],
-  layout: {
-    type: "row",
-    children: [
-      {
-        type: "row",
-        weight: 50,
-        children: [
-          {
-            type: "tabset",
-            selected: 0,
-            children: [
-              {
-                type: "tab",
-                name: "Problem Statement",
-                component: "ProblemStatement",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        type: "row",
-        weight: 50,
-        children: [
-          {
-            type: "tabset",
-            selected: 0,
-            children: [
-              {
-                type: "tab",
-                name: "Code Editor",
-                component: "CodeEditor",
-              },
-            ],
-          },
-          {
-            type: "tabset",
-            weight: 40,
-            selected: 0,
-            children: [
-              {
-                type: "tab",
-                name: "Test Cases",
-                component: "TestCases",
-              },
-              {
-                type: "tab",
-                name: "Submissions",
-                component: "Submissions",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-};
 
 function Match() {
   const { id } = useParams({
@@ -112,6 +52,7 @@ function Match() {
       return false;
     },
   });
+  const { layout: model, setLayout: setModel } = useDynamicDashboardLayout();
 
   if (isMatchLoading) {
     return <>Loading...</>;
@@ -159,7 +100,10 @@ function Match() {
   return (
     <Layout
       realtimeResize={true}
-      model={Model.fromJson(layout)}
+      model={Model.fromJson(model)}
+      onModelChange={(model) => {
+        setModel(model.toJson());
+      }}
       factory={(node) => {
         return (
           <div className="w-full h-full bg-background text-foreground">
