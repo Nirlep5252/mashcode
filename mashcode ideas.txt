@@ -1,0 +1,6 @@
+mashcode ideas
+- rating system
+- seasons
+- achievements for first solve, new rank achieved, win-streak achievements, login-streak achievements
+- referal system (nirma students)
+- chat during match (but its paused for a few seconds)
