@@ -10,12 +10,12 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 
-import CodeMirror, { Extension } from "@uiw/react-codemirror";
+import CodeMirror from "@uiw/react-codemirror";
 import * as themes from "@uiw/codemirror-themes-all";
 import { loadLanguage, langs } from "@uiw/codemirror-extensions-langs";
-import { useTheme } from "../theme/theme-provider";
 import { Loader2Icon } from "lucide-react";
 import { useSourceCodeStore } from "@/stores/source-code";
+import { useCodeEditorSettings } from "@/stores/code-editor-settings";
 
 loadLanguage("c");
 loadLanguage("cpp");
@@ -246,11 +246,7 @@ interface Props {
 }
 
 export const CodeEditor: React.FC<Props> = (props) => {
-  const [language, setLanguage] = useState("71");
-  const userTheme = useTheme();
-  const [theme, setTheme] = useState<(typeof allThemes)[number]>(
-    userTheme.theme === "dark" ? "vscodeDark" : "githubLight"
-  );
+  const { language, setLanguage, theme, setTheme } = useCodeEditorSettings();
   const { sourceCodeMap, setSourceCode } = useSourceCodeStore();
   const sourceCode = sourceCodeMap?.[props.codeId] || "";
 
@@ -325,7 +321,8 @@ export const CodeEditor: React.FC<Props> = (props) => {
       <CodeMirror
         value={sourceCode}
         onChange={(newValue) => setSourceCode(props.codeId, newValue)}
-        theme={themes[theme] as Extension}
+        // @ts-expect-error stfu bitch i know what i am doing
+        theme={themes[theme]}
         // @ts-expect-error - this is stupid but it works, fuck you typescript
         extensions={[supportedLanguages[parseInt(language)]]}
         basicSetup={{
