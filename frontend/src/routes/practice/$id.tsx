@@ -102,9 +102,10 @@ function PracticePage() {
               run: false,
             });
             if (data) {
+              console.log("Verdict Data", data);
               let wronganswerFlag = false;
               for (const key in data) {
-                if (data[key].description === "Wrong Answer") {
+                if (data[key].status.description === "Wrong Answer") {
                   wronganswerFlag = true;
                   toast.error("Wrong on test case " + key);
                 }
