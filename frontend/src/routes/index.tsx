@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 
 const popUpAnimationVariants = {
@@ -54,20 +54,24 @@ function Index() {
         animate="visible"
         custom={0.4}
       >
-        <Button
-          className="hover:shadow-[rgba(255,_255,_255,_0.5)_0px_25px_50px_-12px] transition-all duration-100 text-lg py-6 px-10"
-          variant="default"
-          size="lg"
-        >
-          Let's Play!
-        </Button>
-        <Button
-          className="bg-transparent border border-primary text-lg py-6 px-10"
-          variant="secondary"
-          size="lg"
-        >
-          Practice
-        </Button>
+        <Link to="/dashboard">
+          <Button
+            className="hover:shadow-[rgba(255,_255,_255,_0.5)_0px_25px_50px_-12px] transition-all duration-100 text-lg py-6 px-10"
+            variant="default"
+            size="lg"
+          >
+            Let's Play!
+          </Button>
+        </Link>
+        <Link to="/practice">
+          <Button
+            className="bg-transparent border border-primary text-lg py-6 px-10"
+            variant="secondary"
+            size="lg"
+          >
+            Practice
+          </Button>
+        </Link>
       </motion.div>
     </div>
   );

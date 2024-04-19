@@ -12,7 +12,7 @@ interface Actions {
 
 const defaultLayoutJson: IJsonModel = {
   global: {
-    tabEnableClose: true,
+    tabEnableClose: false,
     tabSetEnableMaximize: false,
     tabEnableRename: false,
   },

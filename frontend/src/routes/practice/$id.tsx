@@ -9,6 +9,7 @@ import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { useSubmission } from "@/mutations/pratice";
 import { toast } from "sonner";
 import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
+import { judge0SuccessStatusId } from "@/lib/judge0/statuses";
 
 export const Route = createFileRoute("/practice/$id")({
   component: PracticePage,
@@ -43,15 +44,16 @@ function PracticePage() {
               run: false,
             });
             if (data) {
-              console.log("Verdict Data", data);
-              let wronganswerFlag = false;
+              let wrongAnsFlag = false;
               for (const key in data) {
-                if (data[key].status.description === "Wrong Answer") {
-                  wronganswerFlag = true;
-                  toast.error("Wrong on test case " + key);
+                if (data[key].status.id !== judge0SuccessStatusId) {
+                  wrongAnsFlag = true;
+                  toast.error(
+                    `${data[key].status.description} on test case ${key}`
+                  );
                 }
               }
-              if (!wronganswerFlag) {
+              if (!wrongAnsFlag) {
                 toast.success("All test cases passed");
               }
             }
