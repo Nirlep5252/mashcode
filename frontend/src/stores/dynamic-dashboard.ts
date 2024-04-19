@@ -11,7 +11,11 @@ interface Actions {
 }
 
 const defaultLayoutJson: IJsonModel = {
-  global: { tabEnableClose: true, tabSetEnableMaximize: false },
+  global: {
+    tabEnableClose: true,
+    tabSetEnableMaximize: false,
+    tabEnableRename: false,
+  },
   borders: [],
   layout: {
     type: "row",

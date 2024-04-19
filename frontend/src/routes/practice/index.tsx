@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/card.tsx";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button.tsx";
+import { useCurrentUser } from "@/queries/user";
+import AuthError from "@/components/auth-error";
 
 export const Route = createFileRoute("/practice/")({
   component: Practice,
@@ -15,6 +17,11 @@ export const Route = createFileRoute("/practice/")({
 function Practice() {
   const { data: questions, isLoading: isQuestionsLoading } =
     usePracticeQuestions();
+  const { data: user, isLoading: isUserLoading } = useCurrentUser();
+
+  if (!isUserLoading && !user) {
+    return <AuthError />;
+  }
   return (
     <div className={"w-full h-screen flex items-center justify-around"}>
       <div className="w - 1/3 flex flex-col items-center justify-center gap-10">

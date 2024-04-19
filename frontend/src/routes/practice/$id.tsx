@@ -1,6 +1,6 @@
 import { createFileRoute, useParams } from "@tanstack/react-router";
 
-import { Layout, Model, TabNode, IJsonModel } from "flexlayout-react";
+import { Layout, Model, TabNode } from "flexlayout-react";
 import "flexlayout-react/style/dark.css";
 
 import { ProblemStatement } from "@/components/problem/problem-statement";
@@ -8,73 +8,11 @@ import { CodeEditor } from "@/components/match/code-editor";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { useSubmission } from "@/mutations/pratice";
 import { toast } from "sonner";
+import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
 
 export const Route = createFileRoute("/practice/$id")({
   component: PracticePage,
 });
-
-const layout: IJsonModel = {
-  global: { tabEnableClose: true, tabSetEnableMaximize: false },
-  borders: [],
-  layout: {
-    type: "row",
-    children: [
-      {
-        type: "row",
-        weight: 50,
-        children: [
-          {
-            type: "tabset",
-            selected: 0,
-            children: [
-              {
-                type: "tab",
-                name: "Problem Statement",
-                component: "ProblemStatement",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        type: "row",
-        weight: 50,
-        children: [
-          {
-            type: "tabset",
-            selected: 0,
-            children: [
-              {
-                type: "tab",
-                name: "Code Editor",
-                component: "CodeEditor",
-              },
-            ],
-          },
-          {
-            type: "tabset",
-            weight: 40,
-            selected: 0,
-            children: [
-              {
-                type: "tab",
-                name: "Test Cases",
-                component: "TestCases",
-              },
-              {
-                type: "tab",
-                name: "Submissions",
-                component: "Submissions",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-};
-
-const model = Model.fromJson(layout);
 
 function PracticePage() {
   const { id } = useParams({
@@ -82,7 +20,10 @@ function PracticePage() {
     from: "/practice/$id",
   });
 
+  const { layout, setLayout } = useDynamicDashboardLayout();
+
   const mutation = useSubmission();
+
   const factory = (node: TabNode) => {
     if (node.getComponent() === "text") {
       return <div>Text Component</div>;
@@ -142,5 +83,18 @@ function PracticePage() {
       return <div>Status</div>;
     }
   };
-  return <Layout model={model} factory={factory} />;
+  return (
+    <Layout
+      realtimeResize={true}
+      model={Model.fromJson(layout)}
+      onModelChange={(model) => setLayout(model.toJson())}
+      factory={(node) => {
+        return (
+          <div className="w-full h-full bg-background text-foreground">
+            {factory(node)}
+          </div>
+        );
+      }}
+    />
+  );
 }
