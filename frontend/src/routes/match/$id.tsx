@@ -2,13 +2,21 @@ import { CodeEditor } from "@/components/code-editor/code-editor";
 import { LiveMatchInformation } from "@/components/match/live-match-information";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { ProblemStatement } from "@/components/problem/problem-statement";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+} from "@/components/ui/dialog";
 import { API_WS_URL } from "@/lib/constants";
 import { judge0Statuses, judge0SuccessStatusId } from "@/lib/judge0/statuses";
 import { useMatch } from "@/queries/match";
+import { useCurrentUser } from "@/queries/user";
 import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
-import { createFileRoute, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { Layout, Model, TabNode } from "flexlayout-react";
 import { Loader2Icon } from "lucide-react";
+import { useState } from "react";
 import useWebSocket from "react-use-websocket";
 import { toast } from "sonner";
 
@@ -32,6 +40,8 @@ function Match() {
       id,
     },
   });
+
+  const [winner, setWinner] = useState<number>();
 
   const { sendJsonMessage, readyState } = useWebSocket(
     `${API_WS_URL}/match/${id}`,
@@ -65,6 +75,10 @@ function Match() {
           | {
               type: "error";
               message: string;
+            }
+          | {
+              type: "match_result";
+              winner: number;
             } = JSON.parse(event.data);
         switch (data.type) {
           case "submit_result":
@@ -83,6 +97,9 @@ function Match() {
               }
             }
             break;
+          case "match_result":
+            setWinner(data.winner);
+            break;
           case "error":
             toast.error(data.message);
             break;
@@ -95,6 +112,7 @@ function Match() {
   );
   const { matchLayout: model, setMatchLayout: setModel } =
     useDynamicDashboardLayout();
+  const { data: currentUser } = useCurrentUser();
 
   if (isMatchLoading) {
     return <Loader2Icon className="aniamte-spin" />;
@@ -147,19 +165,31 @@ function Match() {
   }
 
   return (
-    <Layout
-      realtimeResize={true}
-      model={Model.fromJson(model)}
-      onModelChange={(model) => {
-        setModel(model.toJson());
-      }}
-      factory={(node) => {
-        return (
-          <div className="w-full h-full bg-background text-foreground">
-            {factory(node)}
-          </div>
-        );
-      }}
-    />
+    <div>
+      <Dialog open={winner ? true : false}>
+        <DialogContent>
+          <DialogHeader>
+            You {winner == currentUser?.id ? "Win" : "Lose"}!
+          </DialogHeader>
+          <DialogDescription>
+            Go to <Link to="/dashboard">Dashboard</Link>
+          </DialogDescription>
+        </DialogContent>
+      </Dialog>
+      <Layout
+        realtimeResize={true}
+        model={Model.fromJson(model)}
+        onModelChange={(model) => {
+          setModel(model.toJson());
+        }}
+        factory={(node) => {
+          return (
+            <div className="w-full h-full bg-background text-foreground">
+              {factory(node)}
+            </div>
+          );
+        }}
+      />
+    </div>
   );
 }

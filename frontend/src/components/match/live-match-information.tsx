@@ -12,8 +12,8 @@ interface Props {
 const wsConnectionMessages = {
   [ReadyState.CONNECTING]: "Connecting...",
   [ReadyState.OPEN]: "Connected",
-  [ReadyState.CLOSING]: "Closing...",
-  [ReadyState.CLOSED]: "Closed",
+  [ReadyState.CLOSING]: "Disconnecting...",
+  [ReadyState.CLOSED]: "Disconnected",
   [ReadyState.UNINSTANTIATED]: "Uninstantiated",
 };
 
@@ -23,7 +23,7 @@ export const LiveMatchInformation: React.FC<Props> = (props) => {
   const { data: opponent, isLoading: isOpponentLoading } = useAnyGithubUser({
     variables: {
       id:
-        currentUser?.id === props.match.player1_id.toString()
+        currentUser?.id == props.match.player1_id.toString()
           ? props.match.player2_id.toString()
           : props.match.player1_id.toString(),
     },

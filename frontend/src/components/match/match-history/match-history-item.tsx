@@ -1,11 +1,12 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { useAnyGithubUser } from "@/queries/user";
+import { useAnyGithubUser, useCurrentUser } from "@/queries/user";
 import { Match, MatchStatus, MatchWinner } from "@/types/match";
 import { Link } from "@tanstack/react-router";
 import { Loader2Icon } from "lucide-react";
 
 export const MatchHistoryItem: React.FC<Match> = (match) => {
+  const { data: currentUser } = useCurrentUser();
   const { data: player2, isLoading: isPlayer2Loading } = useAnyGithubUser({
     variables: {
       id: match.player2_id.toString(),
@@ -25,13 +26,11 @@ export const MatchHistoryItem: React.FC<Match> = (match) => {
     return "Error loading players";
   }
 
-  const matchWinStatus =
-    (match.winner === MatchWinner.Player1 &&
-      match.player1_id.toString() === player1.id.toString()) ||
-    (match.winner === MatchWinner.Player2 &&
-      match.player2_id.toString() === player1.id.toString())
-      ? "Win"
-      : "Lose";
+  const isWin =
+    (match.winner == MatchWinner.Player1 &&
+      match.player1_id.toString() == currentUser?.id.toString()) ||
+    (match.winner == MatchWinner.Player2 &&
+      match.player2_id.toString() == currentUser?.id.toString());
 
   return (
     <div className="w-full">
@@ -43,10 +42,14 @@ export const MatchHistoryItem: React.FC<Match> = (match) => {
         className="w-full"
       >
         <Button className="w-full h-20 flex gap-10" variant={"ghost"} size="lg">
-          <div className="w-1/5">
+          <div
+            className={`w-1/5 ${match.status === MatchStatus.Completed ? (isWin ? "text-green-500" : "text-red-500") : ""}`}
+          >
             {match.status === MatchStatus.Pending
               ? "Ongoing..."
-              : matchWinStatus}
+              : isWin
+                ? `+${match.rating_delta}`
+                : `-${match.rating_delta}`}
           </div>
           <div className="flex gap-2 justify-around items-center w-4/5">
             <div>

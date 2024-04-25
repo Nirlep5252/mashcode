@@ -44,6 +44,8 @@ class Match(Base):
     player1 = relationship("User", foreign_keys=[player1_id])
     player2 = relationship("User", foreign_keys=[player2_id])
 
+    rating_delta = Column(Integer, nullable=True)
+
 
 class Submission(Base):
     __tablename__ = "submission"

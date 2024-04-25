@@ -1,7 +1,7 @@
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
-from lib.models import Match
+from lib.models import Match, MatchStatus, MatchWinner
 
 
 def get_match(db: Session, match_id: int) -> Match | None:
@@ -43,4 +43,17 @@ def create_match(
     db.add(match)
     db.commit()
     db.refresh(match)
+    return match
+
+
+def end_match(db: Session, winner: int, match_id: int, rating_delta: int) -> Match:
+    match = db.query(Match).filter(Match.id == match_id).first()
+    if not match:
+        raise ValueError("Match not found")
+    match.status = MatchStatus.COMPLETED
+    match.winner = (
+        MatchWinner.PLAYER1 if winner == match.player1_id else MatchWinner.PLAYER2
+    )
+    match.rating_delta = rating_delta
+    db.commit()
     return match
