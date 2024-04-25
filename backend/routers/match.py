@@ -1,4 +1,3 @@
-import random
 from collections import defaultdict
 
 import aiohttp
@@ -16,7 +15,8 @@ from lib.crud.match import (
 from lib.crud.user import create_user, get_top_users, get_user
 from lib.database import get_db
 from lib.judge0 import get_submission_verdict
-from lib.models import MatchStatus, User
+from lib.models import MatchStatus, MatchWinner, User
+from lib.utils.matchmaking import get_elo_rating_change
 
 router = APIRouter(prefix="/match")
 
@@ -254,16 +254,20 @@ async def match_ws(websocket: WebSocket, match_id: int, db: Session = Depends(ge
                         break
 
                 if win:
-                    rating_delta = random.randint(0, 50)
+                    rating_delta = get_elo_rating_change(
+                        match.player1.rating,
+                        match.player2.rating,
+                        MatchWinner.PLAYER1
+                        if match.player1_id == user_github_data["id"]
+                        else MatchWinner.PLAYER2,
+                    )
                     end_match(db, user_github_data["id"], match_id, rating_delta)
 
-                    # add random rating between 0 and 50 to winner
                     user = get_user(db, user_github_data["id"])
                     if user:
                         user.rating += rating_delta
                         db.commit()
 
-                    # remove same rating from user 2
                     user2 = get_user(
                         db,
                         match.player1_id
@@ -271,9 +275,8 @@ async def match_ws(websocket: WebSocket, match_id: int, db: Session = Depends(ge
                         else match.player2_id,
                     )
                     if user2:
-                        user2.rating = max(0, user2.rating - rating_delta)
+                        user2.rating = user2.rating - rating_delta
                         db.commit()
-
                     for ws in match_websockets[match_id]:
                         await ws.send_json(
                             {
