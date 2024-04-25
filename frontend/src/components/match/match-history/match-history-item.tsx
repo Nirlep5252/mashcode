@@ -43,7 +43,7 @@ export const MatchHistoryItem: React.FC<Match> = (match) => {
       >
         <Button className="w-full h-20 flex gap-10" variant={"ghost"} size="lg">
           <div
-            className={`w-1/5 ${match.status === MatchStatus.Completed ? (isWin ? "text-green-500" : "text-red-500") : ""}`}
+            className={`w-1/12 ${match.status === MatchStatus.Completed ? (isWin ? "text-green-500" : "text-red-500") : ""}`}
           >
             {match.status === MatchStatus.Pending
               ? "Ongoing..."
@@ -52,7 +52,7 @@ export const MatchHistoryItem: React.FC<Match> = (match) => {
                 : `-${match.rating_delta}`}
           </div>
           <div className="flex gap-2 justify-around items-center w-4/5">
-            <div>
+            <div className="w-[90px] truncate">
               <div className="flex flex-col items-center justify-center">
                 <Avatar className="h-8 w-8">
                   <AvatarImage src={player1.avatar_url} />
@@ -61,7 +61,7 @@ export const MatchHistoryItem: React.FC<Match> = (match) => {
               {player1.name || player1.login}
             </div>
             vs
-            <div>
+            <div className="w-[90px] truncate">
               <div className="flex flex-col items-center justify-center">
                 <Avatar className="h-8 w-8">
                   <AvatarImage src={player2.avatar_url} />

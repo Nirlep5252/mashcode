@@ -113,7 +113,7 @@ export const CodeEditor: React.FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
-      <div className="flex gap-2 flex-row absolute z-50 bg-background right-2 bottom-2 p-2 rounded-lg">
+      <div className="flex gap-2 flex-row absolute z-40 bg-background right-2 bottom-2 p-2 rounded-lg">
         <Dialog>
           <DialogTrigger>
             <SettingsIcon />
@@ -124,7 +124,7 @@ export const CodeEditor: React.FC<Props> = (props) => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="flex flex-row gap-3 absolute z-50 bg-background left-2 bottom-2 p-2 rounded-lg">
+      <div className="flex flex-row gap-3 absolute z-40 bg-background left-2 bottom-2 p-2 rounded-lg">
         <Select onValueChange={(value) => setLanguage(value)}>
           <SelectTrigger>
             {

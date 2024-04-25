@@ -19,6 +19,8 @@ import { Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import useWebSocket from "react-use-websocket";
 import { toast } from "sonner";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 export const Route = createFileRoute("/match/$id")({
   component: Match,
@@ -29,6 +31,7 @@ function Match() {
     strict: true,
     from: "/match/$id",
   });
+  const { width, height } = useWindowSize();
 
   const {
     data: match,
@@ -167,6 +170,11 @@ function Match() {
   return (
     <div>
       <Dialog open={winner ? true : false}>
+        <div className="z-50 absolute top-0 left-0">
+          {winner && winner.toString() == currentUser?.id && (
+            <Confetti width={width} height={height} />
+          )}
+        </div>
         <DialogContent>
           <DialogHeader>
             You {winner == currentUser?.id ? "Win" : "Lose"}!
