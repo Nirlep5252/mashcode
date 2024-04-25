@@ -4,6 +4,8 @@ from sqlalchemy.orm import sessionmaker
 
 from lib.constants import DB_URL
 
+assert DB_URL is not None, "Please set `DB_URL` in the `.env` file."
+
 SQLALCHEMY_DATABASE_URL = DB_URL
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)

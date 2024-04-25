@@ -5,7 +5,7 @@ import UserMenu from "@/components/user/user-menu";
 
 export default function Navbar() {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between fixed z-20 w-[70%]">
       <div className="left flex items-center justify-center gap-6">
         <Link to="/">
           <div className="logo text-xl font-bold text-foreground">mashcode</div>

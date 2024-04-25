@@ -1,4 +1,5 @@
 import logging
+from typing import Awaitable, Callable
 
 import aiohttp
 from fastapi import FastAPI, Request
@@ -14,6 +15,7 @@ from routers.practice import router as practice_router
 database.Base.metadata.create_all(bind=database.engine)
 logging.info("Connected to database")
 
+assert HOME_URL is not None, "Please set `HOME_URL` in the `.env` file."
 origins = [HOME_URL]
 
 app = FastAPI()
@@ -31,9 +33,9 @@ app.add_middleware(
 
 @app.middleware("http")
 async def auth_middleware(
-        request: Request,
-        call_next,
-):
+    request: Request,
+    call_next: Callable[[Request], Awaitable[Response]],
+) -> Response:
     ignored_routes = ["auth/callback", "login", "docs", "openapi.json"]
     if any([request.url.path.startswith(f"/{route}") for route in ignored_routes]):
         return await call_next(request)
@@ -50,10 +52,10 @@ async def auth_middleware(
 
     async with aiohttp.ClientSession() as session:
         async with session.get(
-                "https://api.github.com/user",
-                headers={
-                    "Authorization": authorization,
-                },
+            "https://api.github.com/user",
+            headers={
+                "Authorization": authorization,
+            },
         ) as resp:
             user_data = await resp.json()
 

@@ -65,18 +65,48 @@ def get_problem_details(url):
         ]
         problem_examples = all_children[examples_h1_tag_index:]
 
+        problem_limits = soup.find("ul", "task-constraints")
+        problem_limits = problem_limits.find_all("li")
+        problem_time_limit = problem_limits[0].text.strip("Time limit:")
+        problem_memory_limit = problem_limits[1].text.strip("Memory limit:")
+        for i in problem_statement:  # To replace relative image url with absolute url
+            if i.find("img"):
+                i.find("img")["src"] = "https://cses.fi" + i.find("img")["src"]
+
+        sample_input = []
+        sample_output = []
+        input_flag = False
+        output_flag = False
+        for i in problem_examples:
+            if i.text == "Input:":
+                input_flag = True
+                output_flag = False
+                continue
+            if i.text == "Output:":
+                input_flag = False
+                output_flag = True
+                continue
+            if input_flag:
+                sample_input.append(i.text)
+            if output_flag:
+                sample_output.append(i.text)
         return {
             "problem_statement": "".join(str(e) for e in problem_statement),
             "problem_input": "".join(str(e) for e in problem_input),
             "problem_output": "".join(str(e) for e in problem_output),
             "problem_constraints": "".join(str(e) for e in problem_constraints),
             "problem_examples": "".join(str(e) for e in problem_examples),
+            "problem_time_limit": problem_time_limit,
+            "problem_memory_limit": problem_memory_limit,
+            "sample_input": sample_input[0],
+            "sample_output": sample_output[0],
+            "problem_url": url,
         }
     except Exception as e:
         return {"error": str(e)}
 
 
-# print(get_problem_details("https://cses.fi/problemset/task/1068"))
+# print(get_problem_details("https://cses.fi/problemset/task/1622"))  # Just for testing
 
 
 def get_problem_details_json():

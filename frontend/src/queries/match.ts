@@ -1,27 +1,25 @@
 import { createQuery } from "react-query-kit";
 import { getGithubAccessToken } from "@/lib/utils.ts";
 import { API_URL } from "@/lib/constants";
+import { Match } from "@/types/match";
 
-enum MatchWinner {
-  Player1,
-  Player2,
-}
+export const useMatch = createQuery({
+  queryKey: ["match", "matchId"],
+  fetcher: async (args: { id: string }) => {
+    const ghToken = getGithubAccessToken();
+    const response = await fetch(`${API_URL}/match/get_match/${args.id}`, {
+      headers: {
+        Authorization: `Bearer ${ghToken}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+    return (await response.json()) as Match;
+  },
+});
 
-enum MatchStatus {
-  Pending,
-  Completed,
-}
-
-interface Match {
-  id: number;
-  created_at: Date;
-  winner: MatchWinner;
-  status: MatchStatus;
-  problem_id: number;
-  player1_id: number;
-  player2_id: number;
-}
-
+// TODO: convert this to infiniteQuery so we can paginate it later
 export const useMatchHistory = createQuery({
   queryKey: ["matchHistory"],
   fetcher: async () => {
@@ -32,28 +30,32 @@ export const useMatchHistory = createQuery({
       },
     });
     if (!response.ok) {
-      throw new Error("Failed to fetch match history");
+      throw new Error(await response.text());
     }
     return (await response.json()) as Match[];
   },
 });
 
+// TODO: convert this to infiniteQuery so we can paginate it later
 export const useLeaderboard = createQuery({
   queryKey: ["leaderboard"],
   fetcher: async () => {
+    const accessToken = getGithubAccessToken();
     const response = await fetch(`${API_URL}/match/leaderboard`, {
-      headers: { Authorization: `Bearer ${getGithubAccessToken()}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
     if (!response.ok)
       throw new Error(
-        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`
+        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`,
       );
     const users = (await response.json()) as DatabaseUser[];
     const githubUsers: (GithubUser & {
       rating: number;
     })[] = [];
     for (const user of users) {
-      const resp = await fetch(`https://api.github.com/user/${user.id}`);
+      const resp = await fetch(`https://api.github.com/user/${user.id}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       const data = await resp.json();
       githubUsers.push({
         ...(data as GithubUser),

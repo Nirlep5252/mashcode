@@ -1,9 +1,15 @@
-import React from "react";
-import "katex/dist/katex.min.css";
-import { BlockMath, InlineMath } from "react-katex";
-import parse, { HTMLReactParserOptions } from "html-react-parser";
-import { usePracticeQuestion } from "@/queries/practice.ts";
 import { createFileRoute, useParams } from "@tanstack/react-router";
+
+import { Layout, Model, TabNode } from "flexlayout-react";
+import "flexlayout-react/style/dark.css";
+
+import { ProblemStatement } from "@/components/problem/problem-statement";
+import { CodeEditor } from "@/components/code-editor/code-editor";
+import { ExampleTestCase } from "@/components/problem/example-test-case";
+import { useSubmission } from "@/mutations/pratice";
+import { toast } from "sonner";
+import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
+import { judge0SuccessStatusId } from "@/lib/judge0/statuses";
 
 export const Route = createFileRoute("/practice/$id")({
   component: PracticePage,
@@ -14,51 +20,84 @@ function PracticePage() {
     strict: true,
     from: "/practice/$id",
   });
-  const { data: questionDetails, isLoading: isQuestionDetailsLoading } =
-    usePracticeQuestion({
-      variables: {
-        id,
-      },
-    });
-  const options: HTMLReactParserOptions = {
-    replace: (domNode) => {
-      if (
-        domNode.type === "tag" &&
-        domNode.name === "span" &&
-        domNode.attribs.class.includes("math")
-      ) {
-        const isInline = domNode.attribs.class.includes("inline");
-        const mathComponent = isInline ? InlineMath : BlockMath;
-        const latexString =
-          domNode.children[0].type === "text" ? domNode.children[0].data : "";
-        return React.createElement(mathComponent, { children: latexString });
-      }
-    },
+
+  const { practiceLayout: layout, setPracticeLayout: setLayout } =
+    useDynamicDashboardLayout();
+
+  const mutation = useSubmission();
+
+  const factory = (node: TabNode) => {
+    if (node.getComponent() === "text") {
+      return <div>Text Component</div>;
+    }
+    if (node.getComponent() === "ProblemStatement") {
+      return <ProblemStatement problemId={id} />;
+    }
+    if (node.getComponent() === "CodeEditor") {
+      return (
+        <CodeEditor
+          codeId={`practice-${id}`}
+          onSubmit={async (code, language_id) => {
+            const data = await mutation.mutateAsync({
+              problem_id: parseInt(id),
+              language_id: language_id,
+              source_code: code,
+              run: false,
+            });
+            if (data) {
+              let wrongAnsFlag = false;
+              for (const key in data) {
+                if (data[key].status.id !== judge0SuccessStatusId) {
+                  wrongAnsFlag = true;
+                  toast.error(
+                    `${data[key].status.description} on test case ${key}`
+                  );
+                }
+              }
+              if (!wrongAnsFlag) {
+                toast.success("All test cases passed");
+              }
+            }
+            return data;
+          }}
+          onRun={async (code, language_id) => {
+            const data = await mutation.mutateAsync({
+              problem_id: parseInt(id),
+              language_id: language_id,
+              source_code: code,
+              run: true,
+            });
+            if (data.status) {
+              if (data.status.description === "Wrong Answer") {
+                toast.error(data.status.description);
+              } else {
+                toast.success(data.status.description);
+              }
+            } else toast.error(data.detail);
+            return data;
+          }}
+        />
+      );
+    }
+    if (node.getComponent() === "TestCases") {
+      return <ExampleTestCase problemId={id} />;
+    }
+    if (node.getComponent() === "Submissions") {
+      return <div>Status</div>;
+    }
   };
   return (
-    <div className={"w-full h-screen flex items-center justify-around"}>
-      <div className="w - 1/3 flex flex-col items-center justify-center gap-10">
-        <h1 className={"text-4xl font-bold"}>Practice</h1>
-        <p className={"text-lg font-bold"}>
-          Solve the following question to improve your problem solving skills
-        </p>
-        <p className="text-2xl">
-          {isQuestionDetailsLoading ? (
-            "Loading question..."
-          ) : questionDetails ? (
-            <div>
-              <h2 className="font-bold">{questionDetails.problem_title}</h2>
-              <div>{parse(questionDetails.problem_statement, options)}</div>
-              <div>{parse(questionDetails.problem_input, options)}</div>
-              <div>{parse(questionDetails.problem_output, options)}</div>
-              <div>{parse(questionDetails.problem_constraints, options)}</div>
-              <div>{parse(questionDetails.problem_examples, options)}</div>
-            </div>
-          ) : (
-            "Error while fetching question"
-          )}
-        </p>
-      </div>
-    </div>
+    <Layout
+      realtimeResize={true}
+      model={Model.fromJson(layout)}
+      onModelChange={(model) => setLayout(model.toJson())}
+      factory={(node) => {
+        return (
+          <div className="w-full h-full bg-background text-foreground">
+            {factory(node)}
+          </div>
+        );
+      }}
+    />
   );
 }
