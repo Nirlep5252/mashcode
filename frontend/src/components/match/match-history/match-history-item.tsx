@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useAnyGithubUser } from "@/queries/user";
 import { Match, MatchStatus, MatchWinner } from "@/types/match";
 import { Link } from "@tanstack/react-router";
+import { Loader2Icon } from "lucide-react";
 
 export const MatchHistoryItem: React.FC<Match> = (match) => {
   const { data: player2, isLoading: isPlayer2Loading } = useAnyGithubUser({
@@ -17,7 +18,7 @@ export const MatchHistoryItem: React.FC<Match> = (match) => {
   });
 
   if (isPlayer1Loading || isPlayer2Loading) {
-    return "Loading...";
+    return <Loader2Icon className="animate-spin" />;
   }
 
   if (!player1 || !player2) {

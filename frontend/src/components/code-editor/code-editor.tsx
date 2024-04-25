@@ -1,6 +1,20 @@
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+
+import CodeMirror from "@uiw/react-codemirror";
+import * as themes from "@uiw/codemirror-themes-all";
+import { loadLanguage, langs } from "@uiw/codemirror-extensions-langs";
+import { Loader2Icon, SettingsIcon } from "lucide-react";
+import { useSourceCodeStore } from "@/stores/source-code";
+import { useCodeEditorSettings } from "@/stores/code-editor-settings-store";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+} from "@/components/ui/dialog";
+import { CodeEditorSettings } from "@/components/code-editor/code-editor-settings";
 import {
   Select,
   SelectContent,
@@ -9,13 +23,6 @@ import {
   SelectLabel,
   SelectTrigger,
 } from "@/components/ui/select";
-
-import CodeMirror from "@uiw/react-codemirror";
-import * as themes from "@uiw/codemirror-themes-all";
-import { loadLanguage, langs } from "@uiw/codemirror-extensions-langs";
-import { Loader2Icon } from "lucide-react";
-import { useSourceCodeStore } from "@/stores/source-code";
-import { useCodeEditorSettings } from "@/stores/code-editor-settings";
 import { judge0Languages } from "@/lib/judge0/languages";
 
 loadLanguage("c");
@@ -88,10 +95,6 @@ const supportedLanguages = {
   74: langs.typescript(),
 };
 
-const allThemes = Object.keys(themes).filter(
-  (val) => !val.startsWith("defaultSettings") && !val.endsWith("Init")
-) as unknown as (keyof typeof themes)[];
-
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit: (sourceCode: string, languageId: number) => Promise<any>;
@@ -101,7 +104,7 @@ interface Props {
 }
 
 export const CodeEditor: React.FC<Props> = (props) => {
-  const { language, setLanguage, theme, setTheme } = useCodeEditorSettings();
+  const { language, setLanguage, theme } = useCodeEditorSettings();
   const { sourceCodeMap, setSourceCode } = useSourceCodeStore();
   const sourceCode = sourceCodeMap?.[props.codeId] || "";
 
@@ -110,7 +113,18 @@ export const CodeEditor: React.FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
-      <div className="flex gap-2 flex-row absolute z-50 bg-background left-2 bottom-2 p-2 rounded-lg">
+      <div className="flex gap-2 flex-row absolute z-50 bg-background right-2 bottom-2 p-2 rounded-lg">
+        <Dialog>
+          <DialogTrigger>
+            <SettingsIcon />
+          </DialogTrigger>
+          <DialogContent className="flex flex-col gap-6">
+            <DialogHeader className="font-bold text-xl">Settings</DialogHeader>
+            <CodeEditorSettings />
+          </DialogContent>
+        </Dialog>
+      </div>
+      <div className="flex flex-row gap-3 absolute z-50 bg-background left-2 bottom-2 p-2 rounded-lg">
         <Select onValueChange={(value) => setLanguage(value)}>
           <SelectTrigger>
             {
@@ -129,25 +143,6 @@ export const CodeEditor: React.FC<Props> = (props) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Select
-          onValueChange={(value) =>
-            setTheme(value as (typeof allThemes)[number])
-          }
-        >
-          <SelectTrigger>{theme}</SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Select Theme</SelectLabel>
-              {allThemes.map((theme) => (
-                <SelectItem value={theme} key={theme}>
-                  {theme}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="flex flex-row gap-3 absolute z-50 bg-background right-2 bottom-2 p-2 rounded-lg">
         <Button
           disabled={isRunning}
           variant="outline"

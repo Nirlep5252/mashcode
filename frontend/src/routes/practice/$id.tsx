@@ -4,7 +4,7 @@ import { Layout, Model, TabNode } from "flexlayout-react";
 import "flexlayout-react/style/dark.css";
 
 import { ProblemStatement } from "@/components/problem/problem-statement";
-import { CodeEditor } from "@/components/match/code-editor";
+import { CodeEditor } from "@/components/code-editor/code-editor";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { useSubmission } from "@/mutations/pratice";
 import { toast } from "sonner";
@@ -21,7 +21,8 @@ function PracticePage() {
     from: "/practice/$id",
   });
 
-  const { layout, setLayout } = useDynamicDashboardLayout();
+  const { practiceLayout: layout, setPracticeLayout: setLayout } =
+    useDynamicDashboardLayout();
 
   const mutation = useSubmission();
 

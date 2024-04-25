@@ -1,7 +1,9 @@
-import { CodeEditor } from "@/components/match/code-editor";
+import { CodeEditor } from "@/components/code-editor/code-editor";
+import { LiveMatchInformation } from "@/components/match/live-match-information";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
 import { ProblemStatement } from "@/components/problem/problem-statement";
 import { API_WS_URL } from "@/lib/constants";
+import { judge0Statuses, judge0SuccessStatusId } from "@/lib/judge0/statuses";
 import { useMatch } from "@/queries/match";
 import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
 import { createFileRoute, useParams } from "@tanstack/react-router";
@@ -30,29 +32,68 @@ function Match() {
     },
   });
 
-  const { sendJsonMessage } = useWebSocket(`${API_WS_URL}/match/${id}`, {
-    onOpen: () => {
-      sendJsonMessage({
-        type: "auth",
-        token: localStorage.getItem("ghToken"),
-      });
-    },
-    onMessage: (event) => {
-      const data = JSON.parse(event.data);
-      switch (data.type) {
-        case "submit_result":
-          if (data.result) toast.info(data.result.status.description);
-          break;
-        case "error":
-          toast.error(data.message);
-          break;
-      }
-    },
-    filter: () => {
-      return false;
-    },
-  });
-  const { layout: model, setLayout: setModel } = useDynamicDashboardLayout();
+  const { sendJsonMessage, readyState } = useWebSocket(
+    `${API_WS_URL}/match/${id}`,
+    {
+      onOpen: () => {
+        sendJsonMessage({
+          type: "auth",
+          token: localStorage.getItem("ghToken"),
+        });
+      },
+      onMessage: (event) => {
+        const data:
+          | {
+              type: "submit_result";
+              result: Record<
+                string,
+                {
+                  compile_output: string | null;
+                  memory: number;
+                  message: string | null;
+                  status: {
+                    id: (typeof judge0Statuses)[number]["id"];
+                    description: string;
+                  };
+                  stderr: string | null;
+                  time: string;
+                  token: string;
+                }
+              >;
+            }
+          | {
+              type: "error";
+              message: string;
+            } = JSON.parse(event.data);
+        switch (data.type) {
+          case "submit_result":
+            console.log(data);
+            if (data.result) {
+              for (const testcase of Object.keys(data.result)) {
+                if (data.result[testcase].status.id === judge0SuccessStatusId) {
+                  toast.success(
+                    `${data.result[testcase].status.description} on ${testcase}`
+                  );
+                } else {
+                  toast.error(
+                    `${data.result[testcase].status.description} on ${testcase}`
+                  );
+                }
+              }
+            }
+            break;
+          case "error":
+            toast.error(data.message);
+            break;
+        }
+      },
+      filter: () => {
+        return false;
+      },
+    }
+  );
+  const { matchLayout: model, setMatchLayout: setModel } =
+    useDynamicDashboardLayout();
 
   if (isMatchLoading) {
     return <>Loading...</>;
@@ -81,7 +122,7 @@ function Match() {
             }}
             onRun={async (sourceCode: string, languageId: number) => {
               sendJsonMessage({
-                type: "submit",
+                type: "run",
                 source_code: sourceCode,
                 language_id: languageId,
               });
@@ -91,6 +132,13 @@ function Match() {
       case "TestCases":
         return (
           <ExampleTestCase problemId={match?.problem_id.toString() || ""} />
+        );
+      case "MatchInformation":
+        return (
+          <LiveMatchInformation
+            websocketReadyState={readyState}
+            match={match!}
+          />
         );
       default:
         return <>Invalid Component</>;
