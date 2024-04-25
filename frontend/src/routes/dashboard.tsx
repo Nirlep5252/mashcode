@@ -4,6 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import AuthError from "@/components/auth-error";
 import { MatchHistoryList } from "@/components/match/match-history/match-history-list";
 import { Leaderboard } from "@/components/leaderboard";
+import { Loader2Icon } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard")({
   component: Dashboard,
@@ -13,7 +14,7 @@ function Dashboard() {
   const { data: user, isLoading: isUserLoading } = useCurrentUser();
 
   if (isUserLoading) {
-    return "Loading...";
+    return <Loader2Icon className="aniamte-spin" />;
   }
 
   if (!user) {

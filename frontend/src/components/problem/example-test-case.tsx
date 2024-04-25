@@ -1,5 +1,6 @@
 import { usePracticeQuestion } from "@/queries/practice";
 import parse, { HTMLReactParserOptions } from "html-react-parser";
+import { Loader2Icon } from "lucide-react";
 import React from "react";
 import { BlockMath, InlineMath } from "react-katex";
 
@@ -44,7 +45,7 @@ export const ExampleTestCase: React.FC<Props> = ({ problemId }) => {
       },
     });
   if (isQuestionDetailsLoading) {
-    return <>Loading...</>;
+    return <Loader2Icon className="animate-spin" />;
   }
   if (!questionDetails) {
     return <>Error fetching problem statement</>;

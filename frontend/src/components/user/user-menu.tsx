@@ -12,6 +12,7 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "@tanstack/react-router";
+import { Loader2Icon } from "lucide-react";
 
 export default function UserMenu() {
   const { data: user, isLoading, isError } = useCurrentUser();
@@ -19,7 +20,7 @@ export default function UserMenu() {
   return (
     <>
       {isLoading ? (
-        <>Loading...</>
+        <Loader2Icon className="animate-spin" />
       ) : isError || !user ? (
         <a href={`${API_URL}/login?redirect=${window.location.href}`}>
           <Button variant="ghost">Login</Button>

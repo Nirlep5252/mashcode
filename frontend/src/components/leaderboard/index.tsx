@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLeaderboard } from "@/queries/match";
 import { LeaderboardUserItem } from "./user-item";
+import { Loader2Icon } from "lucide-react";
 
 export const Leaderboard: React.FC = () => {
   const { data: leaderboard, isLoading: isLeaderboardLoading } =
@@ -13,7 +14,7 @@ export const Leaderboard: React.FC = () => {
       </CardHeader>
       <CardContent className={"flex flex-col items-center justify-center"}>
         {isLeaderboardLoading ? (
-          "Loading leaderboard..."
+          <Loader2Icon className="animate-spin" />
         ) : leaderboard ? (
           <>
             {leaderboard.map((user) => (

@@ -1,15 +1,9 @@
 import { usePracticeQuestions } from "@/queries/practice.ts";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card.tsx";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button.tsx";
 import { useCurrentUser } from "@/queries/user";
 import AuthError from "@/components/auth-error";
-import { ShuffleIcon } from "lucide-react";
+import { Loader2Icon, ShuffleIcon } from "lucide-react";
 
 export const Route = createFileRoute("/practice/")({
   component: Practice,
@@ -29,7 +23,7 @@ function Practice() {
         <div className="font-bold text-5xl">Practice Problems</div>
         <div className="questions-list rounded-lg outline outline-muted p-6 flex flex-col overflow-y-scroll max-h-[60vh] w-full gap-4">
           {isQuestionsLoading ? (
-            "Loading questions..."
+            <Loader2Icon className="animate-spin" />
           ) : questions ? (
             questions.map((question, index) => {
               return (
@@ -55,40 +49,8 @@ function Practice() {
               );
             })
           ) : (
-            <>ok...</>
+            <Loader2Icon className="animate-spin" />
           )}
-          {/* <Card className={"w-[380px] min-h-[400px]"}>
-            <CardHeader>
-              <CardTitle>Unsolved Questions</CardTitle>
-              <CardContent className="h-96 overflow-y-scroll">
-                {isQuestionsLoading
-                  ? "Loading questions..."
-                  : questions
-                    ? questions.length > 0
-                      ? questions.map((question) => (
-                          <div
-                            key={question.id}
-                            className={"flex items-center justify-between"}
-                          >
-                            <div>{question.title}</div>
-                            <Link
-                              to="/practice/$id"
-                              params={{
-                                id: question.id.toString(),
-                              }}
-                            >
-                              <Button variant={"ghost"}>Solve</Button>
-                            </Link>
-                          </div>
-                        ))
-                      : "No questions found"
-                    : "Error while fetching questions"}
-              </CardContent>
-            </CardHeader>
-            <CardContent
-              className={"flex items-center justify-center"}
-            ></CardContent>
-          </Card> */}
         </div>
         <Link
           to={"/practice/$id"}

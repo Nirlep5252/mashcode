@@ -144,11 +144,6 @@ const defaultMatchLayoutJson: IJsonModel = {
                 name: "Test Cases",
                 component: "TestCases",
               },
-              {
-                type: "tab",
-                name: "Submissions",
-                component: "Submissions",
-              },
             ],
           },
         ],

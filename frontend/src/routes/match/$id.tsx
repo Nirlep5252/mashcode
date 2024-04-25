@@ -8,6 +8,7 @@ import { useMatch } from "@/queries/match";
 import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { Layout, Model, TabNode } from "flexlayout-react";
+import { Loader2Icon } from "lucide-react";
 import useWebSocket from "react-use-websocket";
 import { toast } from "sonner";
 
@@ -96,7 +97,7 @@ function Match() {
     useDynamicDashboardLayout();
 
   if (isMatchLoading) {
-    return <>Loading...</>;
+    return <Loader2Icon className="aniamte-spin" />;
   }
 
   if (isMatchError) {

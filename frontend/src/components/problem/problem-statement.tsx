@@ -3,6 +3,7 @@ import parse, { HTMLReactParserOptions } from "html-react-parser";
 import React from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { Loader2Icon } from "lucide-react";
 
 interface Props {
   problemId: string;
@@ -46,7 +47,7 @@ export const ProblemStatement: React.FC<Props> = ({ problemId }) => {
     });
 
   if (isQuestionDetailsLoading) {
-    return <>Loading...</>;
+    return <Loader2Icon className="animate-spin" />;
   }
 
   if (!questionDetails) {

@@ -2,7 +2,6 @@ import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import React, { useEffect, useMemo } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
@@ -33,7 +32,6 @@ const RootComponent: React.FC = () => {
           <Navbar />
           <Outlet />
           <Toaster />
-          <TanStackRouterDevtools />
         </div>
       </QueryClientProvider>
     </ThemeProvider>
