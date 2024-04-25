@@ -10,7 +10,6 @@ def get_elo_rating_change(
 ) -> int:
     expected = 1 / (1 + 10 ** ((player2_rating - player1_rating) / const_c))
     if winner == MatchWinner.PLAYER1:
-        return round(const_k * (1 - expected))
-    elif winner == MatchWinner.PLAYER2:
         return round(const_k * (0 - expected))
-    return round(const_k * (0.5 - expected))
+    else:
+        return round(const_k * (1 - expected))
