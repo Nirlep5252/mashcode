@@ -7,12 +7,14 @@
 
    ```
    HOME_URL="http://localhost:5173"
+   API_URL="http://localhost:5173/api"
    DB_URL=""
+   JUDGE0_URL="http://localhost:2358"
    GITHUB_CLIENT_ID=""
    GITHUB_CLIENT_SECRET=""
    ```
 
-5. Run `uvicorn main:app --reload --root-path /api`.
+5. Run `uvicorn main:app --reload`.
 
 ## Suggestions
 
