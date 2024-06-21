@@ -11,7 +11,7 @@ https://github.com/Nirlep5252/mashcode/assets/70529587/66958f6d-43ce-40fa-85d1-2
 - Rating-based LIVE matchmaking.
 - Supports 30 languages.
 - Dynamic flex layout during match and practice sessions.
-- CSES set 300 questions already available for practice.
+- CSES set 300 questions that are already available for practice.
 
 ## Upcoming features:
 
@@ -22,3 +22,6 @@ https://github.com/Nirlep5252/mashcode/assets/70529587/66958f6d-43ce-40fa-85d1-2
 - Private unrated matches between friends.
 - Multiple problems per match.
 - Interactive problems.
+- Time limit per match.
+- Seasons and ranks (for rating).
+- Difficulty of questions.
