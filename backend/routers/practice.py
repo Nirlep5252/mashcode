@@ -12,7 +12,7 @@ router = APIRouter(prefix="/practice_questions")
 @router.get("/question_list")
 async def get_question_list():
     try:
-        with open("routers/problem_details.json") as f:
+        with open("db/problem_details.json") as f:
             problem_details = json.load(f)
 
         problem_id_and_title: list[dict[str, object]] = []
@@ -31,7 +31,7 @@ async def get_question_list():
 @router.get("/get_question/{question_id}")
 async def get_question(question_id: int):
     try:
-        with open("routers/problem_details.json") as f:
+        with open("db/problem_details.json") as f:
             problem_details = json.load(f)
 
         problem_details = problem_details[str(question_id)]

@@ -8,7 +8,7 @@ assert JUDGE0_URL is not None, "Please set `JUDGE0_URL` in the `.env` file."
 
 
 async def get_token_run(language_id: int, problem_id: int, source_code: str):
-    problem_details_data = json.load(open("routers/problem_details.json"))
+    problem_details_data = json.load(open("db/problem_details.json"))
     async with aiohttp.ClientSession() as session:
         submission_data = {
             "language_id": language_id,

@@ -15,7 +15,7 @@ def get_questions_url():
             for problem in problem_list
         }
 
-        with open("routers/problem_urls.json", "w") as f:
+        with open("db/problem_urls.json", "w") as f:
             json.dump(problem_name_and_url, f)
 
         return problem_name_and_url
@@ -112,7 +112,7 @@ def get_problem_details(url):
 def get_problem_details_json():
     try:
         cses_url = "https://cses.fi"
-        with open("routers/problem_urls.json") as f:
+        with open("db/problem_urls.json") as f:
             urls = json.load(f)
         problem_id = 1
         problem_dict = {}
@@ -126,7 +126,7 @@ def get_problem_details_json():
             #     break
 
         # print(problem_dict)
-        with open("routers/problem_details.json", "w") as f:
+        with open("db/problem_details.json", "w") as f:
             json.dump(problem_dict, f)
         return None
     except Exception as e:
@@ -138,7 +138,7 @@ get_problem_details_json()
 
 
 def test_problem_id_and_title():
-    with open("routers/problem_details.json") as f:
+    with open("db/problem_details.json") as f:
         problem_details = json.load(f)
 
     problem_id_and_title = {}

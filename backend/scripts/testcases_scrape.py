@@ -90,7 +90,7 @@ for question in questions:
 
     question_id = None
 
-    with open("routers/problem_details.json", "r") as f:
+    with open("db/problem_details.json", "r") as f:
         problem_details_data = json.load(f)
         for key in problem_details_data:
             if problem_details_data[key]["problem_title"] == questions[question]:
