@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     devenv.url = "github:cachix/devenv";
     devenv.inputs.nixpkgs.follows = "nixpkgs";
@@ -80,11 +80,11 @@
 
                     # Judge0 dockers
                     echo "🦈 Initializing judge0 docker containers..."
-                    docker compose up -d db redis
                     docker compose up -d
 
                     echo "✨ Development environment is ready"
                     echo "🚀 Run 'devenv up' to start the services"
+                    echo ""
                   '';
                 }
               ];
