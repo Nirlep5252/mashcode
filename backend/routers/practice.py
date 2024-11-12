@@ -1,13 +1,15 @@
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
+from lib.database import get_db
 
 from lib.judge0 import get_submission_verdict
+from lib.crud.practice import get_submission_history
 
 router = APIRouter(prefix="/practice_questions")
-
 
 @router.get("/question_list")
 async def get_question_list():
@@ -56,3 +58,13 @@ async def get_verdict(problem_id: int, submission: Submission):
         source_code=submission.source_code,
         run=submission.run,
     )
+
+@router.get("/practice_history/{user_id}")
+async def get_practice_history(user_id: int, db: Session = Depends(get_db)):
+    if user_id == "":
+        return HTTPException(status_code=400, detail="User id cannot be empty")
+    submissions = get_submission_history(db=db, user_id=user_id)
+
+    if (submissions == None):
+        return {"error": "No submissions found for the user"}
+    return submissions

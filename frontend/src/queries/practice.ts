@@ -53,3 +53,22 @@ export const usePracticeQuestion = createQuery({
     return (await response.json()) as PracticeQuestionDetails;
   },
 });
+
+export const usePracticeHistory = createQuery({
+  queryKey: ["practiceHistory"],
+  fetcher: async (args: { id: string }) => {
+    const ghToken = getGithubAccessToken();
+    const response = await fetch(
+      `${API_URL}/practice_questions/practice_history/${args.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${ghToken}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch practice history");
+    }
+    return (await response.json()) as PracticeQuestion[];
+  },
+});
