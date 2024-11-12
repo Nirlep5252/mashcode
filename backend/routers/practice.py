@@ -1,13 +1,14 @@
 import json
+from pprint import pprint
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from fastapi.exceptions import HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from lib.database import get_db
 
 from lib.judge0 import get_submission_verdict
-from lib.crud.practice import get_submission_history
+from lib.crud.practice import get_submission_history, create_submission, create_verdict
 
 router = APIRouter(prefix="/practice_questions")
 
@@ -49,15 +50,45 @@ class Submission(BaseModel):
 
 
 @router.post("/submission/{problem_id}")
-async def get_verdict(problem_id: int, submission: Submission):
+async def get_verdict(request: Request, problem_id: int, submission: Submission, db: Session = Depends(get_db)):
+    user_id = request.state.user["id"]
+
     if submission.source_code == "":
         return HTTPException(status_code=400, detail="Source code cannot be empty")
-    return await get_submission_verdict(
+    verdicts = await get_submission_verdict(
         problem_id=problem_id,
         language_id=submission.language_id,
         source_code=submission.source_code,
         run=submission.run,
     )
+
+    submission_id = await create_submission(
+        db=db,
+        source_code=submission.source_code,
+        problem_id=problem_id,
+        language_id=submission.language_id,
+        user_id=user_id
+    )
+
+    for key, value in verdicts.items():
+        testcase = int(key.split()[1])
+        memory = value.get("memory")
+        time = float(value.get("time"))
+        output = value.get("stdout")
+
+        status = value["status"]
+        verdict = int(status["id"])
+
+        await create_verdict(
+            db=db,
+            submission_id=submission_id,
+            testcase=testcase,
+            memory=memory,
+            time=time,
+            verdict=verdict,
+            output=output
+        )
+
 
 @router.get("/practice_history/{user_id}")
 async def get_practice_history(user_id: int, db: Session = Depends(get_db)):

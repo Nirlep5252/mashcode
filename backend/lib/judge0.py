@@ -85,11 +85,9 @@ async def get_submission_verdict(
             token = await get_token_submit(
                 language_id, problem_id, source_code, testcase
             )
-            # print("Token: ", token)
             token = token["token"]
             async with session.get(f"{JUDGE0_URL}/submissions/{token}") as response:
                 data = await response.json()
-                # verdict = data["status"]["description"]
                 verdicts[f"Testcase {testcase}"] = data
-        # print("Verdicts: ", verdicts)
+
         return verdicts
