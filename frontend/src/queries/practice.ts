@@ -17,7 +17,7 @@ export const usePracticeQuestions = createQuery({
         headers: {
           Authorization: `Bearer ${ghToken}`,
         },
-      },
+      }
     );
     if (!response.ok) {
       throw new Error("Failed to fetch practice questions");
@@ -45,7 +45,7 @@ export const usePracticeQuestion = createQuery({
         headers: {
           Authorization: `Bearer ${ghToken}`,
         },
-      },
+      }
     );
     if (!response.ok) {
       throw new Error("Failed to fetch practice question details");
