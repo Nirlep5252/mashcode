@@ -15,7 +15,8 @@ https://github.com/Nirlep5252/mashcode/assets/70529587/66958f6d-43ce-40fa-85d1-2
 
 ## Upcoming features:
 
-- A public profile page.
+<!-- - A public profile page. -->
+
 - A problemsetter dashboard.
 - Viewing previous submissions and code.
 - Friends.
