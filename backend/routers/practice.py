@@ -61,33 +61,35 @@ async def get_verdict(request: Request, problem_id: int, submission: Submission,
         source_code=submission.source_code,
         run=submission.run,
     )
-
-    submission_id = await create_submission(
-        db=db,
-        source_code=submission.source_code,
-        problem_id=problem_id,
-        language_id=submission.language_id,
-        user_id=user_id
-    )
-
-    for key, value in verdicts.items():
-        testcase = int(key.split()[1])
-        memory = value.get("memory")
-        time = float(value.get("time"))
-        output = value.get("stdout")
-
-        status = value["status"]
-        verdict = int(status["id"])
-
-        await create_verdict(
+    if not submission.run:
+        submission_id = await create_submission(
             db=db,
-            submission_id=submission_id,
-            testcase=testcase,
-            memory=memory,
-            time=time,
-            verdict=verdict,
-            output=output
+            source_code=submission.source_code,
+            problem_id=problem_id,
+            language_id=submission.language_id,
+            user_id=user_id
         )
+
+        for key, value in verdicts.items():
+            testcase = int(key.split()[1])
+            memory = value.get("memory") or 0
+            time = float(value.get("time") or "0")
+            output = value.get("stdout") or ""
+
+            status = value["status"]
+            verdict = int(status["id"])
+
+            await create_verdict(
+                db=db,
+                submission_id=submission_id,
+                testcase=testcase,
+                memory=memory,
+                time=time,
+                verdict=verdict,
+                output=output
+            )
+
+    return verdicts
 
 
 @router.get("/practice_history/{user_id}")

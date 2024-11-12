@@ -2,12 +2,37 @@ from sqlalchemy.orm import Session
 from lib.models import Submission, SubmissionVerdict, Verdict
 
 def get_submission_history(db: Session, user_id: int):
-    result = db.query(Submission).filter(Submission.user_id == user_id).order_by(Submission.time.desc()).all()
-
+    result = submissions = db.query(Submission).filter(Submission.user_id == user_id).order_by(Submission.time.desc()).all()
     all_verdict = db.query(SubmissionVerdict).filter(SubmissionVerdict.submission_id.in_([i.id for i in result])).all()
-    print(all_verdict)
 
-    return result
+    all_submissions = []
+
+    for submission in submissions:
+        submission_verdicts = [verdict for verdict in all_verdict if verdict.submission_id == submission.id]
+
+        time = []
+        memory = []
+        final_verdict = "Accepted"
+
+        for verdict in submission_verdicts:
+            time.append(verdict.execution_time)
+            memory.append(verdict.memory_used)
+
+            if (final_verdict == "Accepted" and verdict.verdict != Verdict.Accepted):
+                final_verdict = Verdict(verdict.verdict).name
+
+        final_memory = sum(memory) / len(memory) if memory else 0
+        final_time = sum(time) / len(time) if time else 0
+
+        all_submissions.append({
+            "problem_id": submission.problem_id,
+            "time": final_time,
+            "memory": final_memory,
+            "verdict": final_verdict
+        })
+
+    return all_submissions
+
 
 async def create_submission(db: Session, source_code: str, problem_id: int, language_id: int, user_id: int):
     new_submission = Submission(

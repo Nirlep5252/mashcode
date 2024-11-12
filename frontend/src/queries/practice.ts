@@ -54,6 +54,13 @@ export const usePracticeQuestion = createQuery({
   },
 });
 
+interface PracticeHistory {
+  problem_id: number;
+  time: number;
+  memory: number;
+  verdict: string;
+}
+
 export const usePracticeHistory = createQuery({
   queryKey: ["practiceHistory"],
   fetcher: async (args: { id: string }) => {
@@ -69,6 +76,6 @@ export const usePracticeHistory = createQuery({
     if (!response.ok) {
       throw new Error("Failed to fetch practice history");
     }
-    return (await response.json()) as PracticeQuestion[];
+    return (await response.json()) as PracticeHistory[];
   },
 });
