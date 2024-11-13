@@ -254,14 +254,13 @@ async def match_ws(websocket: WebSocket, match_id: int, db: Session = Depends(ge
                         break
 
                 if win:
-                    rating_delta = get_elo_rating_change(
+                    rating_delta = -1 * get_elo_rating_change(
                         match.player1.rating,
                         match.player2.rating,
                         MatchWinner.PLAYER1
                         if match.player1_id == user_github_data["id"]
                         else MatchWinner.PLAYER2,
                     )
-                    # print(rating_delta, match.player1_id, user_github_data["id"], match.player1_id == user_github_data["id"])
                     end_match(db, user_github_data["id"], match_id, rating_delta)
 
                     user = get_user(db, user_github_data["id"])
