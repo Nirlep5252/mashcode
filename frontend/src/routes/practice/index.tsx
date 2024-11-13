@@ -1,6 +1,6 @@
 import { usePracticeQuestions } from "@/queries/practice.ts";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/queries/user";
 import AuthError from "@/components/auth-error";
 import { Loader2Icon, ShuffleIcon } from "lucide-react";

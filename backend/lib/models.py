@@ -62,13 +62,23 @@ class Submission(Base):
     user = relationship("User", foreign_keys=[user_id])
 
 
+class Verdict(enum.Enum):
+    InQueue = 1
+    Processing = 2
+    Accepted = 3
+    WrongAnswer = 4
+    TLE = 5
+    CompilationError = 6
+    RuntimeErrorSIGSEGV = 7
+
+
 class SubmissionVerdict(Base):
     __tablename__ = "submission_verdict"
 
     id = Column(
         Integer, autoincrement=True, primary_key=True, index=True, nullable=False
     )
-    verdict = Column(Integer, nullable=False)
+    verdict: Verdict = Column(Enum(Verdict), nullable=False)
     test_case = Column(Integer, nullable=False)
 
     submission_id = Column(Integer, ForeignKey("submission.id"))
@@ -77,5 +87,5 @@ class SubmissionVerdict(Base):
     execution_time = Column(Integer, nullable=False)
     memory_used = Column(Integer, nullable=False)
 
-    output = Column(String, nullable=False)
+    output = Column(String, nullable=True)
     is_pretest = Column(Boolean, nullable=False, default=False)

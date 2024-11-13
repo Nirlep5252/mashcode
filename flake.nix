@@ -69,7 +69,7 @@
                   enterShell = ''
                     # Error handler
                     error_handler() {
-                      echo "💥 An error occured while setting up the environment"
+                      echo "💥 An error occurred while setting up the environment"
                       echo "🔥 Please check the logs above for more information"
                       echo "🚨 Activate the devenv shell again after fixing the error"
                       exit 1
