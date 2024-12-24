@@ -1,10 +1,6 @@
-import { useState } from "react";
-
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-
-import CodeMirror from "@uiw/react-codemirror";
-import * as themes from "@uiw/codemirror-themes-all";
-import { loadLanguage, langs } from "@uiw/codemirror-extensions-langs";
+import Editor from "@monaco-editor/react";
 import { Loader2Icon, SettingsIcon } from "lucide-react";
 import { useSourceCodeStore } from "@/stores/source-code";
 import { useCodeEditorSettings } from "@/stores/code-editor-settings-store";
@@ -25,74 +21,44 @@ import {
 } from "@/components/ui/select";
 import { judge0Languages } from "@/lib/judge0/languages";
 
-loadLanguage("c");
-loadLanguage("cpp");
-loadLanguage("clojure");
-loadLanguage("csharp");
-loadLanguage("cobol");
-loadLanguage("commonLisp");
-loadLanguage("d");
-loadLanguage("erlang");
-loadLanguage("fortran");
-loadLanguage("go");
-loadLanguage("groovy");
-loadLanguage("haskell");
-loadLanguage("java");
-loadLanguage("javascript");
-loadLanguage("kotlin");
-loadLanguage("lua");
-loadLanguage("objectiveC");
-loadLanguage("octave");
-loadLanguage("pascal");
-loadLanguage("perl");
-loadLanguage("php");
-loadLanguage("python");
-loadLanguage("r");
-loadLanguage("ruby");
-loadLanguage("rust");
-loadLanguage("scala");
-loadLanguage("sql");
-loadLanguage("swift");
-loadLanguage("typescript");
-
-// http://localhost:2358/languages
-const supportedLanguages = {
-  75: langs.c(),
-  76: langs.cpp(),
-  48: langs.c(),
-  52: langs.cpp(),
-  49: langs.c(),
-  53: langs.cpp(),
-  50: langs.c(),
-  54: langs.cpp(),
-  86: langs.clojure(),
-  51: langs.csharp(),
-  77: langs.cobol(),
-  55: langs.commonLisp(),
-  56: langs.d(),
-  58: langs.erlang(),
-  59: langs.fortran(),
-  60: langs.go(),
-  88: langs.groovy(),
-  61: langs.haskell(),
-  62: langs.java(),
-  63: langs.javascript(),
-  78: langs.kotlin(),
-  64: langs.lua(),
-  79: langs.objectiveC(),
-  66: langs.octave(),
-  67: langs.pascal(),
-  85: langs.perl(),
-  68: langs.php(),
-  70: langs.python(),
-  71: langs.python(),
-  80: langs.r(),
-  72: langs.ruby(),
-  73: langs.rust(),
-  81: langs.scala(),
-  82: langs.sql(),
-  83: langs.swift(),
-  74: langs.typescript(),
+// Monaco language mapping for Judge0 language IDs
+const languageMap: { [key: number]: string } = {
+  75: "c",
+  76: "cpp",
+  48: "c",
+  52: "cpp",
+  49: "c",
+  53: "cpp",
+  50: "c",
+  54: "cpp",
+  86: "clojure",
+  51: "csharp",
+  77: "cobol",
+  55: "lisp",
+  56: "d",
+  58: "erlang",
+  59: "fortran",
+  60: "go",
+  88: "groovy",
+  61: "haskell",
+  62: "java",
+  63: "javascript",
+  78: "kotlin",
+  64: "lua",
+  79: "objective-c",
+  66: "matlab",
+  67: "pascal",
+  85: "perl",
+  68: "php",
+  70: "python",
+  71: "python",
+  80: "r",
+  72: "ruby",
+  73: "rust",
+  81: "scala",
+  82: "sql",
+  83: "swift",
+  74: "typescript",
 };
 
 interface Props {
@@ -104,12 +70,33 @@ interface Props {
 }
 
 export const CodeEditor: React.FC<Props> = (props) => {
-  const { language, setLanguage, theme } = useCodeEditorSettings();
+  const { language, setLanguage, theme, vimMode } = useCodeEditorSettings();
+  const editorRef = useRef<any>(null);
+  const statusBarRef = useRef<HTMLDivElement>(null);
   const { sourceCodeMap, setSourceCode } = useSourceCodeStore();
   const sourceCode = sourceCodeMap?.[props.codeId] || "";
 
+  const [currentCode, setCurrentCode] = useState<string>(sourceCode);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (editorRef.current && vimMode) {
+      window.require.config({
+        paths: {
+          "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
+        },
+      });
+
+      window.require(["monaco-vim"], function (MonacoVim: any) {
+        const vimMode = MonacoVim.initVimMode(
+          editorRef.current,
+          statusBarRef.current
+        );
+        return () => vimMode?.dispose();
+      });
+    }
+  }, [vimMode]);
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
@@ -148,7 +135,7 @@ export const CodeEditor: React.FC<Props> = (props) => {
           variant="outline"
           onClick={async () => {
             setIsRunning(true);
-            await props.onRun(sourceCode, parseInt(language));
+            await props.onRun(currentCode, parseInt(language));
             setIsRunning(false);
           }}
         >
@@ -159,7 +146,7 @@ export const CodeEditor: React.FC<Props> = (props) => {
           variant="default"
           onClick={async () => {
             setIsSubmitting(true);
-            await props.onSubmit(sourceCode, parseInt(language));
+            await props.onSubmit(currentCode, parseInt(language));
             setIsSubmitting(false);
           }}
         >
@@ -167,27 +154,58 @@ export const CodeEditor: React.FC<Props> = (props) => {
         </Button>
       </div>
 
-      <CodeMirror
+      <Editor
         value={sourceCode}
-        onChange={(newValue) => setSourceCode(props.codeId, newValue)}
-        // @ts-expect-error stfu bitch i know what i am doing
-        theme={themes[theme]}
-        // @ts-expect-error - this is stupid but it works, fuck you typescript
-        extensions={[supportedLanguages[parseInt(language)]]}
-        basicSetup={{
-          autocompletion: true,
-          foldGutter: true,
+        onChange={(value) => {
+          setCurrentCode(value || "");
+          setSourceCode(props.codeId, value || "");
+        }}
+        onMount={(editor) => {
+          editorRef.current = editor;
+        }}
+        theme={theme === "dark" ? "vs-dark" : "light"}
+        language={languageMap[parseInt(language)] || "plaintext"}
+        options={{
+          minimap: { enabled: false },
+          fontSize: 20,
+          automaticLayout: true,
           tabSize: 4,
+          scrollBeyondLastLine: false,
+          quickSuggestions: {
+            other: true,
+            comments: true,
+            strings: true,
+          },
+          suggestOnTriggerCharacters: true,
+          acceptSuggestionOnEnter: "on",
+          tabCompletion: "on",
+          wordBasedSuggestions: "currentDocument",
+          parameterHints: { enabled: true },
+          suggest: {
+            showKeywords: true,
+            showSnippets: true,
+            showClasses: true,
+            showFunctions: true,
+            showVariables: true,
+            showModules: true,
+            showIcons: true,
+            showFiles: true,
+          },
+          snippetSuggestions: "top",
+          hover: { enabled: true },
+          formatOnPaste: true,
+          formatOnType: true,
         }}
-        style={{
-          width: "100%",
-          height: "100%",
-          overflow: "scroll",
-          fontSize: "20px",
-        }}
-        placeholder={"Please enter the code."}
-        minHeight="100%"
+        height="100%"
+        width="100%"
       />
+
+      {vimMode && (
+        <div
+          ref={statusBarRef}
+          className="absolute bottom-16 left-2 bg-background p-1 rounded text-sm font-mono"
+        />
+      )}
     </div>
   );
 };

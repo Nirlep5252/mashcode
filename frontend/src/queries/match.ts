@@ -46,7 +46,7 @@ export const useLeaderboard = createQuery({
     });
     if (!response.ok)
       throw new Error(
-        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`
+        `Fetch to fetch leaderboard because of error ${response.status} ${response.statusText}`,
       );
     const users = (await response.json()) as DatabaseUser[];
     const githubUsers: (GithubUser & {

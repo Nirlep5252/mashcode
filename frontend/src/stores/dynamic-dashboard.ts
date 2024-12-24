@@ -169,6 +169,6 @@ export const useDynamicDashboardLayout = create<State & Actions>()(
     {
       name: "dynamic-dashboard-layout",
       version: 2,
-    }
-  )
+    },
+  ),
 );

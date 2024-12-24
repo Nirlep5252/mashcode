@@ -49,7 +49,7 @@ export const PracticeHistory = ({ user_id }: { user_id: string }) => {
                             {
                               questions?.find(
                                 (question) =>
-                                  Number(question.id) === problem.problem_id
+                                  Number(question.id) === problem.problem_id,
                               )?.title
                             }
                           </span>

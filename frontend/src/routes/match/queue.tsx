@@ -24,7 +24,7 @@ function Queue() {
             break;
         }
       },
-    }
+    },
   );
 
   return (
