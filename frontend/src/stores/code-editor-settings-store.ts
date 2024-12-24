@@ -7,6 +7,8 @@ interface CodeEditorSettingsStore {
   setLanguage: (language: string) => void;
   theme: MonacoTheme;
   setTheme: (theme: MonacoTheme) => void;
+  vimMode: boolean;
+  setVimMode: (enabled: boolean) => void;
 }
 
 export const useCodeEditorSettings = create<CodeEditorSettingsStore>((set) => ({
@@ -14,4 +16,6 @@ export const useCodeEditorSettings = create<CodeEditorSettingsStore>((set) => ({
   setLanguage: (language) => set({ language }),
   theme: "dark",
   setTheme: (theme) => set({ theme }),
+  vimMode: false,
+  setVimMode: (enabled) => set({ vimMode: enabled }),
 }));

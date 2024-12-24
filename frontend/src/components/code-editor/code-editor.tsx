@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Editor from "@monaco-editor/react";
 import { Loader2Icon, SettingsIcon } from "lucide-react";
@@ -70,13 +70,33 @@ interface Props {
 }
 
 export const CodeEditor: React.FC<Props> = (props) => {
-  const { language, setLanguage, theme } = useCodeEditorSettings();
+  const { language, setLanguage, theme, vimMode } = useCodeEditorSettings();
+  const editorRef = useRef<any>(null);
+  const statusBarRef = useRef<HTMLDivElement>(null);
   const { sourceCodeMap, setSourceCode } = useSourceCodeStore();
   const sourceCode = sourceCodeMap?.[props.codeId] || "";
 
   const [currentCode, setCurrentCode] = useState<string>(sourceCode);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (editorRef.current && vimMode) {
+      window.require.config({
+        paths: {
+          "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
+        },
+      });
+
+      window.require(["monaco-vim"], function (MonacoVim: any) {
+        const vimMode = MonacoVim.initVimMode(
+          editorRef.current,
+          statusBarRef.current
+        );
+        return () => vimMode?.dispose();
+      });
+    }
+  }, [vimMode]);
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
@@ -140,6 +160,9 @@ export const CodeEditor: React.FC<Props> = (props) => {
           setCurrentCode(value || "");
           setSourceCode(props.codeId, value || "");
         }}
+        onMount={(editor) => {
+          editorRef.current = editor;
+        }}
         theme={theme === "dark" ? "vs-dark" : "light"}
         language={languageMap[parseInt(language)] || "plaintext"}
         options={{
@@ -176,6 +199,13 @@ export const CodeEditor: React.FC<Props> = (props) => {
         height="100%"
         width="100%"
       />
+
+      {vimMode && (
+        <div
+          ref={statusBarRef}
+          className="absolute bottom-16 left-2 bg-background p-1 rounded text-sm font-mono"
+        />
+      )}
     </div>
   );
 };

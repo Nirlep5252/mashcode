@@ -10,6 +10,7 @@ import { useCodeEditorSettings } from "@/stores/code-editor-settings-store";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
+import { Switch } from "@/components/ui/switch";
 
 const editorThemes = [
   { label: "Light", value: "light" },
@@ -21,7 +22,7 @@ const editorThemes = [
 interface Props {}
 
 export const CodeEditorSettings: React.FC<Props> = () => {
-  const { theme, setTheme } = useCodeEditorSettings();
+  const { theme, setTheme, vimMode, setVimMode } = useCodeEditorSettings();
   const { resetMatchLayout, resetPracticeLayout } = useDynamicDashboardLayout();
 
   return (
@@ -43,6 +44,11 @@ export const CodeEditorSettings: React.FC<Props> = () => {
             </SelectGroup>
           </SelectContent>
         </Select>
+      </Label>
+
+      <Label className="flex items-center justify-between gap-2">
+        <div className="ml-1">Vim Mode</div>
+        <Switch checked={vimMode} onCheckedChange={setVimMode} />
       </Label>
 
       <Label className="flex flex-col gap-2">
