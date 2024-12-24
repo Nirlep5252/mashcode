@@ -85,26 +85,30 @@ export const CodeEditor: React.FC<Props> = (props) => {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (editorRef.current) {
-      if (vimMode) {
-        window.require.config({
-          paths: {
-            "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
-          },
-        });
+  const [editor, setEditor] =
+    useState<monaco.editor.IStandaloneCodeEditor | null>(null);
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        window.require(["monaco-vim"], function (MonacoVim: any) {
-          vimModeRef.current = MonacoVim.initVimMode(
-            editorRef.current,
-            statusBarRef.current
-          );
-        });
-      } else if (vimModeRef.current) {
-        vimModeRef.current.dispose();
-        vimModeRef.current = null;
-      }
+  // Handle vim mode when editor or vimMode changes
+  useEffect(() => {
+    if (!editor) return;
+
+    if (vimMode) {
+      window.require.config({
+        paths: {
+          "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
+        },
+      });
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      window.require(["monaco-vim"], function (MonacoVim: any) {
+        vimModeRef.current = MonacoVim.initVimMode(
+          editor,
+          statusBarRef.current
+        );
+      });
+    } else if (vimModeRef.current) {
+      vimModeRef.current.dispose();
+      vimModeRef.current = null;
     }
 
     return () => {
@@ -113,7 +117,13 @@ export const CodeEditor: React.FC<Props> = (props) => {
         vimModeRef.current = null;
       }
     };
-  }, [vimMode, editorRef.current]); // Run when vimMode changes or editor is mounted
+  }, [editor, vimMode]);
+
+  // Update editor state on mount
+  const handleEditorMount = (editor: monaco.editor.IStandaloneCodeEditor) => {
+    editorRef.current = editor;
+    setEditor(editor);
+  };
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
@@ -177,9 +187,7 @@ export const CodeEditor: React.FC<Props> = (props) => {
           setCurrentCode(value || "");
           setSourceCode(props.codeId, value || "");
         }}
-        onMount={(editor) => {
-          editorRef.current = editor;
-        }}
+        onMount={handleEditorMount}
         theme={theme === "dark" ? "vs-dark" : "light"}
         language={languageMap[parseInt(language)] || "plaintext"}
         options={{
