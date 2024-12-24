@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Editor from "@monaco-editor/react";
+import * as monaco from "monaco-editor";
 import { Loader2Icon, SettingsIcon } from "lucide-react";
 import { useSourceCodeStore } from "@/stores/source-code";
 import { useCodeEditorSettings } from "@/stores/code-editor-settings-store";
@@ -70,8 +71,12 @@ interface Props {
 }
 
 export const CodeEditor: React.FC<Props> = (props) => {
-  const { language, setLanguage, theme, vimMode } = useCodeEditorSettings();
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+
+  // Add state to track vim mode instance
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const vimModeRef = useRef<any>(null);
+  const { vimMode, language, setLanguage, theme } = useCodeEditorSettings();
   const statusBarRef = useRef<HTMLDivElement>(null);
   const { sourceCodeMap, setSourceCode } = useSourceCodeStore();
   const sourceCode = sourceCodeMap?.[props.codeId] || "";
@@ -81,22 +86,34 @@ export const CodeEditor: React.FC<Props> = (props) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
-    if (editorRef.current && vimMode) {
-      window.require.config({
-        paths: {
-          "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
-        },
-      });
+    if (editorRef.current) {
+      if (vimMode) {
+        window.require.config({
+          paths: {
+            "monaco-vim": "https://unpkg.com/monaco-vim/dist/monaco-vim",
+          },
+        });
 
-      window.require(["monaco-vim"], function (MonacoVim: any) {
-        const vimMode = MonacoVim.initVimMode(
-          editorRef.current,
-          statusBarRef.current
-        );
-        return () => vimMode?.dispose();
-      });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        window.require(["monaco-vim"], function (MonacoVim: any) {
+          vimModeRef.current = MonacoVim.initVimMode(
+            editorRef.current,
+            statusBarRef.current
+          );
+        });
+      } else if (vimModeRef.current) {
+        vimModeRef.current.dispose();
+        vimModeRef.current = null;
+      }
     }
-  }, [vimMode]);
+
+    return () => {
+      if (vimModeRef.current) {
+        vimModeRef.current.dispose();
+        vimModeRef.current = null;
+      }
+    };
+  }, [vimMode, editorRef.current]); // Run when vimMode changes or editor is mounted
 
   return (
     <div className="flex flex-col h-full items-center justify-center">

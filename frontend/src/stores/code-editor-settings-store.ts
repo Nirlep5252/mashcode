@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type MonacoTheme = "light" | "dark" | "hc-black" | "hc-light";
 
@@ -11,11 +12,18 @@ interface CodeEditorSettingsStore {
   setVimMode: (enabled: boolean) => void;
 }
 
-export const useCodeEditorSettings = create<CodeEditorSettingsStore>((set) => ({
-  language: "71",
-  setLanguage: (language) => set({ language }),
-  theme: "dark",
-  setTheme: (theme) => set({ theme }),
-  vimMode: false,
-  setVimMode: (enabled) => set({ vimMode: enabled }),
-}));
+export const useCodeEditorSettings = create<CodeEditorSettingsStore>()(
+  persist(
+    (set) => ({
+      language: "71",
+      setLanguage: (language) => set({ language }),
+      theme: "dark",
+      setTheme: (theme) => set({ theme }),
+      vimMode: false,
+      setVimMode: (enabled) => set({ vimMode: enabled }),
+    }),
+    {
+      name: "code-editor-settings",
+    }
+  )
+);
