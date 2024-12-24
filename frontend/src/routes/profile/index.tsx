@@ -2,6 +2,7 @@ import { MatchHistoryList } from "@/components/match/match-history/match-history
 import { PracticeHistory } from "@/components/practice/practice-history";
 import { useCurrentUser } from "@/queries/user";
 import { createFileRoute } from "@tanstack/react-router";
+import { format } from "date-fns";
 import { Loader2Icon } from "lucide-react";
 import { toast } from "sonner";
 
@@ -10,6 +11,7 @@ export const Route = createFileRoute("/profile/")({
 });
 
 function Profile() {
+  // TODO: replace this with database user so that we can have rating, matches, etc...
   const { data: user, isLoading, error } = useCurrentUser();
 
   if (isLoading) {
@@ -26,29 +28,50 @@ function Profile() {
   }
 
   return (
-    <div className={"w-full h-screen flex items-center justify-around"}>
-      <div className="flex flex-col gap-2 w-full justify-center h-screen max-h-[70vh]">
-        <div className="flex w-full h-1/4">
-          <div className="flex gap-10">
+    <div className="container mx-auto py-6 px-4 mt-16">
+      <div className="flex flex-col gap-6 max-w-7xl mx-auto">
+        {/* Profile Header */}
+        <div className="flex items-center gap-6 bg-card p-4 rounded-lg shadow-sm">
+          <div className="flex gap-4 items-center">
             {user?.avatar_url && (
-              <div className="flex mt-4">
-                <img
-                  src={user.avatar_url}
-                  alt={`${user.login}'s avatar`}
-                  className="w-32 h-32 rounded-lg"
-                />
-              </div>
+              <img
+                src={user.avatar_url}
+                alt={`${user.login}'s avatar`}
+                className="w-16 h-16 rounded-lg object-cover"
+              />
             )}
-            <h1 className="pt-5 text-2xl text-center font-semibold">
-              {user?.login || "No username"}
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-bold">
+                {user?.login || "No username"}
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Joined {format(new Date(user?.created_at || ""), "MMMM yyyy")}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-6 ml-auto">
+            <div className="text-center">
+              <p className="text-2xl font-bold">{user?.rating || 1000}</p>
+              <p className="text-sm text-muted-foreground">Rating</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-bold">{user?.total_matches || 0}</p>
+              <p className="text-sm text-muted-foreground">Matches</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-bold">{user?.total_practice || 0}</p>
+              <p className="text-sm text-muted-foreground">Problems</p>
+            </div>
           </div>
         </div>
-        <div className="flex h-3/4 gap-2">
-          <div className="w-1/2">
+
+        {/* History Tables */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="w-full">
             <MatchHistoryList />
           </div>
-          <div className="w-1/2">
+          <div className="w-full">
             <PracticeHistory user_id={user?.id || ""} />
           </div>
         </div>

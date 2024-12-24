@@ -21,46 +21,9 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { judge0Languages } from "@/lib/judge0/languages";
+import { monacoLanguageMap } from "@/lib/constants";
 
 // Monaco language mapping for Judge0 language IDs
-const languageMap: { [key: number]: string } = {
-  75: "c",
-  76: "cpp",
-  48: "c",
-  52: "cpp",
-  49: "c",
-  53: "cpp",
-  50: "c",
-  54: "cpp",
-  86: "clojure",
-  51: "csharp",
-  77: "cobol",
-  55: "lisp",
-  56: "d",
-  58: "erlang",
-  59: "fortran",
-  60: "go",
-  88: "groovy",
-  61: "haskell",
-  62: "java",
-  63: "javascript",
-  78: "kotlin",
-  64: "lua",
-  79: "objective-c",
-  66: "matlab",
-  67: "pascal",
-  85: "perl",
-  68: "php",
-  70: "python",
-  71: "python",
-  80: "r",
-  72: "ruby",
-  73: "rust",
-  81: "scala",
-  82: "sql",
-  83: "swift",
-  74: "typescript",
-};
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,7 +39,7 @@ export const CodeEditor: React.FC<Props> = (props) => {
   // Add state to track vim mode instance
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const vimModeRef = useRef<any>(null);
-  const { vimMode, language, setLanguage, theme } = useCodeEditorSettings();
+  const { theme, vimMode, language, setLanguage } = useCodeEditorSettings();
   const statusBarRef = useRef<HTMLDivElement>(null);
   const { sourceCodeMap, setSourceCode } = useSourceCodeStore();
   const sourceCode = sourceCodeMap?.[props.codeId] || "";
@@ -103,7 +66,7 @@ export const CodeEditor: React.FC<Props> = (props) => {
       window.require(["monaco-vim"], function (MonacoVim: any) {
         vimModeRef.current = MonacoVim.initVimMode(
           editor,
-          statusBarRef.current
+          statusBarRef.current,
         );
       });
     } else if (vimModeRef.current) {
@@ -188,8 +151,8 @@ export const CodeEditor: React.FC<Props> = (props) => {
           setSourceCode(props.codeId, value || "");
         }}
         onMount={handleEditorMount}
-        theme={theme === "dark" ? "vs-dark" : "light"}
-        language={languageMap[parseInt(language)] || "plaintext"}
+        theme={theme}
+        language={monacoLanguageMap[parseInt(language)] || "plaintext"}
         options={{
           minimap: { enabled: false },
           fontSize: 20,

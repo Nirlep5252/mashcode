@@ -6,7 +6,7 @@ import "flexlayout-react/style/dark.css";
 import { ProblemStatement } from "@/components/problem/problem-statement";
 import { CodeEditor } from "@/components/code-editor/code-editor";
 import { ExampleTestCase } from "@/components/problem/example-test-case";
-import { useSubmission } from "@/mutations/pratice";
+import { useSubmit } from "@/mutations/pratice";
 import { toast } from "sonner";
 import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
 import { judge0SuccessStatusId } from "@/lib/judge0/statuses";
@@ -24,7 +24,7 @@ function PracticePage() {
   const { practiceLayout: layout, setPracticeLayout: setLayout } =
     useDynamicDashboardLayout();
 
-  const mutation = useSubmission();
+  const mutation = useSubmit();
 
   const factory = (node: TabNode) => {
     if (node.getComponent() === "text") {

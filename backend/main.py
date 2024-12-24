@@ -11,6 +11,7 @@ from lib.constants import API_URL, GITHUB_CLIENT_ID, HOME_URL
 from routers.auth import router as auth_router
 from routers.match import router as match_router
 from routers.practice import router as practice_router
+from routers.submission import router as submission_router
 
 database.Base.metadata.create_all(bind=database.engine)
 logging.info("Connected to database")
@@ -22,6 +23,7 @@ app = FastAPI()
 app.include_router(auth_router)
 app.include_router(match_router)
 app.include_router(practice_router)
+app.include_router(submission_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

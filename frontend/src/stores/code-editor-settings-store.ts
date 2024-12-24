@@ -24,6 +24,6 @@ export const useCodeEditorSettings = create<CodeEditorSettingsStore>()(
     }),
     {
       name: "code-editor-settings",
-    }
-  )
+    },
+  ),
 );

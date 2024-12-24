@@ -2,7 +2,7 @@ import { API_URL } from "@/lib/constants";
 import { getGithubAccessToken } from "@/lib/utils";
 import { createMutation } from "react-query-kit";
 
-export const useSubmission = createMutation({
+export const useSubmit = createMutation({
   mutationFn: async (variable: {
     problem_id: number;
     language_id: number;
@@ -11,7 +11,7 @@ export const useSubmission = createMutation({
   }) => {
     const ghToken = getGithubAccessToken();
     const res = await fetch(
-      `${API_URL}/practice_questions/submission/${variable.problem_id}`,
+      `${API_URL}/practice/submit/${variable.problem_id}`,
       {
         method: "POST",
         body: JSON.stringify({

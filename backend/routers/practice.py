@@ -1,5 +1,4 @@
 import json
-from pprint import pprint
 
 from fastapi import APIRouter, Depends, Request
 from fastapi.exceptions import HTTPException
@@ -8,11 +7,13 @@ from sqlalchemy.orm import Session
 from lib.database import get_db
 
 from lib.judge0 import get_submission_verdict
-from lib.crud.practice import get_submission_history, create_submission, create_verdict
+from lib.crud.practice import get_submission_history
+from lib.crud.submission import create_submission, create_verdict
 
-router = APIRouter(prefix="/practice_questions")
+router = APIRouter(prefix="/practice")
 
-@router.get("/question_list")
+
+@router.get("/questions")
 async def get_question_list():
     try:
         with open("db/problem_details.json") as f:
@@ -31,7 +32,7 @@ async def get_question_list():
         return {"error": str(e)}
 
 
-@router.get("/get_question/{question_id}")
+@router.get("/question/{question_id}")
 async def get_question(question_id: int):
     try:
         with open("db/problem_details.json") as f:
@@ -49,8 +50,13 @@ class Submission(BaseModel):
     run: bool
 
 
-@router.post("/submission/{problem_id}")
-async def get_verdict(request: Request, problem_id: int, submission: Submission, db: Session = Depends(get_db)):
+@router.post("/submit/{problem_id}")
+async def get_verdict(
+    request: Request,
+    problem_id: int,
+    submission: Submission,
+    db: Session = Depends(get_db),
+):
     user_id = request.state.user["id"]
 
     if submission.source_code == "":
@@ -67,7 +73,7 @@ async def get_verdict(request: Request, problem_id: int, submission: Submission,
             source_code=submission.source_code,
             problem_id=problem_id,
             language_id=submission.language_id,
-            user_id=user_id
+            user_id=user_id,
         )
 
         for key, value in verdicts.items():
@@ -84,20 +90,20 @@ async def get_verdict(request: Request, problem_id: int, submission: Submission,
                 submission_id=submission_id,
                 testcase=testcase,
                 memory=memory,
-                time=time,
+                time=int(time),
                 verdict=verdict,
-                output=output
+                output=output,
             )
 
     return verdicts
 
 
-@router.get("/practice_history/{user_id}")
+@router.get("/history/{user_id}")
 async def get_practice_history(user_id: int, db: Session = Depends(get_db)):
     if user_id == "":
         return HTTPException(status_code=400, detail="User id cannot be empty")
     submissions = get_submission_history(db=db, user_id=user_id)
 
-    if (submissions == None):
+    if submissions is None:
         return {"error": "No submissions found for the user"}
     return submissions

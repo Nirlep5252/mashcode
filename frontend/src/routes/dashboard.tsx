@@ -22,24 +22,53 @@ function Dashboard() {
   }
 
   return (
-    <div className={"w-full h-screen flex items-center justify-around"}>
-      <div className="previous-matches w-1/3 flex items-center justify-center">
-        <MatchHistoryList />
-      </div>
-      <div className="play-btn w-1/3 flex items-center justify-center">
-        <Link to={"/match/queue"}>
-          <Button
-            size={"lg"}
-            className={
-              "font-bold scale-150 text-lg flex items-center justify-center"
-            }
-          >
-            Play
-          </Button>
-        </Link>
-      </div>
-      <div className="leaderboard w-1/3 flex items-center justify-center">
-        <Leaderboard />
+    <div className="container mx-auto py-6 px-4 mt-16">
+      <div className="flex flex-col gap-6 max-w-7xl mx-auto">
+        {/* Welcome Section */}
+        <div className="flex items-center justify-between bg-card p-6 rounded-lg shadow-sm">
+          <div>
+            <h1 className="text-3xl font-bold">Welcome back, {user.login}!</h1>
+            <p className="text-muted-foreground mt-2">
+              Ready for your next challenge?
+            </p>
+          </div>
+          <Link to={"/match/queue"}>
+            <Button size="lg" className="text-lg font-semibold px-8">
+              Start Match
+            </Button>
+          </Link>
+        </div>
+
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Match History Section */}
+          <div className="lg:col-span-8">
+            <MatchHistoryList />
+          </div>
+
+          {/* Leaderboard Section */}
+          <div className="lg:col-span-4">
+            <div className="space-y-6">
+              <Leaderboard />
+              {/* Quick Actions */}
+              <div className="bg-card p-4 rounded-lg shadow-sm">
+                <h3 className="font-semibold mb-4">Quick Actions</h3>
+                <div className="flex flex-col gap-3">
+                  <Link to="/practice" className="w-full">
+                    <Button variant="outline" className="w-full justify-start">
+                      Practice Problems
+                    </Button>
+                  </Link>
+                  <Link to="/profile" className="w-full">
+                    <Button variant="outline" className="w-full justify-start">
+                      View Profile
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

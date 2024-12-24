@@ -8,21 +8,25 @@ export const Leaderboard: React.FC = () => {
     useLeaderboard();
 
   return (
-    <Card className={"w-[380px] min-h-[400px]"}>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>Leaderboard (Top 10)</CardTitle>
       </CardHeader>
-      <CardContent className={"flex flex-col items-center justify-center"}>
+      <CardContent>
         {isLeaderboardLoading ? (
-          <Loader2Icon className="animate-spin" />
+          <div className="flex justify-center py-4">
+            <Loader2Icon className="animate-spin" />
+          </div>
         ) : leaderboard ? (
-          <>
+          <div className="space-y-2">
             {leaderboard.map((user) => (
               <LeaderboardUserItem key={user.id} {...user} />
             ))}
-          </>
+          </div>
         ) : (
-          "Error fetching leaderboard"
+          <div className="text-center py-4 text-muted-foreground">
+            Error fetching leaderboard
+          </div>
         )}
       </CardContent>
     </Card>

@@ -13,8 +13,8 @@ import { useDynamicDashboardLayout } from "@/stores/dynamic-dashboard";
 import { Switch } from "@/components/ui/switch";
 
 const editorThemes = [
-  { label: "Light", value: "light" },
-  { label: "Dark", value: "dark" },
+  { label: "Light", value: "vs-light" },
+  { label: "Dark", value: "vs-dark" },
   { label: "High Contrast", value: "hc-black" },
   { label: "High Contrast Light", value: "hc-light" },
 ] as const;
