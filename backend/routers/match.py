@@ -1,5 +1,4 @@
 from collections import defaultdict
-
 import aiohttp
 from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import Response
@@ -49,7 +48,7 @@ async def user_leaderboard(db: Session = Depends(get_db)):
 
 
 users_queued: dict[User, WebSocket] = {}
-rating_threshold = 100
+rating_threshold = 1000
 
 
 @router.websocket("/queue")
@@ -158,134 +157,141 @@ match_websockets: dict[int, list[WebSocket]] = defaultdict(list)
 
 @router.websocket("/{match_id}")
 async def match_ws(websocket: WebSocket, match_id: int, db: Session = Depends(get_db)):
-    await websocket.accept()
-
-    # First thing we need to authorize user before adding them to queue
-    auth_data = await websocket.receive_json()
-    if auth_data.get("type") != "auth":
-        await websocket.send_json({"type": "error", "message": "Missing auth"})
-        await websocket.close()
-        return
-
-    token = auth_data.get("token")
-    if not token:
-        await websocket.send_json({"type": "error", "message": "Missing token"})
-        await websocket.close()
-        return
-
-    user_github_data = None
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            "https://api.github.com/user", headers={"Authorization": f"Bearer {token}"}
-        ) as response:
-            user_github_data = await response.json()
-            if "message" in user_github_data:
-                await websocket.send_json(
-                    {"type": "error", "message": user_github_data["message"]}
-                )
-                await websocket.close()
-                return
-
-    match = get_match(db, match_id)
-    if not match:
-        await websocket.send_json({"type": "error", "message": "Match not found"})
-        await websocket.close()
-        return
-
-    if match.status == MatchStatus.COMPLETED:
-        await websocket.send_json(
-            {"type": "error", "message": "Match already completed"}
-        )
-        await websocket.close()
-        return
-
-    if (
-        match.player1_id != user_github_data["id"]
-        and match.player2_id != user_github_data["id"]
-    ):
-        await websocket.send_json({"type": "error", "message": "Unauthorized"})
-        await websocket.close()
-        return
-
-    match_websockets[match_id].append(websocket)
-
     try:
+        # Initialize connection
+        await websocket.accept()
+
+        # Step 1: Authentication
+        auth_data = await websocket.receive_json()
+        if auth_data.get("type") != "auth" or not auth_data.get("token"):
+            await websocket.send_json({"type": "error", "message": "Invalid authentication"})
+            await websocket.close()
+            return
+
+        # Get GitHub user data
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                "https://api.github.com/user",
+                headers={"Authorization": f"Bearer {auth_data['token']}"}
+            ) as response:
+                user_github_data = await response.json()
+                if "message" in user_github_data:
+                    await websocket.send_json({"type": "error", "message": "GitHub authentication failed"})
+                    await websocket.close()
+                    return
+
+        # Convert GitHub ID to integer for consistent comparison
+        current_user_id = int(user_github_data["id"])
+
+        # Step 2: Match validation
+        match = get_match(db, match_id)
+        if not match:
+            await websocket.send_json({"type": "error", "message": "Match not found"})
+            await websocket.close()
+            return
+
+        if match.status == MatchStatus.COMPLETED:
+            await websocket.send_json({"type": "error", "message": "Match already completed"})
+            await websocket.close()
+            return
+
+        # Validate user's participation in match
+        if current_user_id not in (match.player1_id, match.player2_id):
+            await websocket.send_json({"type": "error", "message": "You are not a participant in this match"})
+            await websocket.close()
+            return
+
+        # Add to active websockets for this match
+        match_websockets[match_id].append(websocket)
+
+        # Step 3: Main communication loop
         while True:
             data = await websocket.receive_json()
 
             if "type" not in data:
-                await websocket.send_json({"type": "error", "message": "Missing type"})
+                await websocket.send_json({"type": "error", "message": "Invalid message format"})
                 continue
 
             if data["type"] == "submit":
-                if "source_code" not in data or "language_id" not in data:
-                    await websocket.send_json(
-                        {
-                            "type": "error",
-                            "message": "Missing source_code or language_id",
-                        }
-                    )
+                # Validate submission data
+                if not data.get("source_code") or "language_id" not in data:
+                    await websocket.send_json({
+                        "type": "error",
+                        "message": "Invalid submission data"
+                    })
                     await websocket.send_json({"type": "submit_result"})
                     continue
 
-                if data["source_code"] == "":
-                    await websocket.send_json(
-                        {"type": "error", "message": "Source code cannot be empty"}
-                    )
-                    await websocket.send_json({"type": "submit_result"})
-                    continue
-
-                res = await get_submission_verdict(
+                # Get submission verdict
+                verdict = await get_submission_verdict(
                     problem_id=match.problem_id or 1,
                     source_code=data["source_code"],
                     language_id=data["language_id"],
                 )
-                await websocket.send_json(
-                    {
-                        "type": "submit_result",
-                        "result": res,
-                    }
+
+                # Send initial verdict
+                await websocket.send_json({
+                    "type": "submit_result",
+                    "result": verdict,
+                })
+
+                # Check if it's a winning submission
+                is_winning_submission = all(
+                    testcase["status"]["id"] == 3 for testcase in verdict.values()
                 )
 
-                win = True
-                for testcase in res:
-                    if res[testcase]["status"]["id"] != 3:
-                        win = False
-                        break
+                if is_winning_submission:
+                    # Identify players
+                    is_winner_player1 = current_user_id == match.player1_id
+                    winner_rating = match.player1.rating if is_winner_player1 else match.player2.rating
+                    loser_rating = match.player2.rating if is_winner_player1 else match.player1.rating
 
-                if win:
-                    rating_delta = -1 * get_elo_rating_change(
+                    # Calculate rating changes
+                    rating_delta = abs(get_elo_rating_change(
                         match.player1.rating,
                         match.player2.rating,
-                        MatchWinner.PLAYER1
-                        if match.player1_id == user_github_data["id"]
-                        else MatchWinner.PLAYER2,
-                    )
-                    end_match(db, user_github_data["id"], match_id, rating_delta)
+                        MatchWinner.PLAYER1 if is_winner_player1 else MatchWinner.PLAYER2
+                    ))
 
-                    user = get_user(db, user_github_data["id"])
-                    if user:
-                        user.rating += rating_delta
+                    # Update match status
+                    end_match(db, current_user_id, match_id, rating_delta)
+
+                    # Update winner's rating
+                    winner = get_user(db, current_user_id)
+                    if winner:
+                        winner.rating += rating_delta
                         db.commit()
 
-                    user2 = get_user(
-                        db,
-                        match.player1_id
-                        if user_github_data["id"] == match.player2_id
-                        else match.player2_id,
-                    )
-                    if user2:
-                        user2.rating = user2.rating - rating_delta
+                    # Update loser's rating
+                    loser_id = match.player2_id if is_winner_player1 else match.player1_id
+                    loser = get_user(db, loser_id)
+                    if loser:
+                        loser.rating -= rating_delta
                         db.commit()
+
+                    # Notify all participants
                     for ws in match_websockets[match_id]:
-                        await ws.send_json(
-                            {
-                                "type": "match_result",
-                                "winner": user_github_data["id"],
-                                "rating_delta": rating_delta,
-                            }
-                        )
+                        await ws.send_json({
+                            "type": "match_result",
+                            "winner": current_user_id,
+                            "rating_delta": rating_delta,
+                            "new_winner_rating": winner.rating if winner else None,
+                            "new_loser_rating": loser.rating if loser else None
+                        })
                         await ws.close()
+
+                    # Cleanup
                     del match_websockets[match_id]
+                    return
+
     except WebSocketDisconnect:
-        match_websockets[match_id].remove(websocket)
+        if match_id in match_websockets and websocket in match_websockets[match_id]:
+            match_websockets[match_id].remove(websocket)
+    except Exception as e:
+        # Log the error and close connection gracefully
+        if websocket.client_state.CONNECTED:
+            await websocket.send_json({
+                "type": "error",
+                "message": "Internal server error occurred"
+            })
+            await websocket.close()
