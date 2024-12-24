@@ -50,7 +50,7 @@ function PracticePage() {
                 if (data[key].status.id !== judge0SuccessStatusId) {
                   wrongAnsFlag = true;
                   toast.error(
-                    `${data[key].status.description} on test case ${key}`
+                    `${data[key].status.description} on test case ${key}`,
                   );
                 }
               }

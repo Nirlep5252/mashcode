@@ -90,11 +90,11 @@ function Match() {
               for (const testcase of Object.keys(data.result)) {
                 if (data.result[testcase].status.id === judge0SuccessStatusId) {
                   toast.success(
-                    `${data.result[testcase].status.description} on ${testcase}`
+                    `${data.result[testcase].status.description} on ${testcase}`,
                   );
                 } else {
                   toast.error(
-                    `${data.result[testcase].status.description} on ${testcase}`
+                    `${data.result[testcase].status.description} on ${testcase}`,
                   );
                 }
               }
@@ -111,7 +111,7 @@ function Match() {
       filter: () => {
         return false;
       },
-    }
+    },
   );
   const { matchLayout: model, setMatchLayout: setModel } =
     useDynamicDashboardLayout();

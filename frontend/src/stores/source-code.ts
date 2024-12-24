@@ -17,6 +17,6 @@ export const useSourceCodeStore = create<{
     }),
     {
       name: "source-code-store",
-    }
-  )
+    },
+  ),
 );

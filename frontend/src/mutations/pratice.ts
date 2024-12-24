@@ -23,7 +23,7 @@ export const useSubmission = createMutation({
           Authorization: `Bearer ${ghToken}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     const data = await res.json();
     return data;

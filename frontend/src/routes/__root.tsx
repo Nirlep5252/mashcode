@@ -18,7 +18,7 @@ const RootComponent: React.FC = () => {
     if (url.searchParams.has("access_token")) {
       window.localStorage.setItem(
         "ghToken",
-        url.searchParams.get("access_token")!
+        url.searchParams.get("access_token")!,
       );
       url.searchParams.delete("access_token");
       window.location.href = url.toString();
