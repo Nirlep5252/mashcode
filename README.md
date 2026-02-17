@@ -26,15 +26,20 @@ App runs at `http://localhost:3000`.
 ```bash
 npm run dev
 npm run lint
+npm run test
 npm run db:generate
 npm run db:migrate
 npm run db:studio
 ```
 
-## Current scope
+## Phase 2 scope (matchmaking + auth scaffold)
 
-- Create/list duel lobbies via `/api/duels`
-- Health endpoint via `/api/health`
-- Browser-tested local flow with dockerized Postgres
+- Local-first auth scaffold (`/api/auth/local`) with cookie sessions + handle-based local sign-in
+- Matchmaking domain model + queue API (`/api/matchmaking/queue`)
+- Duel room scaffold model/API (`/api/duel-rooms/:roomId`)
+- Browser pages:
+  - `/` — rewrite status + local auth card
+  - `/queue` — queue join/leave + match handoff
+  - `/duel/[roomId]` — duel room skeleton
 
-Next: auth, matchmaking, problem pipeline, submissions + judge workers.
+Next: realtime transport, round lifecycle orchestration, judge workers.
