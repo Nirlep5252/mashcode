@@ -1,58 +1,40 @@
-# MashCode - Compile & Conquer
+# MashCode v2 (Rewrite)
 
-MashCode is a fun 1v1 competitive programming platform.
+Fresh rewrite of MashCode focused on modern 2026 DX and local-first development.
 
-## Very Early Preview
+## Stack
 
-<https://github.com/Nirlep5252/mashcode/assets/70529587/66958f6d-43ce-40fa-85d1-230bdde9ad21>
+- Next.js 16 (App Router) + React 19 + TypeScript
+- Drizzle ORM + PostgreSQL
+- Docker Compose for local database
 
-## Current Features
+## Local setup
 
-- Rating-based LIVE matchmaking.
-- Supports 30 languages.
-- Dynamic flex layout during match and practice sessions.
-- CSES set 300 questions that are already available for practice.
+```bash
+cp .env.example .env.local
+npm install
+docker compose up -d
+npm run db:generate
+npm run db:migrate
+npm run dev
+```
 
-## Upcoming features
+App runs at `http://localhost:3000`.
 
-<!-- - A public profile page. -->
+## Useful scripts
 
-- A problemsetter dashboard.
-- Viewing previous submissions and code.
-- Friends.
-- Private unrated matches between friends.
-- Multiple problems per match.
-- Interactive problems.
-- Time limit per match.
-- Seasons and ranks (for rating).
-- Difficulty of questions.
+```bash
+npm run dev
+npm run lint
+npm run db:generate
+npm run db:migrate
+npm run db:studio
+```
 
-## Run Locally
+## Current scope
 
-Make sure you have the [Nix package manager](https://nixos.org/download.html) installed.
+- Create/list duel lobbies via `/api/duels`
+- Health endpoint via `/api/health`
+- Browser-tested local flow with dockerized Postgres
 
-1. Clone the project
-
-   ```bash
-     git clone https://github.com/nirlep5252/mashcode
-     cd mashcode
-   ```
-
-2. Create `.env` file in the `backend` directory using the `.env.example` file.
-
-   ```bash
-     cp backend/.env.example backend/.env
-     # Make sure you fill the missing github credentials
-   ```
-
-3. Enable nix shell.
-
-   ```bash
-     nix develop --no-pure-eval
-   ```
-
-4. Run the project.
-
-   ```bash
-     devenv up
-   ```
+Next: auth, matchmaking, problem pipeline, submissions + judge workers.

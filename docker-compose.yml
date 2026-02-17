@@ -1,50 +1,21 @@
-x-logging:
-  &default-logging
-  logging:
-    driver: json-file
-    options:
-      max-size: 100m
-
 services:
-  server:
-    image: judge0/judge0:1.13.0
-    volumes:
-      - ./judge0.conf:/judge0.conf:ro
-    ports:
-      - "2358:2358"
-    privileged: true
-    <<: *default-logging
-    restart: always
-
-  workers:
-    image: judge0/judge0:1.13.0
-    command: ["./scripts/workers"]
-    volumes:
-      - ./judge0.conf:/judge0.conf:ro
-    privileged: true
-    <<: *default-logging
-    restart: always
-
   db:
-    image: postgres:13.0
-    env_file: judge0.conf
+    image: postgres:17-alpine
+    container_name: mashcode_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mashcode
+      POSTGRES_PASSWORD: mashcode
+      POSTGRES_DB: mashcode
+    ports:
+      - "5432:5432"
     volumes:
-      - postgres-data:/var/lib/postgresql/data/
-    <<: *default-logging
-    restart: always
-
-  redis:
-    image: redis:6.0
-    command: [
-      "bash", "-c",
-      'docker-entrypoint.sh --appendonly yes --requirepass "$$REDIS_PASSWORD"'
-    ]
-    env_file: judge0.conf
-    volumes:
-      - redis-data:/data
-    <<: *default-logging
-    restart: always
+      - mashcode_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mashcode -d mashcode"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
 volumes:
-  postgres-data:
-  redis-data:
+  mashcode_pgdata:
