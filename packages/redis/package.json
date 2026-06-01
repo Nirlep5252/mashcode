@@ -1,0 +1,16 @@
+{
+  "name": "@mashcode/redis",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "redis": "^6.0.0"
+  }
+}

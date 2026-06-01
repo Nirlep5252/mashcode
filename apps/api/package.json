@@ -1,0 +1,21 @@
+{
+  "name": "@mashcode/api",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "bun --hot src/index.ts",
+    "start": "bun src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mashcode/contracts": "workspace:*",
+    "@mashcode/db": "workspace:*",
+    "@mashcode/realtime-protocol": "workspace:*",
+    "better-auth": "^1.6.13",
+    "bullmq": "^5.77.6",
+    "effect": "^3.21.2",
+    "hono": "^4.12.23",
+    "redis": "^6.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@mashcode/realtime-protocol",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mashcode/contracts": "workspace:*",
+    "effect": "^3.21.2"
+  }
+}

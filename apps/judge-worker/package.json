@@ -1,0 +1,17 @@
+{
+  "name": "@mashcode/judge-worker",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "bun --hot src/index.ts",
+    "start": "bun src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mashcode/judge-core": "workspace:*",
+    "@mashcode/redis": "workspace:*",
+    "bullmq": "^5.77.6",
+    "effect": "^3.21.2"
+  }
+}
